@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8A2564F81E9F717C00F0E47D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2564F71E9F717C00F0E47D /* main.m */; };
+		8A2565021E9F72AF00F0E47D /* AMPCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565011E9F72AF00F0E47D /* AMPCreature.m */; };
+		8A2565061E9F87B800F0E47D /* NSString+AMPRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565051E9F87B800F0E47D /* NSString+AMPRandom.m */; };
+		8A25650E1E9F902F00F0E47D /* AMPCreatureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A25650D1E9F902F00F0E47D /* AMPCreatureTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,12 @@
 /* Begin PBXFileReference section */
 		8A2564F41E9F717C00F0E47D /* AMPObjCStudy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AMPObjCStudy; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A2564F71E9F717C00F0E47D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8A2565001E9F72AF00F0E47D /* AMPCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCreature.h; sourceTree = "<group>"; };
+		8A2565011E9F72AF00F0E47D /* AMPCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPCreature.m; sourceTree = "<group>"; };
+		8A2565041E9F87B800F0E47D /* NSString+AMPRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AMPRandom.h"; sourceTree = "<group>"; };
+		8A2565051E9F87B800F0E47D /* NSString+AMPRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AMPRandom.m"; sourceTree = "<group>"; };
+		8A25650C1E9F902F00F0E47D /* AMPCreatureTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCreatureTest.h; sourceTree = "<group>"; };
+		8A25650D1E9F902F00F0E47D /* AMPCreatureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPCreatureTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				8A2564FE1E9F71AE00F0E47D /* Source */,
+				8A2565071E9F8FA900F0E47D /* Tests */,
 				8A2564F71E9F717C00F0E47D /* main.m */,
 			);
 			path = AMPObjCStudy;
@@ -66,8 +76,45 @@
 		8A2564FE1E9F71AE00F0E47D /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				8A2565031E9F878500F0E47D /* Categories */,
+				8A2564FF1E9F728F00F0E47D /* AMPCreature */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		8A2564FF1E9F728F00F0E47D /* AMPCreature */ = {
+			isa = PBXGroup;
+			children = (
+				8A2565001E9F72AF00F0E47D /* AMPCreature.h */,
+				8A2565011E9F72AF00F0E47D /* AMPCreature.m */,
+			);
+			path = AMPCreature;
+			sourceTree = "<group>";
+		};
+		8A2565031E9F878500F0E47D /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				8A2565041E9F87B800F0E47D /* NSString+AMPRandom.h */,
+				8A2565051E9F87B800F0E47D /* NSString+AMPRandom.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		8A2565071E9F8FA900F0E47D /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8A2565081E9F8FBB00F0E47D /* AMPCreatureTest */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		8A2565081E9F8FBB00F0E47D /* AMPCreatureTest */ = {
+			isa = PBXGroup;
+			children = (
+				8A25650C1E9F902F00F0E47D /* AMPCreatureTest.h */,
+				8A25650D1E9F902F00F0E47D /* AMPCreatureTest.m */,
+			);
+			path = AMPCreatureTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,6 +176,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A2564F81E9F717C00F0E47D /* main.m in Sources */,
+				8A25650E1E9F902F00F0E47D /* AMPCreatureTest.m in Sources */,
+				8A2565061E9F87B800F0E47D /* NSString+AMPRandom.m in Sources */,
+				8A2565021E9F72AF00F0E47D /* AMPCreature.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +277,7 @@
 		8A2564FC1E9F717C00F0E47D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DEVELOPMENT_TEAM = FWP6H8H8UZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -235,6 +286,7 @@
 		8A2564FD1E9F717C00F0E47D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DEVELOPMENT_TEAM = FWP6H8H8UZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

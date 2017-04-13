@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AMPCreatureTest.h"
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        AMPCreatureWarOrBirthTest();
+        AMPCreatureSayHelloTest();
 
     }
     return 0;
