@@ -8,17 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
-    AMPCreatureGenderMale,
-    AMPCreatureGenderFemale
-    
-} AMPCreatureGender;
-
 @interface AMPCreature : NSObject
 @property (nonatomic, copy)     NSString            *name;
 @property (nonatomic, assign)   double              weigth;
 @property (nonatomic, assign)   NSUInteger          age;
-@property (nonatomic, assign)   AMPCreatureGender   gender;
 
 @property (nonatomic, readonly)     NSArray     *childs;
 
@@ -26,8 +19,7 @@ typedef enum {
 - (void)removeChild:(AMPCreature *)child;
 - (NSUInteger)childsCount;
 
-- (void)goWar;
-- (AMPCreature *)giveBirth;
+- (void)perfomGenderSpecificOperation;
 - (void)sayHello;
 
 @end

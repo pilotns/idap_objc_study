@@ -20,7 +20,7 @@
         [resultString appendFormat:@"%c", character];
     }
     
-    return [self stringWithString:resultString];
+    return [[self stringWithString:resultString] capitalizedString];
 }
 
 @end

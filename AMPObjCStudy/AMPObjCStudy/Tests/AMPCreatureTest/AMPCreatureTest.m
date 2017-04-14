@@ -8,20 +8,19 @@
 
 #import "AMPCreatureTest.h"
 
-#import "AMPCreature.h"
+#import "AMPCreatureMale.h"
+#import "AMPCreatureFemale.h"
 
 #import "NSString+AMPRandom.h"
+#import "NSObject+AMPExtension.h"
 
 NSArray *AMPCreaturesWithCount(NSUInteger count);
+Class AMPCreatureRandomClass(void);
 
 void AMPCreatureWarOrBirthTest(void) {
     NSArray *creatures = AMPCreaturesWithCount(10);
     for (AMPCreature *creature in creatures) {
-        if (AMPCreatureGenderMale == creature.gender) {
-            [creature goWar];
-        } else {
-            [creature giveBirth];
-        }
+        [creature perfomGenderSpecificOperation];
     }
 }
 
@@ -33,15 +32,16 @@ void AMPCreatureSayHelloTest(void) {
 }
 
 
-
 NSArray *AMPCreaturesWithCount(NSUInteger count) {
     NSMutableArray *creatures = [[[NSMutableArray alloc] initWithCapacity:count] autorelease];
     @autoreleasepool {
         for (NSUInteger iterator = 0; iterator < count; iterator++) {
-            AMPCreature *creature = [[[AMPCreature alloc] init] autorelease];
+            Class creatureClass = AMPCreatureRandomClass();
+            AMPCreature *creature = [creatureClass object];
             
             for (NSUInteger iterator = 0; iterator < arc4random_uniform(4); iterator++) {
-                AMPCreature *child = [[[AMPCreature alloc] init] autorelease];
+                creatureClass = AMPCreatureRandomClass();
+                AMPCreature *child = [creatureClass object];
                 [creature addChild:child];
             }
             
@@ -50,4 +50,8 @@ NSArray *AMPCreaturesWithCount(NSUInteger count) {
     }
     
     return [[creatures copy] autorelease];
+}
+
+Class AMPCreatureRandomClass(void) {
+    return arc4random_uniform(2) ? [AMPCreatureMale class] : [AMPCreatureFemale class];
 }

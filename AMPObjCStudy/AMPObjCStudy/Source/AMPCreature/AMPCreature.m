@@ -33,7 +33,6 @@
     self = [super init];
     if (self) {
         self.name = [NSString randomStringWithLength:6];
-        self.gender = arc4random_uniform(2);
         self.mutableChilds = [NSMutableArray array];
     }
     return self;
@@ -61,16 +60,8 @@
     return [self.mutableChilds count];
 }
 
-- (void)goWar {
-    NSLog(@"Name - %@, gender - %@   - go to war",
-          self.name, self.gender ? @"Female" : @"Male");
-}
-
-- (AMPCreature *)giveBirth {
-    NSLog(@"Name - %@, gender - %@ - go to birth",
-          self.name, self.gender ? @"Female" : @"Male");
+- (void)perfomGenderSpecificOperation {
     
-    return [[[self class] new] autorelease];
 }
 
 - (void)sayHello {
