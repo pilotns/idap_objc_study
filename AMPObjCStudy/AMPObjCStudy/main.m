@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 
 #import "AMPCreatureTest.h"
+#import "AMPMacros.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        AMPCreatureWarOrBirthTest();
-        AMPCreatureSayHelloTest();
+        AMPCallTest(AMPCreatureWarOrBirthTest, AMPEmptyParameter);
+        AMPCallTest(AMPCreatureSayHelloTest, AMPEmptyParameter);
 
     }
     return 0;
