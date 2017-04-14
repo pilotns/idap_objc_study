@@ -36,17 +36,17 @@ void AMPCreatureSayHelloTest(void) {
 
 NSArray *AMPCreaturesWithCount(NSUInteger count) {
     NSMutableArray *creatures = [[[NSMutableArray alloc] initWithCapacity:count] autorelease];
-
-    for (NSUInteger iterator = 0; iterator < count; iterator++) {
-        AMPCreature *creature = [[[AMPCreature alloc] init] autorelease];
-        
-        for (NSUInteger iterator = 0; iterator < arc4random_uniform(4); iterator++) {
-            AMPCreature *child = [[[AMPCreature alloc] init] autorelease];
+    @autoreleasepool {
+        for (NSUInteger iterator = 0; iterator < count; iterator++) {
+            AMPCreature *creature = [[[AMPCreature alloc] init] autorelease];
             
-            [creature addChild:child];
+            for (NSUInteger iterator = 0; iterator < arc4random_uniform(4); iterator++) {
+                AMPCreature *child = [[[AMPCreature alloc] init] autorelease];
+                [creature addChild:child];
+            }
+            
+            [creatures addObject:creature];
         }
-        
-        [creatures addObject:creature];
     }
     
     return [[creatures copy] autorelease];
