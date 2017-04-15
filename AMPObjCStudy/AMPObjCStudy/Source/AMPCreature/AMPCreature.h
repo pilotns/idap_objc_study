@@ -10,14 +10,18 @@
 
 @interface AMPCreature : NSObject
 @property (nonatomic, copy)     NSString            *name;
-@property (nonatomic, assign)   double              weigth;
+@property (nonatomic, assign)   double              weight;
 @property (nonatomic, assign)   NSUInteger          age;
 
-@property (nonatomic, readonly)     NSArray     *childs;
+@property (nonatomic, readonly)     NSArray     *children;
 
 - (void)addChild:(AMPCreature *)child;
 - (void)removeChild:(AMPCreature *)child;
-- (NSUInteger)childsCount;
+
+- (void)addChildren:(NSArray *)children;
+- (void)removeChildren:(NSArray *)children;
+
+- (NSUInteger)childrenCount;
 
 - (void)perfomGenderSpecificOperation;
 - (void)sayHello;

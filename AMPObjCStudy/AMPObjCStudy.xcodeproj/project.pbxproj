@@ -14,6 +14,7 @@
 		8A2565111EA0DE1900F0E47D /* AMPCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565101EA0DE1900F0E47D /* AMPCreatureMale.m */; };
 		8A2565141EA0DEDE00F0E47D /* AMPCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565131EA0DEDE00F0E47D /* AMPCreatureFemale.m */; };
 		8A2565181EA13B9A00F0E47D /* NSObject+AMPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565171EA13B9A00F0E47D /* NSObject+AMPExtension.m */; };
+		8A25651B1EA2AA7300F0E47D /* NSArray+AMPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A25651A1EA2AA7300F0E47D /* NSArray+AMPExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +45,8 @@
 		8A2565151EA0E1AD00F0E47D /* AMPMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPMacros.h; sourceTree = "<group>"; };
 		8A2565161EA13B9A00F0E47D /* NSObject+AMPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AMPExtension.h"; sourceTree = "<group>"; };
 		8A2565171EA13B9A00F0E47D /* NSObject+AMPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AMPExtension.m"; sourceTree = "<group>"; };
+		8A2565191EA2AA7300F0E47D /* NSArray+AMPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AMPExtension.h"; sourceTree = "<group>"; };
+		8A25651A1EA2AA7300F0E47D /* NSArray+AMPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AMPExtension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,8 @@
 				8A2565051E9F87B800F0E47D /* NSString+AMPRandom.m */,
 				8A2565161EA13B9A00F0E47D /* NSObject+AMPExtension.h */,
 				8A2565171EA13B9A00F0E47D /* NSObject+AMPExtension.m */,
+				8A2565191EA2AA7300F0E47D /* NSArray+AMPExtension.h */,
+				8A25651A1EA2AA7300F0E47D /* NSArray+AMPExtension.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 				8A2565111EA0DE1900F0E47D /* AMPCreatureMale.m in Sources */,
 				8A2565181EA13B9A00F0E47D /* NSObject+AMPExtension.m in Sources */,
 				8A2565021E9F72AF00F0E47D /* AMPCreature.m in Sources */,
+				8A25651B1EA2AA7300F0E47D /* NSArray+AMPExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,9 @@
 
 #import "NSString+AMPRandom.h"
 #import "NSObject+AMPExtension.h"
+#import "NSArray+AMPExtension.h"
+
+static const NSUInteger AMPMaximumChildrenCount = 10;
 
 NSArray *AMPCreaturesWithCount(NSUInteger count);
 Class AMPCreatureRandomClass(void);
@@ -33,23 +36,15 @@ void AMPCreatureSayHelloTest(void) {
 
 
 NSArray *AMPCreaturesWithCount(NSUInteger count) {
-    NSMutableArray *creatures = [[[NSMutableArray alloc] initWithCapacity:count] autorelease];
-    @autoreleasepool {
-        for (NSUInteger iterator = 0; iterator < count; iterator++) {
-            Class creatureClass = AMPCreatureRandomClass();
-            AMPCreature *creature = [creatureClass object];
+    return [NSArray arrayWithObjectsCount:count factoryBlock:^id{
+        @autoreleasepool {
+            Class currentClass = AMPCreatureRandomClass();
+            AMPCreature *creature = [currentClass object];
+            [creature addChildren:[AMPCreature objectsWithCount:arc4random_uniform(AMPMaximumChildrenCount)]];
             
-            for (NSUInteger iterator = 0; iterator < arc4random_uniform(4); iterator++) {
-                creatureClass = AMPCreatureRandomClass();
-                AMPCreature *child = [creatureClass object];
-                [creature addChild:child];
-            }
-            
-            [creatures addObject:creature];
+            return [creature retain];
         }
-    }
-    
-    return [[creatures copy] autorelease];
+    }];
 }
 
 Class AMPCreatureRandomClass(void) {

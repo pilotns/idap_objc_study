@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+NSRange AMPMakeCharacterRange(unichar firstCharacter, unichar lastCharacter);
+
 @interface NSString (AMPRandom)
 
++ (instancetype)randomString;
 + (instancetype)randomStringWithLength:(NSUInteger)length;
++ (instancetype)randomStringWithLength:(NSUInteger)length characterRange:(NSRange)characterRange;
 
 @end

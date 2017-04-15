@@ -11,19 +11,19 @@
 #import "NSString+AMPRandom.h"
 
 @interface AMPCreature ()
-@property (nonatomic, retain) NSMutableArray *mutableChilds;
+@property (nonatomic, retain) NSMutableArray *mutableChildren;
 
 @end
 
 @implementation AMPCreature
 
-@dynamic childs;
+@dynamic children;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.mutableChilds = nil;
+    self.mutableChildren = nil;
     self.name = nil;
     
     [super dealloc];
@@ -31,33 +31,40 @@
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
-        self.name = [NSString randomStringWithLength:6];
-        self.mutableChilds = [NSMutableArray array];
-    }
+    self.name = [NSString randomStringWithLength:6];
+    self.mutableChildren = [NSMutableArray array];
+
     return self;
 }
 
 #pragma mark -
 #pragma mark - Accessors
 
-- (NSArray *)childs {
-    return [[self.mutableChilds copy] autorelease];
+- (NSArray *)children {
+    return [[self.mutableChildren copy] autorelease];
 }
 
 #pragma mark -
 #pragma mark - Public Methods
 
 - (void)addChild:(AMPCreature *)child {
-    [self.mutableChilds addObject:child];
+    [self.mutableChildren addObject:child];
 }
 
 - (void)removeChild:(AMPCreature *)child {
-    [self.mutableChilds removeObject:child];
+    [self.mutableChildren removeObject:child];
 }
 
-- (NSUInteger)childsCount {
-    return [self.mutableChilds count];
+- (void)addChildren:(NSArray *)children {
+    [self.mutableChildren addObjectsFromArray:children];
+}
+
+- (void)removeChildren:(NSArray *)children {
+    [self.mutableChildren removeObjectsInArray:children];
+}
+
+- (NSUInteger)childrenCount {
+    return [self.mutableChildren count];
 }
 
 - (void)perfomGenderSpecificOperation {
@@ -66,11 +73,9 @@
 
 - (void)sayHello {
     NSLog(@"%@ says Hello", self.name);
-    if ([self childsCount] > 0) {
+    if ([self childrenCount] > 0) {
         NSLog(@"---Childs of %@---", self.name);
-        
-        NSArray *childs = [self childs];
-        for (AMPCreature *child in childs) {
+        for (AMPCreature *child in self.mutableChildren) {
             [child sayHello];
         }
         

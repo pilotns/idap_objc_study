@@ -38,7 +38,4 @@
 
 #define AMPEmptyParameter
 
-static const uint16_t value = 1;
-#define AMPIsBigendian() (*(char *)&value == 1)
-
 #endif /* AMPMacros_h */
