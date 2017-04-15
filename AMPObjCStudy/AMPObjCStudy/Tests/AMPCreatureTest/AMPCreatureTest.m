@@ -34,7 +34,6 @@ void AMPCreatureSayHelloTest(void) {
     }
 }
 
-
 NSArray *AMPCreaturesWithCount(NSUInteger count) {
     return [NSArray arrayWithObjectsCount:count factoryBlock:^id{
         @autoreleasepool {

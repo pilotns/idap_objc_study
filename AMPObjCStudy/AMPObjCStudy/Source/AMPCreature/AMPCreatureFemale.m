@@ -33,5 +33,4 @@
     return [[[self class] new] autorelease];
 }
 
-
 @end
