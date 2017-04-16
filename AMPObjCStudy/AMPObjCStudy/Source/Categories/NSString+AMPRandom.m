@@ -11,7 +11,10 @@
 static const NSUInteger AMPDefaultLength = 10;
 
 NSRange AMPMakeCharacterRange(unichar firstCharacter, unichar lastCharacter) {
-    return NSMakeRange(firstCharacter, lastCharacter - firstCharacter + 1);
+    unichar minValue = MIN(firstCharacter, lastCharacter);
+    unichar maxValue = MAX(firstCharacter, lastCharacter);
+    
+    return NSMakeRange(minValue, maxValue - minValue + 1);
 }
 
 @implementation NSString (AMPRandom)
