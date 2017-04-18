@@ -13,6 +13,6 @@
 @interface AMPLinkedListNumberArray : AMPNumberArray
 @property (nonatomic, readonly) AMPLinkedList *storage;
 
-- (instancetype)initWithNumbers:(NSUInteger *)numbers count:(NSUInteger)count;
+- (instancetype)initWithArray:(NSArray *)numbers;
 
 @end

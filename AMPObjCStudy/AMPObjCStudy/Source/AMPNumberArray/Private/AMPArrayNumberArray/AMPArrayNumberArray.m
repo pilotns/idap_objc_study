@@ -24,6 +24,8 @@
 
 @implementation AMPArrayNumberArray
 
+@synthesize count = _count;
+
 #pragma mark -
 #pragma mark - Initializations and Deallocations
 
@@ -57,10 +59,6 @@
     }
     
     return nil;
-}
-
-- (NSNumber *)objectAtIndexedSubscript:(NSUInteger)index {
-    return [self numberAtIndex:index];
 }
 
 #pragma mark -

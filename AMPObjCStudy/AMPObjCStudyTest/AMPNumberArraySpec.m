@@ -58,10 +58,7 @@ describe(@"AMPLinkedListNumberArray", ^{
         __block AMPNumberArray *listNumberArray = nil;
         
         beforeAll(^{
-            NSUInteger numbers[] = {0, 5};
-            listNumberArray = [AMPNumberArray numberArrayWithNumbers:numbers
-                                                               count:sizeof(numbers)
-                                                                        / sizeof(*numbers)];
+            listNumberArray = [AMPNumberArray numberArrayWithNumbers:@(0), @(5), nil];
         });
         
         afterAll(^{
@@ -98,16 +95,14 @@ describe(@"AMPLinkedListNumberArray", ^{
     });
 });
 
+
 describe(@"AMPRangeNumberArray", ^{
     describe(@"when created with range array which range 0 - 1 and list array which contain 0 and 5", ^{
         __block AMPNumberArray *arrayOfNumberArrays = nil;
         
         beforeAll(^{
             AMPNumberArray *rangeArray = [AMPNumberArray numberArrayWithRange:0 lastNumber:1];
-            NSUInteger numbers[] = {0, 5};
-            AMPNumberArray *listArray = [AMPNumberArray numberArrayWithNumbers:numbers
-                                                                         count:sizeof(numbers)
-                                                                                / sizeof(*numbers)];
+            AMPNumberArray *listArray = [AMPNumberArray numberArrayWithNumbers:@(0), @(5), nil];
             
             arrayOfNumberArrays = [AMPNumberArray numberArrayWithNumberArrays:@[rangeArray, listArray]];
         });

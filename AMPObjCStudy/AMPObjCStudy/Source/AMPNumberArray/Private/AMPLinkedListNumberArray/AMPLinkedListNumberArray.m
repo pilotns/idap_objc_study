@@ -16,7 +16,7 @@
 @interface AMPLinkedListNumberArray ()
 @property (nonatomic, retain) AMPLinkedList *storage;
 
-- (void)parseNumbers:(NSUInteger *)numbers count:(NSUInteger)count;
+- (void)parsenumbers:(NSArray *)numbers;
 
 @end
 
@@ -25,10 +25,10 @@
 #pragma mark -
 #pragma mark - Initializations and Deallocations
 
-- (instancetype)initWithNumbers:(NSUInteger *)numbers count:(NSUInteger)count {
+- (instancetype)initWithArray:(NSArray *)numbers {
     self = [super init];
     self.storage = [AMPLinkedList object];
-    [self parseNumbers:numbers count:count];
+    [self parsenumbers:numbers];
     
     return self;
 }
@@ -51,6 +51,13 @@
     for (NSUInteger iterator = 0; iterator < count; iterator++) {
         NSNumber *number = @(numbers[count - iterator - 1]);
         [self.storage addObject:number];
+    }
+}
+
+- (void)parsenumbers:(NSArray *)numbers {
+    NSUInteger count = [numbers count];
+    for (NSUInteger iterator = 0; iterator < count; iterator++) {
+        [self.storage addObject:numbers[count - iterator - 1]];
     }
 }
 

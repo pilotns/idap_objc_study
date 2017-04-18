@@ -12,7 +12,15 @@
 #import "AMPLinkedListNumberArray.h"
 #import "AMPArrayNumberArray.h"
 
+@interface AMPNumberArray ()
+
++ (NSMutableArray *)arrayOfNumbersWithVaList:(va_list)list;
+
+@end
+
 @implementation AMPNumberArray
+
+@dynamic count;
 
 #pragma mark -
 #pragma mark - Class Methods
@@ -21,8 +29,14 @@
     return [[[self alloc] initWithRange:firstNumber lastNumber:lastNumber] autorelease];
 }
 
-+ (instancetype)numberArrayWithNumbers:(NSUInteger *)numbers count:(NSUInteger)count {
-    return [[[self alloc] initWithNumbers:numbers count:count] autorelease];
++ (instancetype)numberArrayWithNumbers:(NSNumber *)firstNumber, ... {
+    va_list numbers;
+    va_start(numbers, firstNumber);
+    NSMutableArray *numbersArray = [self arrayOfNumbersWithVaList:numbers];
+    [numbersArray insertObject:firstNumber atIndex:0];
+    va_end(numbers);
+    
+    return [[[AMPLinkedListNumberArray alloc] initWithArray:numbersArray] autorelease];
 }
 
 + (instancetype)numberArrayWithNumberArrays:(NSArray *)numberArrays {
@@ -33,14 +47,26 @@
 #pragma mark - Initializations and Deallocations
 
 - (instancetype)initWithRange:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber {
+    [self release];
+    
     return [[AMPRangeNumberArray alloc] initWithRange:firstNumber lastNumber:lastNumber];
 }
 
-- (instancetype)initWithNumbers:(NSUInteger *)numbers count:(NSUInteger)count {
-    return [[AMPLinkedListNumberArray alloc] initWithNumbers:numbers count:count];
+- (instancetype)initWithNumbers:(NSNumber *)firstNumber, ... {
+    [self release];
+    
+    va_list numbers;
+    va_start(numbers, firstNumber);
+    NSMutableArray *numbersArray = [[self class] arrayOfNumbersWithVaList:numbers];
+    [numbersArray insertObject:firstNumber atIndex:0];
+    va_end(numbers);
+    
+    return [[AMPLinkedListNumberArray alloc] initWithArray:numbersArray];
 }
 
 - (instancetype)initWithNumberArrays:(NSArray *)numberArrays {
+    [self release];
+    
     return [[AMPArrayNumberArray alloc] initWithNumberArrays:numberArrays];
 }
 
@@ -69,6 +95,19 @@
 
 - (NSNumber *)objectAtIndexedSubscript:(NSUInteger)index {
     return [self numberAtIndex:index];
+}
+
+#pragma mark -
+#pragma mark - Private Methods
+
++ (NSMutableArray *)arrayOfNumbersWithVaList:(va_list)list {
+    NSMutableArray *numbers = [NSMutableArray array];
+    NSNumber *number = nil;
+    while (nil != (number = va_arg(list, NSNumber *))) {
+        [numbers addObject:number];
+    }
+    
+    return numbers;
 }
 
 #pragma mark -
