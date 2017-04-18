@@ -15,7 +15,7 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         AMPCallTest(AMPCreatureWarOrBirthTest, AMPEmptyParameter);
         AMPCallTest(AMPCreatureSayHelloTest, AMPEmptyParameter);
-
     }
+
     return 0;
 }

@@ -15,20 +15,21 @@
 #import "NSObject+AMPExtension.h"
 #import "NSArray+AMPExtension.h"
 
+static const NSUInteger AMPDefaultCountOfCreatures = 10;
 static const NSUInteger AMPMaximumChildrenCount = 10;
 
 NSArray *AMPCreaturesWithCount(NSUInteger count);
 Class AMPCreatureRandomClass(void);
 
 void AMPCreatureWarOrBirthTest(void) {
-    NSArray *creatures = AMPCreaturesWithCount(10);
+    NSArray *creatures = AMPCreaturesWithCount(AMPDefaultCountOfCreatures);
     for (AMPCreature *creature in creatures) {
         [creature perfomGenderSpecificOperation];
     }
 }
 
 void AMPCreatureSayHelloTest(void) {
-    NSArray *creatures = AMPCreaturesWithCount(10);
+    NSArray *creatures = AMPCreaturesWithCount(AMPDefaultCountOfCreatures);
     for (AMPCreature *creature in creatures) {
         [creature sayHello];
     }

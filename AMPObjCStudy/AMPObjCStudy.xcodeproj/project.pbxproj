@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		269B212FB4B26AEFE002C65F /* libPods-AMPObjCStudyTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAB3D7E3091DC548D4AE5AA /* libPods-AMPObjCStudyTest.a */; };
+		34A4705D9C8F208B4B63A1E9 /* libPods-AMPObjCStudy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 835BE9E11E9F406A2255F789 /* libPods-AMPObjCStudy.a */; };
 		8A2564F81E9F717C00F0E47D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2564F71E9F717C00F0E47D /* main.m */; };
 		8A2565021E9F72AF00F0E47D /* AMPCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565011E9F72AF00F0E47D /* AMPCreature.m */; };
 		8A2565061E9F87B800F0E47D /* NSString+AMPRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565051E9F87B800F0E47D /* NSString+AMPRandom.m */; };
@@ -15,6 +17,25 @@
 		8A2565141EA0DEDE00F0E47D /* AMPCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565131EA0DEDE00F0E47D /* AMPCreatureFemale.m */; };
 		8A2565181EA13B9A00F0E47D /* NSObject+AMPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565171EA13B9A00F0E47D /* NSObject+AMPExtension.m */; };
 		8A25651B1EA2AA7300F0E47D /* NSArray+AMPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A25651A1EA2AA7300F0E47D /* NSArray+AMPExtension.m */; };
+		8AAB1E971EA614C200F461D3 /* AMPNumberArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E861EA614C200F461D3 /* AMPNumberArray.m */; };
+		8AAB1E981EA614C200F461D3 /* AMPArrayNumberArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E8A1EA614C200F461D3 /* AMPArrayNumberArray.m */; };
+		8AAB1E991EA614C200F461D3 /* AMPLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E8E1EA614C200F461D3 /* AMPLinkedList.m */; };
+		8AAB1E9A1EA614C200F461D3 /* AMPLinkedListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E911EA614C200F461D3 /* AMPLinkedListNode.m */; };
+		8AAB1E9B1EA614C200F461D3 /* AMPLinkedListNumberArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E931EA614C200F461D3 /* AMPLinkedListNumberArray.m */; };
+		8AAB1E9C1EA614C200F461D3 /* AMPRangeNumberArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E961EA614C200F461D3 /* AMPRangeNumberArray.m */; };
+		8AAB1EA91EA6229B00F461D3 /* AMPNumberArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E861EA614C200F461D3 /* AMPNumberArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AAB1EAA1EA6229F00F461D3 /* NSString+AMPRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565051E9F87B800F0E47D /* NSString+AMPRandom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AAB1EAB1EA622A100F461D3 /* NSObject+AMPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565171EA13B9A00F0E47D /* NSObject+AMPExtension.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AAB1EAC1EA622A400F461D3 /* NSArray+AMPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A25651A1EA2AA7300F0E47D /* NSArray+AMPExtension.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AAB1EAD1EA622A900F461D3 /* AMPCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565011E9F72AF00F0E47D /* AMPCreature.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AAB1EAE1EA622AB00F461D3 /* AMPCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565101EA0DE1900F0E47D /* AMPCreatureMale.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AAB1EAF1EA622AE00F461D3 /* AMPCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565131EA0DEDE00F0E47D /* AMPCreatureFemale.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AAB1EB01EA622C300F461D3 /* AMPArrayNumberArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E8A1EA614C200F461D3 /* AMPArrayNumberArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AAB1EB11EA622C700F461D3 /* AMPLinkedListNumberArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E931EA614C200F461D3 /* AMPLinkedListNumberArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AAB1EB21EA622CB00F461D3 /* AMPRangeNumberArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E961EA614C200F461D3 /* AMPRangeNumberArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AAB1EB31EA6238200F461D3 /* AMPLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E8E1EA614C200F461D3 /* AMPLinkedList.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AAB1EB41EA623A500F461D3 /* AMPLinkedListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E911EA614C200F461D3 /* AMPLinkedListNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AAB1EB71EA6243F00F461D3 /* AMPNuberArraySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1EB61EA6243F00F461D3 /* AMPNuberArraySpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +51,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		155F04F9C1DF311A9C967710 /* Pods-AMPObjCStudyTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AMPObjCStudyTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-AMPObjCStudyTest/Pods-AMPObjCStudyTest.release.xcconfig"; sourceTree = "<group>"; };
+		1682FF060B44819B6EE211BB /* Pods-AMPObjCStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AMPObjCStudy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AMPObjCStudy/Pods-AMPObjCStudy.debug.xcconfig"; sourceTree = "<group>"; };
+		1CB7087AC0291DFEB6BC6A37 /* Pods-AMPObjCStudyTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AMPObjCStudyTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AMPObjCStudyTest/Pods-AMPObjCStudyTest.debug.xcconfig"; sourceTree = "<group>"; };
+		3AAB3D7E3091DC548D4AE5AA /* libPods-AMPObjCStudyTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AMPObjCStudyTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		835BE9E11E9F406A2255F789 /* libPods-AMPObjCStudy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AMPObjCStudy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A2564F41E9F717C00F0E47D /* AMPObjCStudy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AMPObjCStudy; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A2564F71E9F717C00F0E47D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8A2565001E9F72AF00F0E47D /* AMPCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCreature.h; sourceTree = "<group>"; };
@@ -47,6 +73,22 @@
 		8A2565171EA13B9A00F0E47D /* NSObject+AMPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AMPExtension.m"; sourceTree = "<group>"; };
 		8A2565191EA2AA7300F0E47D /* NSArray+AMPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AMPExtension.h"; sourceTree = "<group>"; };
 		8A25651A1EA2AA7300F0E47D /* NSArray+AMPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AMPExtension.m"; sourceTree = "<group>"; };
+		8AAB1E851EA614C200F461D3 /* AMPNumberArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPNumberArray.h; sourceTree = "<group>"; };
+		8AAB1E861EA614C200F461D3 /* AMPNumberArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPNumberArray.m; sourceTree = "<group>"; };
+		8AAB1E891EA614C200F461D3 /* AMPArrayNumberArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPArrayNumberArray.h; sourceTree = "<group>"; };
+		8AAB1E8A1EA614C200F461D3 /* AMPArrayNumberArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPArrayNumberArray.m; sourceTree = "<group>"; };
+		8AAB1E8D1EA614C200F461D3 /* AMPLinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPLinkedList.h; sourceTree = "<group>"; };
+		8AAB1E8E1EA614C200F461D3 /* AMPLinkedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPLinkedList.m; sourceTree = "<group>"; };
+		8AAB1E901EA614C200F461D3 /* AMPLinkedListNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPLinkedListNode.h; sourceTree = "<group>"; };
+		8AAB1E911EA614C200F461D3 /* AMPLinkedListNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPLinkedListNode.m; sourceTree = "<group>"; };
+		8AAB1E921EA614C200F461D3 /* AMPLinkedListNumberArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPLinkedListNumberArray.h; sourceTree = "<group>"; };
+		8AAB1E931EA614C200F461D3 /* AMPLinkedListNumberArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPLinkedListNumberArray.m; sourceTree = "<group>"; };
+		8AAB1E951EA614C200F461D3 /* AMPRangeNumberArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPRangeNumberArray.h; sourceTree = "<group>"; };
+		8AAB1E961EA614C200F461D3 /* AMPRangeNumberArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPRangeNumberArray.m; sourceTree = "<group>"; };
+		8AAB1EA11EA6228000F461D3 /* AMPObjCStudyTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AMPObjCStudyTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8AAB1EA51EA6228000F461D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8AAB1EB61EA6243F00F461D3 /* AMPNuberArraySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPNuberArraySpec.m; sourceTree = "<group>"; };
+		D98B5F6C3A624CB43CEB3663 /* Pods-AMPObjCStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AMPObjCStudy.release.xcconfig"; path = "Pods/Target Support Files/Pods-AMPObjCStudy/Pods-AMPObjCStudy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,17 +96,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34A4705D9C8F208B4B63A1E9 /* libPods-AMPObjCStudy.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8AAB1E9E1EA6228000F461D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				269B212FB4B26AEFE002C65F /* libPods-AMPObjCStudyTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		862BC6BA76C061C66CAC850B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				835BE9E11E9F406A2255F789 /* libPods-AMPObjCStudy.a */,
+				3AAB3D7E3091DC548D4AE5AA /* libPods-AMPObjCStudyTest.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8A2564EB1E9F717C00F0E47D = {
 			isa = PBXGroup;
 			children = (
 				8A2564F61E9F717C00F0E47D /* AMPObjCStudy */,
+				8AAB1EA21EA6228000F461D3 /* AMPObjCStudyTest */,
 				8A2564F51E9F717C00F0E47D /* Products */,
+				B1FB4816D3F7A8A7FF7E3799 /* Pods */,
+				862BC6BA76C061C66CAC850B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				8A2564F41E9F717C00F0E47D /* AMPObjCStudy */,
+				8AAB1EA11EA6228000F461D3 /* AMPObjCStudyTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,9 +153,10 @@
 		8A2564FE1E9F71AE00F0E47D /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				8A2565151EA0E1AD00F0E47D /* AMPMacros.h */,
+				8AAB1E841EA614C200F461D3 /* AMPNumberArray */,
 				8A2565031E9F878500F0E47D /* Categories */,
 				8A2564FF1E9F728F00F0E47D /* AMPCreature */,
+				8A2565151EA0E1AD00F0E47D /* AMPMacros.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -139,6 +204,93 @@
 			path = AMPCreatureTest;
 			sourceTree = "<group>";
 		};
+		8AAB1E841EA614C200F461D3 /* AMPNumberArray */ = {
+			isa = PBXGroup;
+			children = (
+				8AAB1E871EA614C200F461D3 /* Private */,
+				8AAB1E851EA614C200F461D3 /* AMPNumberArray.h */,
+				8AAB1E861EA614C200F461D3 /* AMPNumberArray.m */,
+			);
+			path = AMPNumberArray;
+			sourceTree = "<group>";
+		};
+		8AAB1E871EA614C200F461D3 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				8AAB1E881EA614C200F461D3 /* AMPArrayNumberArray */,
+				8AAB1E8B1EA614C200F461D3 /* AMPLinkedListNumberArray */,
+				8AAB1E941EA614C200F461D3 /* AMPRangeNumberArray */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		8AAB1E881EA614C200F461D3 /* AMPArrayNumberArray */ = {
+			isa = PBXGroup;
+			children = (
+				8AAB1E891EA614C200F461D3 /* AMPArrayNumberArray.h */,
+				8AAB1E8A1EA614C200F461D3 /* AMPArrayNumberArray.m */,
+			);
+			path = AMPArrayNumberArray;
+			sourceTree = "<group>";
+		};
+		8AAB1E8B1EA614C200F461D3 /* AMPLinkedListNumberArray */ = {
+			isa = PBXGroup;
+			children = (
+				8AAB1E8C1EA614C200F461D3 /* AMPLinkedList */,
+				8AAB1E921EA614C200F461D3 /* AMPLinkedListNumberArray.h */,
+				8AAB1E931EA614C200F461D3 /* AMPLinkedListNumberArray.m */,
+			);
+			path = AMPLinkedListNumberArray;
+			sourceTree = "<group>";
+		};
+		8AAB1E8C1EA614C200F461D3 /* AMPLinkedList */ = {
+			isa = PBXGroup;
+			children = (
+				8AAB1E8D1EA614C200F461D3 /* AMPLinkedList.h */,
+				8AAB1E8E1EA614C200F461D3 /* AMPLinkedList.m */,
+				8AAB1E8F1EA614C200F461D3 /* AMPLinkedListNode */,
+			);
+			path = AMPLinkedList;
+			sourceTree = "<group>";
+		};
+		8AAB1E8F1EA614C200F461D3 /* AMPLinkedListNode */ = {
+			isa = PBXGroup;
+			children = (
+				8AAB1E901EA614C200F461D3 /* AMPLinkedListNode.h */,
+				8AAB1E911EA614C200F461D3 /* AMPLinkedListNode.m */,
+			);
+			path = AMPLinkedListNode;
+			sourceTree = "<group>";
+		};
+		8AAB1E941EA614C200F461D3 /* AMPRangeNumberArray */ = {
+			isa = PBXGroup;
+			children = (
+				8AAB1E951EA614C200F461D3 /* AMPRangeNumberArray.h */,
+				8AAB1E961EA614C200F461D3 /* AMPRangeNumberArray.m */,
+			);
+			path = AMPRangeNumberArray;
+			sourceTree = "<group>";
+		};
+		8AAB1EA21EA6228000F461D3 /* AMPObjCStudyTest */ = {
+			isa = PBXGroup;
+			children = (
+				8AAB1EA51EA6228000F461D3 /* Info.plist */,
+				8AAB1EB61EA6243F00F461D3 /* AMPNuberArraySpec.m */,
+			);
+			path = AMPObjCStudyTest;
+			sourceTree = "<group>";
+		};
+		B1FB4816D3F7A8A7FF7E3799 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1682FF060B44819B6EE211BB /* Pods-AMPObjCStudy.debug.xcconfig */,
+				D98B5F6C3A624CB43CEB3663 /* Pods-AMPObjCStudy.release.xcconfig */,
+				1CB7087AC0291DFEB6BC6A37 /* Pods-AMPObjCStudyTest.debug.xcconfig */,
+				155F04F9C1DF311A9C967710 /* Pods-AMPObjCStudyTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,9 +298,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A2564FB1E9F717C00F0E47D /* Build configuration list for PBXNativeTarget "AMPObjCStudy" */;
 			buildPhases = (
+				DD49142D13BBB4E1134F3E0C /* [CP] Check Pods Manifest.lock */,
 				8A2564F01E9F717C00F0E47D /* Sources */,
 				8A2564F11E9F717C00F0E47D /* Frameworks */,
 				8A2564F21E9F717C00F0E47D /* CopyFiles */,
+				E3A9153A48184186556B4626 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -158,6 +312,26 @@
 			productName = AMPObjCStudy;
 			productReference = 8A2564F41E9F717C00F0E47D /* AMPObjCStudy */;
 			productType = "com.apple.product-type.tool";
+		};
+		8AAB1EA01EA6228000F461D3 /* AMPObjCStudyTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8AAB1EA81EA6228000F461D3 /* Build configuration list for PBXNativeTarget "AMPObjCStudyTest" */;
+			buildPhases = (
+				93830DC4DE342FBA75CC4A0E /* [CP] Check Pods Manifest.lock */,
+				8AAB1E9D1EA6228000F461D3 /* Sources */,
+				8AAB1E9E1EA6228000F461D3 /* Frameworks */,
+				8AAB1E9F1EA6228000F461D3 /* Resources */,
+				5333E46DC58A0AE6F49DD7B1 /* [CP] Embed Pods Frameworks */,
+				BCA022E1FD05FBCFC599DF62 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AMPObjCStudyTest;
+			productName = AMPObjCStudyTest;
+			productReference = 8AAB1EA11EA6228000F461D3 /* AMPObjCStudyTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -169,6 +343,11 @@
 				ORGANIZATIONNAME = pilotns;
 				TargetAttributes = {
 					8A2564F31E9F717C00F0E47D = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = FWP6H8H8UZ;
+						ProvisioningStyle = Automatic;
+					};
+					8AAB1EA01EA6228000F461D3 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = FWP6H8H8UZ;
 						ProvisioningStyle = Automatic;
@@ -188,9 +367,98 @@
 			projectRoot = "";
 			targets = (
 				8A2564F31E9F717C00F0E47D /* AMPObjCStudy */,
+				8AAB1EA01EA6228000F461D3 /* AMPObjCStudyTest */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8AAB1E9F1EA6228000F461D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5333E46DC58A0AE6F49DD7B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AMPObjCStudyTest/Pods-AMPObjCStudyTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93830DC4DE342FBA75CC4A0E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BCA022E1FD05FBCFC599DF62 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AMPObjCStudyTest/Pods-AMPObjCStudyTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD49142D13BBB4E1134F3E0C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E3A9153A48184186556B4626 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AMPObjCStudy/Pods-AMPObjCStudy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8A2564F01E9F717C00F0E47D /* Sources */ = {
@@ -200,11 +468,37 @@
 				8A2564F81E9F717C00F0E47D /* main.m in Sources */,
 				8A25650E1E9F902F00F0E47D /* AMPCreatureTest.m in Sources */,
 				8A2565061E9F87B800F0E47D /* NSString+AMPRandom.m in Sources */,
+				8AAB1E991EA614C200F461D3 /* AMPLinkedList.m in Sources */,
 				8A2565141EA0DEDE00F0E47D /* AMPCreatureFemale.m in Sources */,
+				8AAB1E9A1EA614C200F461D3 /* AMPLinkedListNode.m in Sources */,
+				8AAB1E9B1EA614C200F461D3 /* AMPLinkedListNumberArray.m in Sources */,
 				8A2565111EA0DE1900F0E47D /* AMPCreatureMale.m in Sources */,
 				8A2565181EA13B9A00F0E47D /* NSObject+AMPExtension.m in Sources */,
+				8AAB1E9C1EA614C200F461D3 /* AMPRangeNumberArray.m in Sources */,
 				8A2565021E9F72AF00F0E47D /* AMPCreature.m in Sources */,
+				8AAB1E971EA614C200F461D3 /* AMPNumberArray.m in Sources */,
+				8AAB1E981EA614C200F461D3 /* AMPArrayNumberArray.m in Sources */,
 				8A25651B1EA2AA7300F0E47D /* NSArray+AMPExtension.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8AAB1E9D1EA6228000F461D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8AAB1EAB1EA622A100F461D3 /* NSObject+AMPExtension.m in Sources */,
+				8AAB1EAF1EA622AE00F461D3 /* AMPCreatureFemale.m in Sources */,
+				8AAB1EB11EA622C700F461D3 /* AMPLinkedListNumberArray.m in Sources */,
+				8AAB1EB31EA6238200F461D3 /* AMPLinkedList.m in Sources */,
+				8AAB1EB41EA623A500F461D3 /* AMPLinkedListNode.m in Sources */,
+				8AAB1EAA1EA6229F00F461D3 /* NSString+AMPRandom.m in Sources */,
+				8AAB1EAC1EA622A400F461D3 /* NSArray+AMPExtension.m in Sources */,
+				8AAB1EAE1EA622AB00F461D3 /* AMPCreatureMale.m in Sources */,
+				8AAB1EA91EA6229B00F461D3 /* AMPNumberArray.m in Sources */,
+				8AAB1EB71EA6243F00F461D3 /* AMPNuberArraySpec.m in Sources */,
+				8AAB1EB21EA622CB00F461D3 /* AMPRangeNumberArray.m in Sources */,
+				8AAB1EB01EA622C300F461D3 /* AMPArrayNumberArray.m in Sources */,
+				8AAB1EAD1EA622A900F461D3 /* AMPCreature.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +596,7 @@
 		};
 		8A2564FC1E9F717C00F0E47D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1682FF060B44819B6EE211BB /* Pods-AMPObjCStudy.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DEVELOPMENT_TEAM = FWP6H8H8UZ;
@@ -311,9 +606,36 @@
 		};
 		8A2564FD1E9F717C00F0E47D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D98B5F6C3A624CB43CEB3663 /* Pods-AMPObjCStudy.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DEVELOPMENT_TEAM = FWP6H8H8UZ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		8AAB1EA61EA6228000F461D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CB7087AC0291DFEB6BC6A37 /* Pods-AMPObjCStudyTest.debug.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FWP6H8H8UZ;
+				INFOPLIST_FILE = AMPObjCStudyTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AMP.AMPObjCStudyTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8AAB1EA71EA6228000F461D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 155F04F9C1DF311A9C967710 /* Pods-AMPObjCStudyTest.release.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = FWP6H8H8UZ;
+				INFOPLIST_FILE = AMPObjCStudyTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AMP.AMPObjCStudyTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -338,6 +660,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		8AAB1EA81EA6228000F461D3 /* Build configuration list for PBXNativeTarget "AMPObjCStudyTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8AAB1EA61EA6228000F461D3 /* Debug */,
+				8AAB1EA71EA6228000F461D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
