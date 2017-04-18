@@ -16,6 +16,5 @@ int main(int argc, const char * argv[]) {
         AMPCallTest(AMPCreatureWarOrBirthTest, AMPEmptyParameter);
         AMPCallTest(AMPCreatureSayHelloTest, AMPEmptyParameter);
     }
-
     return 0;
 }
