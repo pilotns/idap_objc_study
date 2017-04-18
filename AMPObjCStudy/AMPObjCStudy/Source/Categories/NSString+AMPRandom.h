@@ -12,8 +12,16 @@ NSRange AMPMakeCharacterRange(unichar firstCharacter, unichar lastCharacter);
 
 @interface NSString (AMPRandom)
 
+// return random string containing English lowercase letters,
+// whose length in range 0..10
 + (instancetype)randomString;
+
+// return random string containing English lowercase letters
+// with specific length
 + (instancetype)randomStringWithLength:(NSUInteger)length;
+
+// return random string containing specific symbols with specific length
+// You must use the AMPMakeCharacterRange function, to create the correct range
 + (instancetype)randomStringWithLength:(NSUInteger)length characterRange:(NSRange)characterRange;
 
 @end

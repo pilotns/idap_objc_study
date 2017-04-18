@@ -11,6 +11,7 @@
 @interface NSObject (AMPExtension)
 
 + (instancetype)object;
+
 + (NSArray *)objectsWithCount:(NSUInteger)count;
 
 @end
