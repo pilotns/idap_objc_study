@@ -16,7 +16,7 @@
 @interface AMPLinkedListNumberArray ()
 @property (nonatomic, retain) AMPLinkedList *storage;
 
-- (void)parsenumbers:(NSArray *)numbers;
+- (void)parseNumbers:(NSArray *)numbers;
 
 @end
 
@@ -28,7 +28,7 @@
 - (instancetype)initWithArray:(NSArray *)numbers {
     self = [super init];
     self.storage = [AMPLinkedList object];
-    [self parsenumbers:numbers];
+    [self parseNumbers:numbers];
     
     return self;
 }
@@ -47,14 +47,7 @@
 #pragma mark -
 #pragma mark - Private Methods
 
-- (void)parseNumbers:(NSUInteger *)numbers count:(NSUInteger)count {
-    for (NSUInteger iterator = 0; iterator < count; iterator++) {
-        NSNumber *number = @(numbers[count - iterator - 1]);
-        [self.storage addObject:number];
-    }
-}
-
-- (void)parsenumbers:(NSArray *)numbers {
+- (void)parseNumbers:(NSArray *)numbers {
     NSUInteger count = [numbers count];
     for (NSUInteger iterator = 0; iterator < count; iterator++) {
         [self.storage addObject:numbers[count - iterator - 1]];
@@ -69,7 +62,7 @@
                                     count:(NSUInteger)length
 {
     state->mutationsPtr = (unsigned long *)self;
-    NSUInteger currentLength = MIN(state->state + length - state->extra[2], [self count]);
+    NSUInteger currentLength = MIN(state->state + length - state->extra[2], self.count);
     currentLength = currentLength - state->state;
     AMPLinkedListNode *head = !state->state ? self.storage.head : (AMPLinkedListNode *)state->extra[0];
     for (NSUInteger iterator = 0; iterator < currentLength; iterator++) {

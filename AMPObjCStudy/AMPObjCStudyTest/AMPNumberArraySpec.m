@@ -16,7 +16,7 @@ describe(@"AMPRangeNumberArray", ^{
         __block AMPNumberArray *rangeNumberArray = nil;
         
         beforeAll(^{
-            rangeNumberArray = [AMPNumberArray numberArrayWithRange:0 lastNumber:1];
+            rangeNumberArray = [AMPNumberArray numberArrayWithFirstNumber:0 lastNumber:1];
         });
         
         afterAll(^{
@@ -101,7 +101,7 @@ describe(@"AMPRangeNumberArray", ^{
         __block AMPNumberArray *arrayOfNumberArrays = nil;
         
         beforeAll(^{
-            AMPNumberArray *rangeArray = [AMPNumberArray numberArrayWithRange:0 lastNumber:1];
+            AMPNumberArray *rangeArray = [AMPNumberArray numberArrayWithFirstNumber:0 lastNumber:1];
             AMPNumberArray *listArray = [AMPNumberArray numberArrayWithNumbers:@(0), @(5), nil];
             
             arrayOfNumberArrays = [AMPNumberArray numberArrayWithNumberArrays:@[rangeArray, listArray]];

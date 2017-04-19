@@ -25,8 +25,8 @@
 #pragma mark -
 #pragma mark - Class Methods
 
-+ (instancetype)numberArrayWithRange:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber {
-    return [[[self alloc] initWithRange:firstNumber lastNumber:lastNumber] autorelease];
++ (instancetype)numberArrayWithFirstNumber:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber {
+    return [[[self alloc] initWithFirstNumber:firstNumber lastNumber:lastNumber] autorelease];
 }
 
 + (instancetype)numberArrayWithNumbers:(NSNumber *)firstNumber, ... {
@@ -46,10 +46,10 @@
 #pragma mark -
 #pragma mark - Initializations and Deallocations
 
-- (instancetype)initWithRange:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber {
+- (instancetype)initWithFirstNumber:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber {
     [self release];
     
-    return [[AMPRangeNumberArray alloc] initWithRange:firstNumber lastNumber:lastNumber];
+    return [[AMPRangeNumberArray alloc] initWithFirstNumber:firstNumber lastNumber:lastNumber];
 }
 
 - (instancetype)initWithNumbers:(NSNumber *)firstNumber, ... {
@@ -84,7 +84,7 @@
 }
 
 - (NSNumber *)lastNumber {
-    return [self numberAtIndex:[self count] - 1];
+    return [self numberAtIndex:self.count - 1];
 }
 
 - (NSUInteger)count {
@@ -118,7 +118,7 @@
                                     count:(NSUInteger)length
 {
     state->mutationsPtr = (unsigned long *)self;
-    NSUInteger currentLength = MIN(state->state + length - state->extra[2], [self count]);
+    NSUInteger currentLength = MIN(state->state + length - state->extra[2], self.count);
     currentLength -= state->state;
     for (NSUInteger iterator = 0; iterator < currentLength; iterator++) {
         buffer[iterator + state->extra[2]] = self[state->state + iterator];

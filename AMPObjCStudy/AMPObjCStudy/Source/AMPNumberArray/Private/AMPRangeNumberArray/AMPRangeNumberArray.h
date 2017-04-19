@@ -10,6 +10,6 @@
 
 @interface AMPRangeNumberArray : AMPNumberArray
 
-- (instancetype)initWithRange:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber;
+- (instancetype)initWithFirstNumber:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber;
 
 @end

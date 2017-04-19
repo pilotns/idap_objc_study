@@ -27,7 +27,7 @@ NSRange AMPMakeRange(NSUInteger firstNumber, NSUInteger lastNumber) {
 #pragma mark -
 #pragma mark - Initialization and Deallocations
 
-- (instancetype)initWithRange:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber {
+- (instancetype)initWithFirstNumber:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber {
     self = [super init];
     self.numbers = AMPMakeRange(firstNumber, lastNumber);
     
@@ -38,7 +38,7 @@ NSRange AMPMakeRange(NSUInteger firstNumber, NSUInteger lastNumber) {
 #pragma mark - Public Methods
 
 - (NSNumber *)numberAtIndex:(NSUInteger)index {
-    NSAssert(index < [self count], NSRangeException);
+    NSAssert(index < self.count, NSRangeException);
     
     return @(self.numbers.location + index);
 }

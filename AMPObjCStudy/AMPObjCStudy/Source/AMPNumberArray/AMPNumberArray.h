@@ -11,11 +11,11 @@
 @interface AMPNumberArray : NSObject <NSFastEnumeration>
 @property (nonatomic, readonly) NSUInteger count;
 
-+ (instancetype)numberArrayWithRange:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber;
++ (instancetype)numberArrayWithFirstNumber:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber;
 + (instancetype)numberArrayWithNumbers:(NSNumber *)firstNumber, ... NS_REQUIRES_NIL_TERMINATION;
 + (instancetype)numberArrayWithNumberArrays:(NSArray *)numberArrays;
 
-- (instancetype)initWithRange:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber;
+- (instancetype)initWithFirstNumber:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber;
 - (instancetype)initWithNumbers:(NSNumber *)firstNumber, ... NS_REQUIRES_NIL_TERMINATION;
 - (instancetype)initWithNumberArrays:(NSArray *)numberArrays;
 

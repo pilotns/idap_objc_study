@@ -82,7 +82,7 @@
 {
     state->mutationsPtr = (unsigned long *)self;
     
-    NSUInteger currentLength = MIN(state->state + length, [self count]);
+    NSUInteger currentLength = MIN(state->state + length, self.count);
     currentLength -= state->state;
     
     NSUInteger countOfNumberArray = self.storage.count;
