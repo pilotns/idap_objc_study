@@ -26,7 +26,7 @@
 #pragma mark - Class Methods
 
 + (instancetype)numberArrayWithFirstNumber:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber {
-    return [[[self alloc] initWithFirstNumber:firstNumber lastNumber:lastNumber] autorelease];
+    return [[[AMPRangeNumberArray alloc] initWithFirstNumber:firstNumber lastNumber:lastNumber] autorelease];
 }
 
 + (instancetype)numberArrayWithNumbers:(NSNumber *)firstNumber, ... {
@@ -40,7 +40,7 @@
 }
 
 + (instancetype)numberArrayWithNumberArrays:(NSArray *)numberArrays {
-    return [[[self alloc] initWithNumberArrays:numberArrays] autorelease];
+    return [[[AMPArrayNumberArray alloc] initWithNumberArrays:numberArrays] autorelease];
 }
 
 #pragma mark -
