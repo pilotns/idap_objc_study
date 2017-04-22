@@ -36,11 +36,11 @@ describe(@"AMPNumberArray", ^{
         });
         
         it(@"should return value equal 0, when ask object at index 0", ^{
-            [[numbers[0] should] equal:@(0)];
+            [[numbers[0] should] equal:@0];
         });
         
         it(@"should return value equal 1, when ask object at index 1", ^{
-            [[numbers[1] should] equal:@(1)];
+            [[numbers[1] should] equal:@1];
         });
         
         context(@"should bot raise when iterate in for in loop", ^{
@@ -101,7 +101,7 @@ describe(@"AMPNumberArray", ^{
     context(@"when create with range array which range 0 - 1 and list array which contain 0 and 5", ^{
         beforeAll(^{
             AMPNumberArray *rangeArray = [AMPNumberArray numberArrayWithFirstNumber:0 lastNumber:1];
-            AMPNumberArray *listArray = [AMPNumberArray numberArrayWithNumbers:@(0), @(5), nil];
+            AMPNumberArray *listArray = [AMPNumberArray numberArrayWithNumbers:@0, @5, nil];
             
             numbers = [AMPNumberArray numberArrayWithNumberArrays:@[rangeArray, listArray]];
         });
@@ -115,19 +115,19 @@ describe(@"AMPNumberArray", ^{
         });
         
         it(@"should return value equal 0, when ask object at index 0", ^{
-            [[numbers[0] should] equal:@(0)];
+            [[numbers[0] should] equal:@0];
         });
         
         it(@"should return value equal 1, when ask object at index 1", ^{
-            [[numbers[1] should] equal:@(1)];
+            [[numbers[1] should] equal:@1];
         });
         
         it(@"should return value equal 0, when ask object at index 2", ^{
-            [[numbers[2] should] equal:@(0)];
+            [[numbers[2] should] equal:@0];
         });
         
         it(@"should return value equal 1, when ask object at index 3", ^{
-            [[numbers[3] should] equal:@(5)];
+            [[numbers[3] should] equal:@5];
         });
         
         context(@"should bot raise when iterate in for in loop", ^{
