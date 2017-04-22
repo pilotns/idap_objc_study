@@ -18,6 +18,32 @@
 		8A2565181EA13B9A00F0E47D /* NSObject+AMPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2565171EA13B9A00F0E47D /* NSObject+AMPExtension.m */; };
 		8A25651B1EA2AA7300F0E47D /* NSArray+AMPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A25651A1EA2AA7300F0E47D /* NSArray+AMPExtension.m */; };
 		8A657A351EA628CD008BA2AC /* AMPNumberArraySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A657A341EA628CD008BA2AC /* AMPNumberArraySpec.m */; };
+		8A657A3F1EA7E8BD008BA2AC /* AMPHuman.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A657A3E1EA7E8BD008BA2AC /* AMPHuman.m */; };
+		8A657A401EA7E8BD008BA2AC /* AMPHuman.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A657A3E1EA7E8BD008BA2AC /* AMPHuman.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8A657A451EA7E8F0008BA2AC /* AMPCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A657A441EA7E8F0008BA2AC /* AMPCar.m */; };
+		8A657A461EA7E8F0008BA2AC /* AMPCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A657A441EA7E8F0008BA2AC /* AMPCar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AA543DD1EA7F3620085A52F /* AMPWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543DC1EA7F3620085A52F /* AMPWasher.m */; };
+		8AA543DE1EA7F3620085A52F /* AMPWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543DC1EA7F3620085A52F /* AMPWasher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AA543E71EA802C70085A52F /* AMPAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543E61EA802C70085A52F /* AMPAccountant.m */; };
+		8AA543E81EA802C70085A52F /* AMPAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543E61EA802C70085A52F /* AMPAccountant.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AA543EB1EA802D30085A52F /* AMPDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543EA1EA802D30085A52F /* AMPDirector.m */; };
+		8AA543EC1EA802D30085A52F /* AMPDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543EA1EA802D30085A52F /* AMPDirector.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AA543EF1EA8033F0085A52F /* AMPCarDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543EE1EA8033F0085A52F /* AMPCarDriver.m */; };
+		8AA543F01EA8033F0085A52F /* AMPCarDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543EE1EA8033F0085A52F /* AMPCarDriver.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AA543F41EA8046C0085A52F /* AMPBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543F31EA8046C0085A52F /* AMPBuilding.m */; };
+		8AA543F51EA8046C0085A52F /* AMPBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543F31EA8046C0085A52F /* AMPBuilding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AA543F81EA805F10085A52F /* AMPCarWashAdministration.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543F71EA805F10085A52F /* AMPCarWashAdministration.m */; };
+		8AA543F91EA805F10085A52F /* AMPCarWashAdministration.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543F71EA805F10085A52F /* AMPCarWashAdministration.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AA543FC1EA806270085A52F /* AMPCarWashBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543FB1EA806270085A52F /* AMPCarWashBuilding.m */; };
+		8AA543FD1EA806270085A52F /* AMPCarWashBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543FB1EA806270085A52F /* AMPCarWashBuilding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AA544001EA806CF0085A52F /* AMPCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543FF1EA806CF0085A52F /* AMPCarWash.m */; };
+		8AA544011EA806CF0085A52F /* AMPCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA543FF1EA806CF0085A52F /* AMPCarWash.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AA544051EA8D99A0085A52F /* AMPRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA544041EA8D99A0085A52F /* AMPRoom.m */; };
+		8AA544061EA8D99A0085A52F /* AMPRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA544041EA8D99A0085A52F /* AMPRoom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AA544091EA8DB220085A52F /* AMPCarWashRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA544081EA8DB220085A52F /* AMPCarWashRoom.m */; };
+		8AA5440A1EA8DB220085A52F /* AMPCarWashRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA544081EA8DB220085A52F /* AMPCarWashRoom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8AA5440F1EA911530085A52F /* AMPCarWashTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA5440E1EA911530085A52F /* AMPCarWashTest.m */; };
+		8AA544101EA911530085A52F /* AMPCarWashTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA5440E1EA911530085A52F /* AMPCarWashTest.m */; };
 		8AAB1E971EA614C200F461D3 /* AMPNumberArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E861EA614C200F461D3 /* AMPNumberArray.m */; };
 		8AAB1E981EA614C200F461D3 /* AMPArrayNumberArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E8A1EA614C200F461D3 /* AMPArrayNumberArray.m */; };
 		8AAB1E991EA614C200F461D3 /* AMPLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB1E8E1EA614C200F461D3 /* AMPLinkedList.m */; };
@@ -74,6 +100,36 @@
 		8A2565191EA2AA7300F0E47D /* NSArray+AMPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AMPExtension.h"; sourceTree = "<group>"; };
 		8A25651A1EA2AA7300F0E47D /* NSArray+AMPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AMPExtension.m"; sourceTree = "<group>"; };
 		8A657A341EA628CD008BA2AC /* AMPNumberArraySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPNumberArraySpec.m; sourceTree = "<group>"; };
+		8A657A3D1EA7E8BD008BA2AC /* AMPHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPHuman.h; sourceTree = "<group>"; };
+		8A657A3E1EA7E8BD008BA2AC /* AMPHuman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPHuman.m; sourceTree = "<group>"; };
+		8A657A431EA7E8F0008BA2AC /* AMPCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCar.h; sourceTree = "<group>"; };
+		8A657A441EA7E8F0008BA2AC /* AMPCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPCar.m; sourceTree = "<group>"; };
+		8AA543D91EA7EE610085A52F /* AMPCarDriverProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCarDriverProtocol.h; sourceTree = "<group>"; };
+		8AA543DB1EA7F3620085A52F /* AMPWasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPWasher.h; sourceTree = "<group>"; };
+		8AA543DC1EA7F3620085A52F /* AMPWasher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPWasher.m; sourceTree = "<group>"; };
+		8AA543E01EA7F3DC0085A52F /* AMPCarWashWasherProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCarWashWasherProtocol.h; sourceTree = "<group>"; };
+		8AA543E41EA8021E0085A52F /* AMPCarWashMoneyFlowProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMPCarWashMoneyFlowProtocol.h; sourceTree = "<group>"; };
+		8AA543E51EA802C70085A52F /* AMPAccountant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPAccountant.h; sourceTree = "<group>"; };
+		8AA543E61EA802C70085A52F /* AMPAccountant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPAccountant.m; sourceTree = "<group>"; };
+		8AA543E91EA802D30085A52F /* AMPDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPDirector.h; sourceTree = "<group>"; };
+		8AA543EA1EA802D30085A52F /* AMPDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPDirector.m; sourceTree = "<group>"; };
+		8AA543ED1EA8033F0085A52F /* AMPCarDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCarDriver.h; sourceTree = "<group>"; };
+		8AA543EE1EA8033F0085A52F /* AMPCarDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPCarDriver.m; sourceTree = "<group>"; };
+		8AA543F21EA8046C0085A52F /* AMPBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPBuilding.h; sourceTree = "<group>"; };
+		8AA543F31EA8046C0085A52F /* AMPBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPBuilding.m; sourceTree = "<group>"; };
+		8AA543F61EA805F10085A52F /* AMPCarWashAdministration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCarWashAdministration.h; sourceTree = "<group>"; };
+		8AA543F71EA805F10085A52F /* AMPCarWashAdministration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPCarWashAdministration.m; sourceTree = "<group>"; };
+		8AA543FA1EA806270085A52F /* AMPCarWashBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCarWashBuilding.h; sourceTree = "<group>"; };
+		8AA543FB1EA806270085A52F /* AMPCarWashBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPCarWashBuilding.m; sourceTree = "<group>"; };
+		8AA543FE1EA806CF0085A52F /* AMPCarWash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCarWash.h; sourceTree = "<group>"; };
+		8AA543FF1EA806CF0085A52F /* AMPCarWash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPCarWash.m; sourceTree = "<group>"; };
+		8AA544031EA8D99A0085A52F /* AMPRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPRoom.h; sourceTree = "<group>"; };
+		8AA544041EA8D99A0085A52F /* AMPRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPRoom.m; sourceTree = "<group>"; };
+		8AA544071EA8DB220085A52F /* AMPCarWashRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCarWashRoom.h; sourceTree = "<group>"; };
+		8AA544081EA8DB220085A52F /* AMPCarWashRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPCarWashRoom.m; sourceTree = "<group>"; };
+		8AA5440B1EA8FEC50085A52F /* AMPCarWashEmplyeeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMPCarWashEmplyeeProtocol.h; sourceTree = "<group>"; };
+		8AA5440D1EA911530085A52F /* AMPCarWashTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCarWashTest.h; sourceTree = "<group>"; };
+		8AA5440E1EA911530085A52F /* AMPCarWashTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPCarWashTest.m; sourceTree = "<group>"; };
 		8AAB1E851EA614C200F461D3 /* AMPNumberArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPNumberArray.h; sourceTree = "<group>"; };
 		8AAB1E861EA614C200F461D3 /* AMPNumberArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPNumberArray.m; sourceTree = "<group>"; };
 		8AAB1E891EA614C200F461D3 /* AMPArrayNumberArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPArrayNumberArray.h; sourceTree = "<group>"; };
@@ -153,6 +209,7 @@
 		8A2564FE1E9F71AE00F0E47D /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				8A657A3B1EA7E8BD008BA2AC /* AMPCarWash */,
 				8AAB1E841EA614C200F461D3 /* AMPNumberArray */,
 				8A2565031E9F878500F0E47D /* Categories */,
 				8A2564FF1E9F728F00F0E47D /* AMPCreature */,
@@ -190,6 +247,7 @@
 		8A2565071E9F8FA900F0E47D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8AA5440C1EA911360085A52F /* AMPCarWashTest */,
 				8A2565081E9F8FBB00F0E47D /* AMPCreatureTest */,
 			);
 			path = Tests;
@@ -202,6 +260,82 @@
 				8A25650D1E9F902F00F0E47D /* AMPCreatureTest.m */,
 			);
 			path = AMPCreatureTest;
+			sourceTree = "<group>";
+		};
+		8A657A3B1EA7E8BD008BA2AC /* AMPCarWash */ = {
+			isa = PBXGroup;
+			children = (
+				8AA544021EA8D9500085A52F /* AMPRoom */,
+				8AA543F11EA8043B0085A52F /* AMPBuilding */,
+				8A657A421EA7E8DC008BA2AC /* AMPCar */,
+				8A657A3C1EA7E8BD008BA2AC /* AMPHuman */,
+				8AA5440B1EA8FEC50085A52F /* AMPCarWashEmplyeeProtocol.h */,
+				8AA543E01EA7F3DC0085A52F /* AMPCarWashWasherProtocol.h */,
+				8AA543E41EA8021E0085A52F /* AMPCarWashMoneyFlowProtocol.h */,
+				8AA543FE1EA806CF0085A52F /* AMPCarWash.h */,
+				8AA543FF1EA806CF0085A52F /* AMPCarWash.m */,
+			);
+			path = AMPCarWash;
+			sourceTree = "<group>";
+		};
+		8A657A3C1EA7E8BD008BA2AC /* AMPHuman */ = {
+			isa = PBXGroup;
+			children = (
+				8A657A3D1EA7E8BD008BA2AC /* AMPHuman.h */,
+				8A657A3E1EA7E8BD008BA2AC /* AMPHuman.m */,
+				8AA543DB1EA7F3620085A52F /* AMPWasher.h */,
+				8AA543DC1EA7F3620085A52F /* AMPWasher.m */,
+				8AA543E51EA802C70085A52F /* AMPAccountant.h */,
+				8AA543E61EA802C70085A52F /* AMPAccountant.m */,
+				8AA543E91EA802D30085A52F /* AMPDirector.h */,
+				8AA543EA1EA802D30085A52F /* AMPDirector.m */,
+				8AA543ED1EA8033F0085A52F /* AMPCarDriver.h */,
+				8AA543EE1EA8033F0085A52F /* AMPCarDriver.m */,
+			);
+			path = AMPHuman;
+			sourceTree = "<group>";
+		};
+		8A657A421EA7E8DC008BA2AC /* AMPCar */ = {
+			isa = PBXGroup;
+			children = (
+				8A657A431EA7E8F0008BA2AC /* AMPCar.h */,
+				8A657A441EA7E8F0008BA2AC /* AMPCar.m */,
+				8AA543D91EA7EE610085A52F /* AMPCarDriverProtocol.h */,
+			);
+			path = AMPCar;
+			sourceTree = "<group>";
+		};
+		8AA543F11EA8043B0085A52F /* AMPBuilding */ = {
+			isa = PBXGroup;
+			children = (
+				8AA543F21EA8046C0085A52F /* AMPBuilding.h */,
+				8AA543F31EA8046C0085A52F /* AMPBuilding.m */,
+				8AA543FA1EA806270085A52F /* AMPCarWashBuilding.h */,
+				8AA543FB1EA806270085A52F /* AMPCarWashBuilding.m */,
+				8AA543F61EA805F10085A52F /* AMPCarWashAdministration.h */,
+				8AA543F71EA805F10085A52F /* AMPCarWashAdministration.m */,
+			);
+			path = AMPBuilding;
+			sourceTree = "<group>";
+		};
+		8AA544021EA8D9500085A52F /* AMPRoom */ = {
+			isa = PBXGroup;
+			children = (
+				8AA544031EA8D99A0085A52F /* AMPRoom.h */,
+				8AA544041EA8D99A0085A52F /* AMPRoom.m */,
+				8AA544071EA8DB220085A52F /* AMPCarWashRoom.h */,
+				8AA544081EA8DB220085A52F /* AMPCarWashRoom.m */,
+			);
+			path = AMPRoom;
+			sourceTree = "<group>";
+		};
+		8AA5440C1EA911360085A52F /* AMPCarWashTest */ = {
+			isa = PBXGroup;
+			children = (
+				8AA5440D1EA911530085A52F /* AMPCarWashTest.h */,
+				8AA5440E1EA911530085A52F /* AMPCarWashTest.m */,
+			);
+			path = AMPCarWashTest;
 			sourceTree = "<group>";
 		};
 		8AAB1E841EA614C200F461D3 /* AMPNumberArray */ = {
@@ -467,18 +601,31 @@
 			files = (
 				8A2564F81E9F717C00F0E47D /* main.m in Sources */,
 				8A25650E1E9F902F00F0E47D /* AMPCreatureTest.m in Sources */,
+				8AA543F81EA805F10085A52F /* AMPCarWashAdministration.m in Sources */,
+				8AA543E71EA802C70085A52F /* AMPAccountant.m in Sources */,
 				8A2565061E9F87B800F0E47D /* NSString+AMPRandom.m in Sources */,
 				8AAB1E991EA614C200F461D3 /* AMPLinkedList.m in Sources */,
+				8AA543FC1EA806270085A52F /* AMPCarWashBuilding.m in Sources */,
+				8AA543EF1EA8033F0085A52F /* AMPCarDriver.m in Sources */,
 				8A2565141EA0DEDE00F0E47D /* AMPCreatureFemale.m in Sources */,
 				8AAB1E9A1EA614C200F461D3 /* AMPLinkedListNode.m in Sources */,
 				8AAB1E9B1EA614C200F461D3 /* AMPLinkedListNumberArray.m in Sources */,
+				8AA544091EA8DB220085A52F /* AMPCarWashRoom.m in Sources */,
+				8A657A451EA7E8F0008BA2AC /* AMPCar.m in Sources */,
+				8AA543F41EA8046C0085A52F /* AMPBuilding.m in Sources */,
 				8A2565111EA0DE1900F0E47D /* AMPCreatureMale.m in Sources */,
+				8AA544001EA806CF0085A52F /* AMPCarWash.m in Sources */,
 				8A2565181EA13B9A00F0E47D /* NSObject+AMPExtension.m in Sources */,
 				8AAB1E9C1EA614C200F461D3 /* AMPRangeNumberArray.m in Sources */,
 				8A2565021E9F72AF00F0E47D /* AMPCreature.m in Sources */,
 				8AAB1E971EA614C200F461D3 /* AMPNumberArray.m in Sources */,
+				8A657A3F1EA7E8BD008BA2AC /* AMPHuman.m in Sources */,
 				8AAB1E981EA614C200F461D3 /* AMPArrayNumberArray.m in Sources */,
+				8AA544051EA8D99A0085A52F /* AMPRoom.m in Sources */,
+				8AA5440F1EA911530085A52F /* AMPCarWashTest.m in Sources */,
+				8AA543DD1EA7F3620085A52F /* AMPWasher.m in Sources */,
 				8A25651B1EA2AA7300F0E47D /* NSArray+AMPExtension.m in Sources */,
+				8AA543EB1EA802D30085A52F /* AMPDirector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,18 +633,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA544011EA806CF0085A52F /* AMPCarWash.m in Sources */,
+				8A657A461EA7E8F0008BA2AC /* AMPCar.m in Sources */,
+				8AA543F01EA8033F0085A52F /* AMPCarDriver.m in Sources */,
 				8AAB1EAB1EA622A100F461D3 /* NSObject+AMPExtension.m in Sources */,
 				8A657A351EA628CD008BA2AC /* AMPNumberArraySpec.m in Sources */,
 				8AAB1EAF1EA622AE00F461D3 /* AMPCreatureFemale.m in Sources */,
 				8AAB1EB11EA622C700F461D3 /* AMPLinkedListNumberArray.m in Sources */,
+				8AA544061EA8D99A0085A52F /* AMPRoom.m in Sources */,
 				8AAB1EB31EA6238200F461D3 /* AMPLinkedList.m in Sources */,
 				8AAB1EB41EA623A500F461D3 /* AMPLinkedListNode.m in Sources */,
+				8AA543F51EA8046C0085A52F /* AMPBuilding.m in Sources */,
+				8AA543F91EA805F10085A52F /* AMPCarWashAdministration.m in Sources */,
+				8AA543E81EA802C70085A52F /* AMPAccountant.m in Sources */,
+				8A657A401EA7E8BD008BA2AC /* AMPHuman.m in Sources */,
 				8AAB1EAA1EA6229F00F461D3 /* NSString+AMPRandom.m in Sources */,
+				8AA543EC1EA802D30085A52F /* AMPDirector.m in Sources */,
 				8AAB1EAC1EA622A400F461D3 /* NSArray+AMPExtension.m in Sources */,
 				8AAB1EAE1EA622AB00F461D3 /* AMPCreatureMale.m in Sources */,
 				8AAB1EA91EA6229B00F461D3 /* AMPNumberArray.m in Sources */,
 				8AAB1EB21EA622CB00F461D3 /* AMPRangeNumberArray.m in Sources */,
+				8AA544101EA911530085A52F /* AMPCarWashTest.m in Sources */,
 				8AAB1EB01EA622C300F461D3 /* AMPArrayNumberArray.m in Sources */,
+				8AA543DE1EA7F3620085A52F /* AMPWasher.m in Sources */,
+				8AA543FD1EA806270085A52F /* AMPCarWashBuilding.m in Sources */,
+				8AA5440A1EA8DB220085A52F /* AMPCarWashRoom.m in Sources */,
 				8AAB1EAD1EA622A900F461D3 /* AMPCreature.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,0 +1,27 @@
+//
+//  AMPCarWashTest.m
+//  AMPObjCStudy
+//
+//  Created by pilotns on 20.04.17.
+//  Copyright © 2017 pilotns. All rights reserved.
+//
+
+#import "AMPCarWashTest.h"
+
+#import "AMPCarWash.h"
+#import "AMPCar.h"
+#import "AMPCarDriver.h"
+
+#import "NSObject+AMPExtension.h"
+
+void AMPCarWashTest() {
+    AMPCarWash *carWash = [AMPCarWash object];
+    for (NSUInteger iterator = 0; iterator < 100; iterator++) {
+        AMPCarDriver *driver = [AMPCarDriver object];
+        AMPCar *car = [[AMPCar alloc] initWithDriver:driver];
+        
+        [carWash addCarInQueue:car];
+    }
+    
+    NSLog(@"");
+}

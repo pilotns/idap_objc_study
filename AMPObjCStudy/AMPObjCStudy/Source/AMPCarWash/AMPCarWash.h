@@ -1,0 +1,27 @@
+//
+//  AMPCarWash.h
+//  AMPObjCStudy
+//
+//  Created by pilotns on 19.04.17.
+//  Copyright © 2017 pilotns. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+#import "AMPCarWashMoneyFlowProtocol.h"
+
+@class AMPCar;
+@class AMPHuman;
+
+@interface AMPCarWash : NSObject
+@property (nonatomic, readonly) AMPHuman<AMPCarWashMoneyFlowProtocol>   *accountant;
+@property (nonatomic, readonly) AMPHuman<AMPCarWashMoneyFlowProtocol>   *director;
+
+@property (nonatomic, readonly) NSArray         *buildings;
+
+- (void)addCarInQueue:(AMPCar *)car;
+- (void)removeCarFromQueue:(AMPCar *)car;
+
+- (void)performWork;
+
+@end
