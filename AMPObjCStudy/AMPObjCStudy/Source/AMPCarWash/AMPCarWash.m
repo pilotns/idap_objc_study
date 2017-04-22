@@ -66,6 +66,7 @@
     if (car) {
         [self.mutableCarQueue addObject:car];
         [self performWork];
+        [self removeCarFromQueue:car];
     }
 }
 
