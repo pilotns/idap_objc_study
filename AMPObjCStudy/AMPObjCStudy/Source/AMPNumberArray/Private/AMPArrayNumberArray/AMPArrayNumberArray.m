@@ -85,7 +85,7 @@
     NSUInteger currentLength = MIN(state->state + length, self.count);
     currentLength -= state->state;
     
-    NSUInteger countOfNumberArray = self.storage.count;
+    NSUInteger countOfNumberArray = [self.storage count];
     NSUInteger iterator = state->extra[1];
     
     if (iterator == countOfNumberArray) {
@@ -104,10 +104,6 @@
         
         if (readedLength < currentLength) {
             state->state = 0;
-        }
-
-        if (iterator == (countOfNumberArray - 1)) {
-            currentLength = readedLength;
         }
         
         state->extra[2] += readedLength;
