@@ -10,15 +10,13 @@
 
 #import "AMPCarWash.h"
 #import "AMPCar.h"
-#import "AMPCarDriver.h"
 
-#import "NSObject+AMPExtension.h"
+#import "NSObject+AMPExtensions.h"
 
 void AMPCarWashTest() {
     AMPCarWash *carWash = [AMPCarWash object];
     for (NSUInteger iterator = 0; iterator < 100; iterator++) {
-        AMPCarDriver *driver = [AMPCarDriver object];
-        AMPCar *car = [[AMPCar alloc] initWithDriver:driver];
+        AMPCar *car = [AMPCar object];
         
         [carWash addCarInQueue:car];
     }

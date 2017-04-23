@@ -10,11 +10,4 @@
 
 @implementation AMPDirector
 
-#pragma mark -
-#pragma mark - AMPCarWashMoneyFlowProtocol
-
-- (void)takeMoney:(NSUInteger)money fromEmployee:(AMPHuman *)employee {
-    self.money += money;
-}
-
 @end

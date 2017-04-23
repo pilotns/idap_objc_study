@@ -16,14 +16,14 @@
 @implementation AMPLinkedListNode
 
 #pragma mark -
-#pragma mark - Class Methods
+#pragma mark Class Methods
 
 + (instancetype)nodeWithContent:(NSNumber *)content {
     return [[[self alloc] initWithContent:content] autorelease];
 }
 
 #pragma mark -
-#pragma mark - Initializations and Deallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
     self.content = nil;

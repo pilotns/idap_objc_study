@@ -1,5 +1,5 @@
 //
-//  NSArray+AMPExtension.h
+//  NSArray+AMPExtensions.h
 //  AMPObjCStudy
 //
 //  Created by pilotns on 15.04.17.
@@ -10,7 +10,7 @@
 
 typedef id(^AMPFactoryBlock)(void);
 
-@interface NSArray (AMPExtension)
+@interface NSArray (AMPExtensions)
 
 + (instancetype)arrayWithObjectsCount:(NSUInteger)count factoryBlock:(AMPFactoryBlock)block;
 

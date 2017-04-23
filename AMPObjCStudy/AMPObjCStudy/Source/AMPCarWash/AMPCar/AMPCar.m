@@ -8,41 +8,32 @@
 
 #import "AMPCar.h"
 
-#import "AMPCarDriverProtocol.h"
+#import "AMPExtern.h"
 
 @interface AMPCar ()
-@property (nonatomic, assign)   AMPCarDriver    *driver;
+@property (nonatomic, assign)   NSUInteger  money;
 
 @end
 
 @implementation AMPCar
 
 #pragma mark -
-#pragma mark - Initializationa and Deallocations
+#pragma mark Initializationa and Deallocations
 
-- (void)dealloc {
-    self.driver = nil;
-    
-    [super dealloc];
-}
-
-- (instancetype)initWithDriver:(AMPCarDriver *)driver {
+- (instancetype)init {
     self = [super init];
-    self.driver = driver;
-    self.clean = NO;
+    self.money = AMPRandomValueWithRange(NSMakeRange(300, 200));
     
     return self;
 }
 
 #pragma mark -
-#pragma mark - Accessors
+#pragma mark AMPMoneyFlow
 
-- (void)setDriver:(AMPCarDriver *)driver {
-    if (_driver != driver) {
-        [_driver setCar:nil];
-        
-        [driver setCar:self];
-        _driver = driver;
+- (void)giveMoneyToEmployee:(id<AMPMoneyFlow>)employee {
+    if ([employee respondsToSelector:@selector(takeMoneyFromSender:)]) {
+        [employee takeMoneyFromSender:self];
+        self.money = 0;
     }
 }
 

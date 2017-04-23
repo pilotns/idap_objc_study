@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @class AMPRoom;
+@protocol AMPMoneyFlow;
 
 @interface AMPBuilding : NSObject
 @property (nonatomic, readonly) NSSet   *rooms;
 
 - (instancetype)initWithRooms:(NSArray *)rooms;
 - (AMPRoom *)roomWithClass:(Class)aClass;
+
+- (id<AMPMoneyFlow>)employeeWithClass:(Class)aClass;
+- (NSArray *)employeesWithClass:(Class)aClass;
 
 @end

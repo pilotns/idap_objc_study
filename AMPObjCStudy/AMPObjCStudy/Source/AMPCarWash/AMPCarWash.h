@@ -8,16 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AMPCarWashMoneyFlowProtocol.h"
+#import "AMPMoneyFlow.h"
 
 @class AMPCar;
 @class AMPHuman;
 
 @interface AMPCarWash : NSObject
-@property (nonatomic, readonly) AMPHuman<AMPCarWashMoneyFlowProtocol>   *accountant;
-@property (nonatomic, readonly) AMPHuman<AMPCarWashMoneyFlowProtocol>   *director;
-
-@property (nonatomic, readonly) NSArray         *buildings;
+@property (nonatomic, readonly) NSArray *buildings;
 
 - (void)addCarInQueue:(AMPCar *)car;
 - (void)removeCarFromQueue:(AMPCar *)car;

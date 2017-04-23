@@ -1,5 +1,5 @@
 //
-//  AMPCarDriverProtocol.h
+//  AMPCarWashWasherProtocol.h
 //  AMPObjCStudy
 //
 //  Created by pilotns on 19.04.17.
@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AMPMoneyFlow.h"
+
 @class AMPCar;
+@class AMPAccountant;
 
-@protocol AMPCarDriverProtocol <NSObject>
-@property (nonatomic, retain) AMPCar  *car;
+@protocol AMPCarWashWasher <NSObject>
 
-- (NSUInteger)payForCarWashWithPrice:(NSUInteger)price;
+- (void)performWashWithCar:(AMPCar<AMPMoneyFlow> *)car;
 
 @end

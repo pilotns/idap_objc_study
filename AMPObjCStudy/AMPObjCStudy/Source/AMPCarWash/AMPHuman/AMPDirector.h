@@ -8,8 +8,8 @@
 
 #import "AMPHuman.h"
 
-#import "AMPCarWashMoneyFlowProtocol.h"
+#import "AMPMoneyFlow.h"
 
-@interface AMPDirector : AMPHuman <AMPCarWashMoneyFlowProtocol>
+@interface AMPDirector : AMPHuman
 
 @end

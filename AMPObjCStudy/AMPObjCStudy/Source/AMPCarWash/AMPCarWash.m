@@ -16,15 +16,17 @@
 #import "AMPDirector.h"
 #import "AMPWasher.h"
 
-#import "NSObject+AMPExtension.h"
+#import "NSObject+AMPExtensions.h"
 
 @interface AMPCarWash ()
 @property (nonatomic, retain) NSMutableArray *mutableBuildings;
 @property (nonatomic, retain) NSMutableArray *mutableCarQueue;
 
 - (void)prepareHierarchy;
-- (AMPBuilding *)buildingWithClass:(Class)aClass;
+- (AMPHuman<AMPMoneyFlow> *)employeeWithClass:(Class)employeeClass
+                          inBuildingWithClass:(Class)buildingClass;
 
+- (id)buildingWithClass:(Class)aClass;
 - (AMPCar *)nextCar;
 
 @end
@@ -34,7 +36,7 @@
 @dynamic buildings;
 
 #pragma mark -
-#pragma mark - Initializations and Deallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
     self.mutableBuildings = nil;
@@ -53,20 +55,19 @@
 }
 
 #pragma mark -
-#pragma mark - Accessors
+#pragma mark Accessors
 
 - (NSArray *)buildings {
     return [[self.mutableBuildings copy] autorelease];
 }
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
 - (void)addCarInQueue:(AMPCar *)car {
     if (car) {
         [self.mutableCarQueue addObject:car];
         [self performWork];
-        [self removeCarFromQueue:car];
     }
 }
 
@@ -74,37 +75,32 @@
     [self.mutableCarQueue removeObject:car];
 }
 
-- (AMPHuman *)accountant {
-    return [[[self buildingWithClass:[AMPCarWashAdministration class]]
-                                        roomWithClass:[AMPRoom class]]
-                                    employeeWithClass:[AMPAccountant class]];
-}
-
-- (AMPHuman *)director {
-    return [[[self buildingWithClass:[AMPCarWashAdministration class]]
-                                      roomWithClass:[AMPRoom class]]
-                                  employeeWithClass:[AMPDirector class]];
-}
-
 - (void)performWork {
     NSMutableArray *carQueue = self.mutableCarQueue;
-    while (0 != [carQueue count]) {
-        AMPCar *car = [self nextCar];
-        AMPCarWashBuilding *carWashbuilding = (AMPCarWashBuilding *)[self buildingWithClass:[AMPCarWashBuilding class]];
-        AMPCarWashRoom *carWashRoom = [carWashbuilding freeRoom];
-        [carWashRoom addCar:car];
+    while (carQueue.count) {
+        id car = [self nextCar];
+        id washer = [self employeeWithClass:[AMPWasher class]
+                        inBuildingWithClass:[AMPCarWashBuilding class]];
+        [washer performWashWithCar:car];
+        id accountant = [self employeeWithClass:[AMPAccountant class]
+                                        inBuildingWithClass:[AMPCarWashAdministration class]];
+        
+        [washer giveMoneyToEmployee:accountant];
+        
+        id director = [self employeeWithClass:[AMPDirector class]
+                          inBuildingWithClass:[AMPCarWashAdministration class]];
+        
+        [accountant giveMoneyToEmployee:director];
+        
     }
 }
 
 #pragma mark -
-#pragma mark - Private Methods
+#pragma mark Private Methods
 
 - (void)prepareHierarchy {
     AMPDirector *director = [AMPDirector object];
-    director.carWash = self;
-    
     AMPAccountant *accountant = [AMPAccountant object];
-    accountant.carWash = self;
     
     AMPRoom *administationRoom = [AMPRoom object];
     [administationRoom addEmployee:director];
@@ -115,8 +111,6 @@
     [self.mutableBuildings addObject:administrationBuilding];
     
     AMPWasher *washer = [AMPWasher object];
-    washer.carWash = self;
-    washer.washingCost = arc4random_uniform(25);
     
     AMPCarWashRoom *carWashRoom = [AMPCarWashRoom object];
     [carWashRoom addEmployee:washer];
@@ -125,14 +119,16 @@
     [self.mutableBuildings addObject:carWashBuilding];
 }
 
-- (AMPBuilding *)buildingWithClass:(Class)aClas {
-    for (AMPBuilding *building in self.mutableBuildings) {
-        if ([building isMemberOfClass:aClas]) {
-            return building;
-        }
-    }
+- (id<AMPMoneyFlow>)employeeWithClass:(Class)employeeClass
+                          inBuildingWithClass:(Class)buildingClass
+{
+    AMPBuilding *building = [self buildingWithClass:buildingClass];
     
-    return nil;
+    return [building employeeWithClass:employeeClass];
+}
+
+- (id)buildingWithClass:(Class)aClas {
+    return [self.mutableBuildings objectWithClass:aClas];
 }
 
 - (AMPCar *)nextCar {

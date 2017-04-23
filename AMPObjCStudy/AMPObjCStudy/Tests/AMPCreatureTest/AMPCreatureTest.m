@@ -12,8 +12,8 @@
 #import "AMPCreatureFemale.h"
 
 #import "NSString+AMPRandom.h"
-#import "NSObject+AMPExtension.h"
-#import "NSArray+AMPExtension.h"
+#import "NSObject+AMPExtensions.h"
+#import "NSArray+AMPExtensions.h"
 
 static const NSUInteger AMPDefaultCountOfCreatures = 10;
 static const NSUInteger AMPMaximumChildrenCount = 10;

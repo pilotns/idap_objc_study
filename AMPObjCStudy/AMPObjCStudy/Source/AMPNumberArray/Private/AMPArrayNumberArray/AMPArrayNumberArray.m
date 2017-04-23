@@ -12,7 +12,7 @@
 #import "AMPRangeNumberArray.h"
 #import "AMPLinkedListNumberArray.h"
 
-#import "NSObject+AMPExtension.h"
+#import "NSObject+AMPExtensions.h"
 
 @interface AMPArrayNumberArray ()
 @property (nonatomic, copy)     NSArray     *storage;
@@ -27,7 +27,7 @@
 @synthesize count = _count;
 
 #pragma mark -
-#pragma mark - Initializations and Deallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
     self.storage = nil;
@@ -44,7 +44,7 @@
 }
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
 - (NSNumber *)numberAtIndex:(NSUInteger)index {
     NSUInteger previousCount = 0;
@@ -62,7 +62,7 @@
 }
 
 #pragma mark -
-#pragma mark - Private Methods
+#pragma mark Private Methods
 
 - (NSUInteger)calculateCount:(NSArray *)numberArrays {
     NSUInteger count = 0;
@@ -74,7 +74,7 @@
 }
 
 #pragma mark -
-#pragma mark - NSFastEnumeration
+#pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
                                   objects:(id [])buffer

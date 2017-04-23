@@ -8,14 +8,7 @@
 
 #import "AMPRangeNumberArray.h"
 
-NSRange AMPMakeRange(NSUInteger firstNumber, NSUInteger lastNumber);
-
-NSRange AMPMakeRange(NSUInteger firstNumber, NSUInteger lastNumber) {
-    NSUInteger minValue = MIN(firstNumber, lastNumber);
-    NSUInteger maxValue = MAX(firstNumber, lastNumber);
-    
-    return NSMakeRange(minValue, maxValue - minValue + 1);
-}
+#import "AMPExtern.h"
 
 @interface AMPRangeNumberArray ()
 @property (nonatomic, assign) NSRange numbers;
@@ -25,7 +18,7 @@ NSRange AMPMakeRange(NSUInteger firstNumber, NSUInteger lastNumber) {
 @implementation AMPRangeNumberArray
 
 #pragma mark -
-#pragma mark - Initialization and Deallocations
+#pragma mark Initialization and Deallocations
 
 - (instancetype)initWithFirstNumber:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber {
     self = [super init];
@@ -35,7 +28,7 @@ NSRange AMPMakeRange(NSUInteger firstNumber, NSUInteger lastNumber) {
 }
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
 - (NSNumber *)numberAtIndex:(NSUInteger)index {
     NSAssert(index < self.count, NSRangeException);

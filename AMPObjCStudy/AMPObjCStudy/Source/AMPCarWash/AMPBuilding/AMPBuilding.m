@@ -10,8 +10,10 @@
 
 #import "AMPRoom.h"
 
+#import "NSObject+AMPExtensions.h"
+
 @interface AMPBuilding ()
-@property (nonatomic, retain) NSMutableSet   *mutableRooms;
+@property (nonatomic, retain)   NSMutableSet    *mutableRooms;
 
 @end
 
@@ -20,7 +22,7 @@
 @dynamic rooms;
 
 #pragma mark -
-#pragma mark - Initializationa and Deallocations
+#pragma mark Initializationa and Deallocations
 
 - (void)dealloc {
     self.mutableRooms = nil;
@@ -36,23 +38,30 @@
 }
 
 #pragma mark -
-#pragma mark - Accessors
+#pragma mark Accessors
 
 - (NSSet *)rooms {
     return [[self.mutableRooms copy] autorelease];
 }
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
 - (AMPRoom *)roomWithClass:(Class)aClass {
+    return [self.mutableRooms objectWithClass:aClass];
+}
+
+- (id<AMPMoneyFlow>)employeeWithClass:(Class)aClass {
+    return [[self employeesWithClass:aClass] firstObject];
+}
+
+- (NSArray *)employeesWithClass:(Class)aClass {
+    NSMutableArray *employees = [NSMutableArray array];
     for (AMPRoom *room in self.mutableRooms) {
-        if ([room isMemberOfClass:aClass]) {
-            return room;
-        }
+        [employees addObjectsFromArray:[room employeesWithClass:aClass]];
     }
     
-    return nil;
+    return employees.count ? [[employees copy] autorelease] : nil;
 }
 
 @end

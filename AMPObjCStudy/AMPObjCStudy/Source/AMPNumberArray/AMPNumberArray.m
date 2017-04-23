@@ -12,30 +12,32 @@
 #import "AMPLinkedListNumberArray.h"
 #import "AMPArrayNumberArray.h"
 
-@interface AMPNumberArray ()
-
-+ (NSMutableArray *)arrayOfNumbersWithVaList:(va_list)list;
-
-@end
+#define AMPParseVaList(firstValue, mutableArray) \
+    do { \
+        va_list values; \
+        va_start(values, firstValue); \
+        while (firstValue) { \
+            [mutableArray addObject:firstValue]; \
+            firstValue = va_arg(values, typeof(firstValue)); \
+        } \
+        \
+        va_end(values); \
+    } while (0)
 
 @implementation AMPNumberArray
 
 @dynamic count;
 
 #pragma mark -
-#pragma mark - Class Methods
+#pragma mark Class Methods
 
 + (instancetype)numberArrayWithFirstNumber:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber {
     return [[[AMPRangeNumberArray alloc] initWithFirstNumber:firstNumber lastNumber:lastNumber] autorelease];
 }
 
 + (instancetype)numberArrayWithNumbers:(NSNumber *)firstNumber, ... {
-    va_list numbers;
-    va_start(numbers, firstNumber);
-    NSMutableArray *numbersArray = [self arrayOfNumbersWithVaList:numbers];
-    [numbersArray insertObject:firstNumber atIndex:0];
-    va_end(numbers);
-    
+    NSMutableArray *numbersArray = [NSMutableArray array];
+    AMPParseVaList(firstNumber, numbersArray);
     return [[[AMPLinkedListNumberArray alloc] initWithArray:numbersArray] autorelease];
 }
 
@@ -44,7 +46,7 @@
 }
 
 #pragma mark -
-#pragma mark - Initializations and Deallocations
+#pragma mark Initializations and Deallocations
 
 - (instancetype)initWithFirstNumber:(NSUInteger)firstNumber lastNumber:(NSUInteger)lastNumber {
     [self release];
@@ -55,11 +57,8 @@
 - (instancetype)initWithNumbers:(NSNumber *)firstNumber, ... {
     [self release];
     
-    va_list numbers;
-    va_start(numbers, firstNumber);
-    NSMutableArray *numbersArray = [[self class] arrayOfNumbersWithVaList:numbers];
-    [numbersArray insertObject:firstNumber atIndex:0];
-    va_end(numbers);
+    NSMutableArray *numbersArray = [NSMutableArray array];
+    AMPParseVaList(firstNumber, numbersArray);
     
     return [[AMPLinkedListNumberArray alloc] initWithArray:numbersArray];
 }
@@ -71,7 +70,7 @@
 }
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
 - (NSNumber *)numberAtIndex:(NSUInteger)index {
     [self doesNotRecognizeSelector:_cmd];
@@ -98,20 +97,7 @@
 }
 
 #pragma mark -
-#pragma mark - Private Methods
-
-+ (NSMutableArray *)arrayOfNumbersWithVaList:(va_list)list {
-    NSMutableArray *numbers = [NSMutableArray array];
-    NSNumber *number = nil;
-    while (nil != (number = va_arg(list, NSNumber *))) {
-        [numbers addObject:number];
-    }
-    
-    return numbers;
-}
-
-#pragma mark -
-#pragma mark - NSFastEnumeration
+#pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
                                   objects:(id [])buffer

@@ -43,7 +43,7 @@ describe(@"AMPNumberArray", ^{
             [[numbers[1] should] equal:@1];
         });
         
-        context(@"should bot raise when iterate in for in loop", ^{
+        context(@"should not raise when iterate in for in loop", ^{
             [[theBlock(^{
                 __block NSUInteger iterator = 0;
                 for (NSNumber *number in numbers) {
@@ -81,7 +81,7 @@ describe(@"AMPNumberArray", ^{
             [[numbers[1] should] equal:@(5)];
         });
         
-        context(@"should bot raise when iterate in for in loop", ^{
+        context(@"should not raise when iterate in for in loop", ^{
             [[theBlock(^{
                 __block NSUInteger iterator = 0;
                 for (NSNumber *number in numbers) {
@@ -130,7 +130,7 @@ describe(@"AMPNumberArray", ^{
             [[numbers[3] should] equal:@5];
         });
         
-        context(@"should bot raise when iterate in for in loop", ^{
+        context(@"should not raise when iterate in for in loop", ^{
             [[theBlock(^{
                 __block NSUInteger iterator = 0;
                 for (NSNumber *number in numbers) {
@@ -170,7 +170,7 @@ describe(@"AMPNumberArray", ^{
             [[[numbers lastNumber] should] equal:@3.5];
         });
         
-        context(@"should bot raise when iterate in for in loop", ^{
+        context(@"should not raise when iterate in for in loop", ^{
             [[theBlock(^{
                 __block NSUInteger iterator = 0;
                 for (NSNumber *number in numbers) {

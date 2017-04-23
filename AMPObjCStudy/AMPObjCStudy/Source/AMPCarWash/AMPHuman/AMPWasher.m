@@ -9,23 +9,18 @@
 #import "AMPWasher.h"
 
 #import "AMPCar.h"
-#import "AMPCarDriver.h"
-#import "AMPAccountant.h"
-#import "AMPCarWash.h"
 
 @implementation AMPWasher
 
-@synthesize washingCost = _washingCost;
-
 #pragma mark -
-#pragma mark - AMPCarWashWasherProtocol
+#pragma mark AMPCarWashWasher
 
-- (void)performWashWithCar:(AMPCar *)car {
+- (void)performWashWithCar:(AMPCar<AMPMoneyFlow> *)car {
     NSLog(@"Washing begin...");
-    car.clean = YES;
-    
-    NSUInteger cash = [car.driver payForCarWashWithPrice:self.washingCost];
-    [self.carWash.accountant takeMoney:cash fromEmployee:self];
+    if (car.money && [car respondsToSelector:@selector(giveMoneyToEmployee:)]) {
+        car.clean = YES;
+        [car giveMoneyToEmployee:self];
+    }
     
     NSLog(@"Washing end.");
 }

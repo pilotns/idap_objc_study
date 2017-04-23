@@ -18,7 +18,7 @@
 @implementation AMPCarWashRoom
 
 #pragma mark -
-#pragma mark - Initializations and Deallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
     self.car = nil;
@@ -27,11 +27,11 @@
 }
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
-- (void)addCar:(AMPCar *)car {
+- (void)addCar:(AMPCar<AMPMoneyFlow> *)car {
     self.car = car;
-    AMPWasher *washer = (AMPWasher *)[self employeeWithClass:[AMPWasher class]];
+    AMPWasher *washer = [self employeeWithClass:[AMPWasher class]];
     [washer performWashWithCar:car];
     [self removeCar:car];
 }

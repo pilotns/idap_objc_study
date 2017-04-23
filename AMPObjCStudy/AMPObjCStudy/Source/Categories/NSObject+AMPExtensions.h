@@ -1,5 +1,5 @@
 //
-//  NSObject+AMPExtension.h
+//  NSObject+AMPExtensions.h
 //  AMPObjCStudy
 //
 //  Created by pilotns on 14.04.17.
@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (AMPExtension)
+@interface NSObject (AMPExtensions)
 
 + (instancetype)object;
-
 + (NSArray *)objectsWithCount:(NSUInteger)count;
+
+- (id)objectWithClass:(Class)aClass;
+- (NSArray *)objectsWithClass:(Class)aClass;
 
 @end

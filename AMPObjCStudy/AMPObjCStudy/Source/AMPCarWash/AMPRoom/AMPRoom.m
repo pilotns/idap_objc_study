@@ -10,6 +10,8 @@
 
 #import "AMPHuman.h"
 
+#import "NSObject+AMPExtensions.h"
+
 @interface AMPRoom ()
 @property (nonatomic, retain) NSMutableSet   *mutableStaff;
 
@@ -20,7 +22,7 @@
 @dynamic staff;
 
 #pragma mark -
-#pragma mark - Initializations and Deallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
     self.mutableStaff = nil;
@@ -37,31 +39,29 @@
 }
 
 #pragma mark -
-#pragma mark - Accessors
+#pragma mark Accessors
 
 - (NSSet *)staff {
     return [[self.mutableStaff copy] autorelease];
 }
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
-- (void)addEmployee:(AMPHuman<AMPCarWashEmplyeeProtocol> *)employee {
+- (void)addEmployee:(AMPHuman *)employee {
     [self.mutableStaff addObject:employee];
 }
 
-- (void)removeEmployee:(AMPHuman<AMPCarWashEmplyeeProtocol> *)employee {
+- (void)removeEmployee:(AMPHuman *)employee {
     [self.mutableStaff removeObject:employee];
 }
 
-- (AMPHuman *)employeeWithClass:(Class)aClass {
-    for (AMPHuman *employee in self.mutableStaff) {
-        if ([employee isMemberOfClass:aClass]) {
-            return employee;
-        }
-    }
-    
-    return nil;
+- (id)employeeWithClass:(Class)aClass {
+    return [self.mutableStaff objectWithClass:aClass];
+}
+
+- (NSArray *)employeesWithClass:(Class)aClass {
+    return [self.mutableStaff objectsWithClass:aClass];
 }
 
 @end

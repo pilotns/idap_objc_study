@@ -8,14 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AMPCarWashEmplyeeProtocol.h"
+#import "AMPMoneyFlow.h"
 
-@class AMPCar;
-
-@interface AMPHuman : NSObject <AMPCarWashEmplyeeProtocol>
+@interface AMPHuman : NSObject <AMPMoneyFlow>
 @property (nonatomic, readonly) NSString    *name;
-@property (nonatomic, assign)   NSUInteger  money;
-
-- (void)takeSalary:(NSUInteger)salary;
 
 @end

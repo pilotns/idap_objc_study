@@ -17,14 +17,14 @@
 @implementation AMPCreatureFemale
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
 - (void)perfomGenderSpecificOperation {
     [self giveBirth];
 }
 
 #pragma mark -
-#pragma mark - Prinvate Methods
+#pragma mark Prinvate Methods
 
 - (AMPCreature *)giveBirth {
     NSLog(@"Name - %@, class - %@ - go to birth",

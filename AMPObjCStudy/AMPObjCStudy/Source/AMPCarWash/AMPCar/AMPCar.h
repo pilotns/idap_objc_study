@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AMPMoneyFlow.h"
+
 @class AMPCarDriver;
 
-@interface AMPCar : NSObject
-@property (nonatomic, readonly)                 AMPCarDriver    *driver;
-@property (nonatomic, assign, getter=isClean)   BOOL            clean;
-
-- (instancetype)initWithDriver:(AMPCarDriver *)driver;
+@interface AMPCar : NSObject <AMPMoneyFlow>
+@property (nonatomic, assign, getter=isClean)   BOOL    clean;
 
 @end

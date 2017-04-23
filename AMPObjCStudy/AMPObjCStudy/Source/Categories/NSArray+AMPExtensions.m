@@ -1,14 +1,14 @@
 //
-//  NSArray+AMPExtension.m
+//  NSArray+AMPExtensions.m
 //  AMPObjCStudy
 //
 //  Created by pilotns on 15.04.17.
 //  Copyright © 2017 pilotns. All rights reserved.
 //
 
-#import "NSArray+AMPExtension.h"
+#import "NSArray+AMPExtensions.h"
 
-@implementation NSArray (AMPExtension)
+@implementation NSArray (AMPExtensions)
 
 + (instancetype)arrayWithObjectsCount:(NSUInteger)count factoryBlock:(AMPFactoryBlock)block {
     if (!block) {

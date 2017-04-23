@@ -17,14 +17,14 @@
 @implementation AMPCreatureMale
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
 - (void)perfomGenderSpecificOperation {
     [self goWar];
 }
 
 #pragma mark -
-#pragma mark - Private Methods
+#pragma mark Private Methods
 
 - (void)goWar {
     NSLog(@"Name - %@, class - %@   - go to war",

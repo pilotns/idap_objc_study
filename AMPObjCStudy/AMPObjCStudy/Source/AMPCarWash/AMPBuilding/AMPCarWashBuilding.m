@@ -14,16 +14,19 @@
 @implementation AMPCarWashBuilding
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
 - (AMPCarWashRoom *)freeRoom {
-    for (AMPCarWashRoom *carWashRoom in self.rooms) {
-        if (AMPCarWashRoomFree == carWashRoom.state) {
-            return carWashRoom;
+    NSSet *rooms = [self.rooms objectsPassingTest:^BOOL(AMPCarWashRoom *room, BOOL *stop) {
+        if (AMPCarWashRoomFree == room.state) {
+            *stop = true;
+            return YES;
         }
-    }
+        
+        return NO;
+    }];
     
-    return nil;
+    return [rooms anyObject];
 }
 
 @end

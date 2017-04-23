@@ -10,8 +10,11 @@
 
 @class AMPHuman;
 
-@protocol AMPCarWashMoneyFlowProtocol <NSObject>
+@protocol AMPMoneyFlow <NSObject>
+@property (nonatomic, readonly) NSUInteger money;
 
-- (void)takeMoney:(NSUInteger)money fromEmployee:(AMPHuman *)employee;
+@optional
+- (void)giveMoneyToEmployee:(id<AMPMoneyFlow>)employee;
+- (void)takeMoneyFromSender:(id<AMPMoneyFlow>)sender;
 
 @end

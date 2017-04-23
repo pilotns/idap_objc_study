@@ -8,16 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AMPCarWashEmplyeeProtocol.h"
-
 @class AMPHuman;
 
 @interface AMPRoom : NSObject
 @property (nonatomic, readonly) NSSet   *staff;
 
-- (void)addEmployee:(AMPHuman<AMPCarWashEmplyeeProtocol> *)employee;
-- (void)removeEmployee:(AMPHuman<AMPCarWashEmplyeeProtocol> *)employee;
+- (void)addEmployee:(AMPHuman *)employee;
+- (void)removeEmployee:(AMPHuman *)employee;
 
-- (AMPHuman *)employeeWithClass:(Class)aClass;
+- (id)employeeWithClass:(Class)aClass;
+- (NSArray *)employeesWithClass:(Class)aClass;
 
 @end

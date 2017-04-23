@@ -11,7 +11,7 @@
 #import "AMPLinkedList.h"
 #import "AMPLinkedListNode.h"
 
-#import "NSObject+AMPExtension.h"
+#import "NSObject+AMPExtensions.h"
 
 @interface AMPLinkedListNumberArray ()
 @property (nonatomic, retain) AMPLinkedList *storage;
@@ -23,7 +23,7 @@
 @implementation AMPLinkedListNumberArray
 
 #pragma mark -
-#pragma mark - Initializations and Deallocations
+#pragma mark Initializations and Deallocations
 
 - (instancetype)initWithArray:(NSArray *)numbers {
     self = [super init];
@@ -34,7 +34,7 @@
 }
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
 - (NSNumber *)numberAtIndex:(NSUInteger)index {
     return [self.storage objectAtIndex:index];
@@ -45,7 +45,7 @@
 }
 
 #pragma mark -
-#pragma mark - Private Methods
+#pragma mark Private Methods
 
 - (void)parseNumbers:(NSArray *)numbers {
     NSUInteger count = [numbers count];
@@ -55,7 +55,7 @@
 }
 
 #pragma mark -
-#pragma mark - NSFastEnumeration
+#pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
                                   objects:(id [])buffer

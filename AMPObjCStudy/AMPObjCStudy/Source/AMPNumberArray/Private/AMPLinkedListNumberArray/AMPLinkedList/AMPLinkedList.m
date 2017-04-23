@@ -18,7 +18,7 @@
 @implementation AMPLinkedList
 
 #pragma mark -
-#pragma mark - Initialization and Deallocations
+#pragma mark Initialization and Deallocations
 
 - (void)dealloc {
     self.head = nil;
@@ -27,7 +27,7 @@
 }
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
 - (void)addObject:(NSNumber *)object {
     AMPLinkedListNode *newHead = [AMPLinkedListNode nodeWithContent:object];

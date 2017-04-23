@@ -8,6 +8,8 @@
 
 #import "AMPCreature.h"
 
+#import "AMPExtern.h"
+
 #import "NSString+AMPRandom.h"
 
 @interface AMPCreature ()
@@ -32,20 +34,22 @@
 - (instancetype)init {
     self = [super init];
     self.name = [NSString randomStringWithLength:6];
+    self.age = AMPRandomValueWithRange(NSMakeRange(30, 30));
+    self.weight = AMPRandomValueWithRange(NSMakeRange(600, 300)) / 9.0;
     self.mutableChildren = [NSMutableArray array];
 
     return self;
 }
 
 #pragma mark -
-#pragma mark - Accessors
+#pragma mark Accessors
 
 - (NSArray *)children {
     return [[self.mutableChildren copy] autorelease];
 }
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark Public Methods
 
 - (void)addChild:(AMPCreature *)child {
     [self.mutableChildren addObject:child];
@@ -64,7 +68,7 @@
 }
 
 - (NSUInteger)childrenCount {
-    return [self.mutableChildren count];
+    return self.mutableChildren.count;
 }
 
 - (void)perfomGenderSpecificOperation {

@@ -12,15 +12,14 @@
 
 @interface AMPHuman ()
 @property (nonatomic, copy)     NSString    *name;
+@property (nonatomic, assign)   NSUInteger  money;
 
 @end
 
 @implementation AMPHuman
 
-@synthesize carWash = _carWash;
-
 #pragma mark -
-#pragma mark - Initializations and Deallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
     self.name = nil;
@@ -36,10 +35,15 @@
 }
 
 #pragma mark -
-#pragma mark - Public Methods
+#pragma mark AMPMoneyFlow
 
-- (void)takeSalary:(NSUInteger)salary {
-    self.money += salary;
+- (void)giveMoneyToEmployee:(id<AMPMoneyFlow>)employee {
+    [employee takeMoneyFromSender:self];
+    self.money = 0;
+}
+
+- (void)takeMoneyFromSender:(id<AMPMoneyFlow>)sender {
+    self.money += sender.money;
 }
 
 @end
