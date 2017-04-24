@@ -56,12 +56,4 @@
     [self.mutableStaff removeObject:employee];
 }
 
-- (id)employeeWithClass:(Class)aClass {
-    return [self.mutableStaff objectWithClass:aClass];
-}
-
-- (NSArray *)employeesWithClass:(Class)aClass {
-    return [self.mutableStaff objectsWithClass:aClass];
-}
-
 @end

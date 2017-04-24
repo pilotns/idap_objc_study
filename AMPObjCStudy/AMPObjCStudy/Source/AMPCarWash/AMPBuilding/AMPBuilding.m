@@ -47,10 +47,6 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (AMPRoom *)roomWithClass:(Class)aClass {
-    return [self.mutableRooms objectWithClass:aClass];
-}
-
 - (id<AMPMoneyFlow>)employeeWithClass:(Class)aClass {
     return [[self employeesWithClass:aClass] firstObject];
 }
@@ -58,7 +54,7 @@
 - (NSArray *)employeesWithClass:(Class)aClass {
     NSMutableArray *employees = [NSMutableArray array];
     for (AMPRoom *room in self.mutableRooms) {
-        [employees addObjectsFromArray:[room employeesWithClass:aClass]];
+        [employees addObjectsFromArray:[room.staff objectsWithClass:aClass]];
     }
     
     return employees.count ? [[employees copy] autorelease] : nil;

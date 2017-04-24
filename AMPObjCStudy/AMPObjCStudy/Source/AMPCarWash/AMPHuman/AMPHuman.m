@@ -29,17 +29,28 @@
 
 - (instancetype)init {
     self = [super init];
-    self.name = [NSString randomString];
+    self.name = [[NSString randomString] capitalizedString];
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Public Methods
+
+- (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
+    if ([object respondsToSelector:@selector(giveMoneyToEmployee:)]) {
+        [object giveMoneyToEmployee:self];
+    }
 }
 
 #pragma mark -
 #pragma mark AMPMoneyFlow
 
 - (void)giveMoneyToEmployee:(id<AMPMoneyFlow>)employee {
-    [employee takeMoneyFromSender:self];
-    self.money = 0;
+    if ([employee respondsToSelector:@selector(takeMoneyFromSender:)]) {
+        [employee takeMoneyFromSender:self];
+        self.money = 0;
+    }
 }
 
 - (void)takeMoneyFromSender:(id<AMPMoneyFlow>)sender {

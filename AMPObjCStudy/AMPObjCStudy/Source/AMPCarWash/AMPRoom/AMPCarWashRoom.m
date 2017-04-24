@@ -31,9 +31,6 @@
 
 - (void)addCar:(AMPCar<AMPMoneyFlow> *)car {
     self.car = car;
-    AMPWasher *washer = [self employeeWithClass:[AMPWasher class]];
-    [washer performWashWithCar:car];
-    [self removeCar:car];
 }
 
 - (void)removeCar:(AMPCar *)car {

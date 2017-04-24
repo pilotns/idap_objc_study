@@ -22,11 +22,13 @@
 @property (nonatomic, retain) NSMutableArray *mutableBuildings;
 @property (nonatomic, retain) NSMutableArray *mutableCarQueue;
 
-- (void)prepareHierarchy;
-- (AMPHuman<AMPMoneyFlow> *)employeeWithClass:(Class)employeeClass
-                          inBuildingWithClass:(Class)buildingClass;
-
 - (id)buildingWithClass:(Class)aClass;
+- (id)employeeWithClass:(Class)employeeClass inBuildingWithClass:(Class)buildingClass;
+- (id)director;
+- (id)accountant;
+- (id)washer;
+
+- (void)prepareHierarchy;
 - (AMPCar *)nextCar;
 
 @end
@@ -79,24 +81,44 @@
     NSMutableArray *carQueue = self.mutableCarQueue;
     while (carQueue.count) {
         id car = [self nextCar];
-        id washer = [self employeeWithClass:[AMPWasher class]
-                        inBuildingWithClass:[AMPCarWashBuilding class]];
-        [washer performWashWithCar:car];
-        id accountant = [self employeeWithClass:[AMPAccountant class]
-                                        inBuildingWithClass:[AMPCarWashAdministration class]];
+        id washer = [self washer];
+        [washer performWorkWithObject:car];
         
-        [washer giveMoneyToEmployee:accountant];
+        id accountant = [self accountant];
+        [accountant performWorkWithObject:washer];
         
-        id director = [self employeeWithClass:[AMPDirector class]
-                          inBuildingWithClass:[AMPCarWashAdministration class]];
-        
-        [accountant giveMoneyToEmployee:director];
-        
+        id director = [self director];
+        [director performWorkWithObject:accountant];
     }
 }
 
 #pragma mark -
 #pragma mark Private Methods
+
+- (id)buildingWithClass:(Class)aClas {
+    return [self.mutableBuildings objectWithClass:aClas];
+}
+
+- (id)employeeWithClass:(Class)employeeClass inBuildingWithClass:(Class)buildingClass {
+    AMPBuilding *building = [self buildingWithClass:buildingClass];
+    
+    return [building employeeWithClass:employeeClass];
+}
+
+- (id)director {
+    return [self employeeWithClass:[AMPDirector class]
+               inBuildingWithClass:[AMPCarWashAdministration class]];
+}
+
+- (id)accountant {
+    return [self employeeWithClass:[AMPAccountant class]
+               inBuildingWithClass:[AMPCarWashAdministration class]];
+}
+
+- (id)washer {
+    return [self employeeWithClass:[AMPWasher class]
+               inBuildingWithClass:[AMPCarWashBuilding class]];
+}
 
 - (void)prepareHierarchy {
     AMPDirector *director = [AMPDirector object];
@@ -106,7 +128,7 @@
     [administationRoom addEmployee:director];
     [administationRoom addEmployee:accountant];
     AMPCarWashAdministration *administrationBuilding =
-                                [[AMPCarWashAdministration alloc] initWithRooms:@[administationRoom]];
+    [[AMPCarWashAdministration alloc] initWithRooms:@[administationRoom]];
     
     [self.mutableBuildings addObject:administrationBuilding];
     
@@ -115,20 +137,8 @@
     AMPCarWashRoom *carWashRoom = [AMPCarWashRoom object];
     [carWashRoom addEmployee:washer];
     AMPCarWashBuilding *carWashBuilding = [[AMPCarWashBuilding alloc] initWithRooms:@[carWashRoom]];
-
-    [self.mutableBuildings addObject:carWashBuilding];
-}
-
-- (id<AMPMoneyFlow>)employeeWithClass:(Class)employeeClass
-                          inBuildingWithClass:(Class)buildingClass
-{
-    AMPBuilding *building = [self buildingWithClass:buildingClass];
     
-    return [building employeeWithClass:employeeClass];
-}
-
-- (id)buildingWithClass:(Class)aClas {
-    return [self.mutableBuildings objectWithClass:aClas];
+    [self.mutableBuildings addObject:carWashBuilding];
 }
 
 - (AMPCar *)nextCar {

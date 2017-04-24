@@ -11,7 +11,6 @@
 #import "AMPMoneyFlow.h"
 
 @class AMPCar;
-@class AMPHuman;
 
 @interface AMPCarWash : NSObject
 @property (nonatomic, readonly) NSArray *buildings;

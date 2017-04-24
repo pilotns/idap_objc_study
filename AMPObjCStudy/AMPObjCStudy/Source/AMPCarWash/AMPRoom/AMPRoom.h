@@ -16,7 +16,4 @@
 - (void)addEmployee:(AMPHuman *)employee;
 - (void)removeEmployee:(AMPHuman *)employee;
 
-- (id)employeeWithClass:(Class)aClass;
-- (NSArray *)employeesWithClass:(Class)aClass;
-
 @end

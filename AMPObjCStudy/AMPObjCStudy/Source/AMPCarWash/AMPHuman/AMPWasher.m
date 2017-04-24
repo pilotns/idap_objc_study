@@ -13,11 +13,18 @@
 @implementation AMPWasher
 
 #pragma mark -
+#pragma mark Public
+
+- (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
+    [self performWashWithCar:object];
+}
+
+#pragma mark -
 #pragma mark AMPCarWashWasher
 
 - (void)performWashWithCar:(AMPCar<AMPMoneyFlow> *)car {
     NSLog(@"Washing begin...");
-    if (car.money && [car respondsToSelector:@selector(giveMoneyToEmployee:)]) {
+    if (car.money) {
         car.clean = YES;
         [car giveMoneyToEmployee:self];
     }

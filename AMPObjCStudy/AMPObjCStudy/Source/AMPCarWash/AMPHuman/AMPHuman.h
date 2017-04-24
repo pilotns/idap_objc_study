@@ -13,4 +13,6 @@
 @interface AMPHuman : NSObject <AMPMoneyFlow>
 @property (nonatomic, readonly) NSString    *name;
 
+- (void)performWorkWithObject:(id<AMPMoneyFlow>)object;
+
 @end

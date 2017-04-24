@@ -11,7 +11,6 @@
 #import "AMPMoneyFlow.h"
 
 @class AMPCar;
-@class AMPAccountant;
 
 @protocol AMPCarWashWasher <NSObject>
 
