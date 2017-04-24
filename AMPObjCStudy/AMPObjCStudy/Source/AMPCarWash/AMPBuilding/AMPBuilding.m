@@ -47,10 +47,6 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (id<AMPMoneyFlow>)employeeWithClass:(Class)aClass {
-    return [[self employeesWithClass:aClass] firstObject];
-}
-
 - (NSArray *)employeesWithClass:(Class)aClass {
     NSMutableArray *employees = [NSMutableArray array];
     for (AMPRoom *room in self.mutableRooms) {

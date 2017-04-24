@@ -16,7 +16,6 @@
 
 - (instancetype)initWithRooms:(NSArray *)rooms;
 
-- (id)employeeWithClass:(Class)aClass;
 - (NSArray *)employeesWithClass:(Class)aClass;
 
 @end
