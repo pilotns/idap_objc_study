@@ -17,7 +17,6 @@
 - (BOOL)isObserver:(id)observer;
 
 - (void)setState:(NSUInteger)state userInfo:(id)userInfo;
-
 - (SEL)selectorForState:(NSUInteger)state;
 
 @end

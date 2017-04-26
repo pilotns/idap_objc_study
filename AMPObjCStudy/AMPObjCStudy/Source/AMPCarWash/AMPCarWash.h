@@ -13,10 +13,12 @@
 @class AMPCar;
 
 @interface AMPCarWash : NSObject
-@property (nonatomic, readonly) NSArray *buildings;
 
 - (void)addCarInQueue:(AMPCar *)car;
 - (void)removeCarFromQueue:(AMPCar *)car;
+
+- (void)hireEmployee:(AMPHuman<AMPMoneyFlow> *)employee;
+- (void)dismissEmployee:(AMPHuman<AMPMoneyFlow> *)employee;
 
 - (void)performWork;
 

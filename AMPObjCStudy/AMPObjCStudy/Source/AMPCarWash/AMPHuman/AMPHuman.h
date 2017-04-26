@@ -6,11 +6,24 @@
 //  Copyright © 2017 pilotns. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "AMPObservableObject.h"
 
 #import "AMPMoneyFlow.h"
 
-@interface AMPHuman : NSObject <AMPMoneyFlow>
+typedef NS_ENUM(NSUInteger, AMPWasherState) {
+    AMPEmployeeDidBecomeBusy,
+    AMPEmployeeDidFinishWork
+};
+
+@protocol AMPEmployeeObsever <NSObject>
+
+@optional
+- (void)employeeDidBecomeBusy:(id<AMPMoneyFlow>)employee;
+- (void)employeeDidFinishWork:(id<AMPMoneyFlow>)employee;
+
+@end
+
+@interface AMPHuman : AMPObservableObject <AMPMoneyFlow, AMPEmployeeObsever>
 @property (nonatomic, readonly) NSString    *name;
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object;

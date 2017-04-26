@@ -23,13 +23,12 @@
 #pragma mark AMPCarWashWasher
 
 - (void)performWashWithCar:(AMPCar<AMPMoneyFlow> *)car {
-    NSLog(@"Washing begin...");
-    if (car.money) {
+    if (car.money && [car respondsToSelector:@selector(giveMoneyToEmployee:)]) {
+        self.state = AMPEmployeeDidBecomeBusy;
         car.clean = YES;
         [car giveMoneyToEmployee:self];
+        self.state = AMPEmployeeDidFinishWork;
     }
-    
-    NSLog(@"Washing end.");
 }
 
 @end

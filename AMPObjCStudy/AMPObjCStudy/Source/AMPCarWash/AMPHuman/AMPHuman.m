@@ -38,9 +38,11 @@
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
+    self.state = AMPEmployeeDidBecomeBusy;
     if ([object respondsToSelector:@selector(giveMoneyToEmployee:)]) {
         [object giveMoneyToEmployee:self];
     }
+    self.state = AMPEmployeeDidFinishWork;
 }
 
 #pragma mark -
@@ -55,6 +57,31 @@
 
 - (void)takeMoneyFromSender:(id<AMPMoneyFlow>)sender {
     self.money += sender.money;
+}
+
+#pragma mark -
+#pragma mark AMPEmployeeObserver
+
+- (void)employeeDidFinishWork:(id<AMPMoneyFlow>)employee {
+    [self performWorkWithObject:employee];
+}
+
+#pragma mark -
+#pragma mark Override Methods
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case AMPEmployeeDidBecomeBusy:
+            return @selector(employeeDidBecomeBusy:);
+            
+        case AMPEmployeeDidFinishWork:
+            return @selector(employeeDidFinishWork:);
+            
+        default:
+            [super selectorForState:state];
+    }
+    
+    return NULL;
 }
 
 @end
