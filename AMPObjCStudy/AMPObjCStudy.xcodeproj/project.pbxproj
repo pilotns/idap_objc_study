@@ -11,6 +11,13 @@
 		34A4705D9C8F208B4B63A1E9 /* libPods-AMPObjCStudy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 835BE9E11E9F406A2255F789 /* libPods-AMPObjCStudy.a */; };
 		8A0C70241EACD8EF001A8914 /* AMPExtern.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C70231EACD8EF001A8914 /* AMPExtern.m */; };
 		8A0C70251EACD8EF001A8914 /* AMPExtern.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C70231EACD8EF001A8914 /* AMPExtern.m */; };
+		8A0C70621EAFC756001A8914 /* AMPObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C70611EAFC756001A8914 /* AMPObservableObject.m */; };
+		8A0C70631EAFC756001A8914 /* AMPObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C70611EAFC756001A8914 /* AMPObservableObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8A0C70811EAFDCB1001A8914 /* AMPConcreteObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C70801EAFDCB1001A8914 /* AMPConcreteObservableObject.m */; };
+		8A0C70821EAFDCB1001A8914 /* AMPConcreteObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C70801EAFDCB1001A8914 /* AMPConcreteObservableObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8A0C70851EAFDCD3001A8914 /* AMPConcreteObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C70841EAFDCD3001A8914 /* AMPConcreteObserver.m */; };
+		8A0C70861EAFDCD3001A8914 /* AMPConcreteObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C70841EAFDCD3001A8914 /* AMPConcreteObserver.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8A0C70881EAFE0AA001A8914 /* AMPObservableObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C70871EAFE0AA001A8914 /* AMPObservableObjectSpec.m */; };
 		8A2564F81E9F717C00F0E47D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2564F71E9F717C00F0E47D /* main.m */; };
 		8A25650E1E9F902F00F0E47D /* AMPCreatureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A25650D1E9F902F00F0E47D /* AMPCreatureTest.m */; };
 		8A657A351EA628CD008BA2AC /* AMPNumberArraySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A657A341EA628CD008BA2AC /* AMPNumberArraySpec.m */; };
@@ -84,6 +91,13 @@
 		835BE9E11E9F406A2255F789 /* libPods-AMPObjCStudy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AMPObjCStudy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0C70221EACD8EF001A8914 /* AMPExtern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPExtern.h; sourceTree = "<group>"; };
 		8A0C70231EACD8EF001A8914 /* AMPExtern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPExtern.m; sourceTree = "<group>"; };
+		8A0C70601EAFC756001A8914 /* AMPObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPObservableObject.h; sourceTree = "<group>"; };
+		8A0C70611EAFC756001A8914 /* AMPObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPObservableObject.m; sourceTree = "<group>"; };
+		8A0C707F1EAFDCB1001A8914 /* AMPConcreteObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPConcreteObservableObject.h; sourceTree = "<group>"; };
+		8A0C70801EAFDCB1001A8914 /* AMPConcreteObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPConcreteObservableObject.m; sourceTree = "<group>"; };
+		8A0C70831EAFDCD3001A8914 /* AMPConcreteObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPConcreteObserver.h; sourceTree = "<group>"; };
+		8A0C70841EAFDCD3001A8914 /* AMPConcreteObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPConcreteObserver.m; sourceTree = "<group>"; };
+		8A0C70871EAFE0AA001A8914 /* AMPObservableObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPObservableObjectSpec.m; sourceTree = "<group>"; };
 		8A2564F41E9F717C00F0E47D /* AMPObjCStudy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AMPObjCStudy; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A2564F71E9F717C00F0E47D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8A25650C1E9F902F00F0E47D /* AMPCreatureTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCreatureTest.h; sourceTree = "<group>"; };
@@ -174,6 +188,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8A0C705F1EAFC736001A8914 /* AMPObservableObject */ = {
+			isa = PBXGroup;
+			children = (
+				8A0C70601EAFC756001A8914 /* AMPObservableObject.h */,
+				8A0C70611EAFC756001A8914 /* AMPObservableObject.m */,
+			);
+			path = AMPObservableObject;
+			sourceTree = "<group>";
+		};
+		8A0C70721EAFD9E2001A8914 /* AMPObservableObjectTest */ = {
+			isa = PBXGroup;
+			children = (
+				8A0C707F1EAFDCB1001A8914 /* AMPConcreteObservableObject.h */,
+				8A0C70801EAFDCB1001A8914 /* AMPConcreteObservableObject.m */,
+				8A0C70831EAFDCD3001A8914 /* AMPConcreteObserver.h */,
+				8A0C70841EAFDCD3001A8914 /* AMPConcreteObserver.m */,
+			);
+			path = AMPObservableObjectTest;
+			sourceTree = "<group>";
+		};
 		8A2564EB1E9F717C00F0E47D = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +241,7 @@
 		8A2565071E9F8FA900F0E47D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8A0C70721EAFD9E2001A8914 /* AMPObservableObjectTest */,
 				8AA5440C1EA911360085A52F /* AMPCarWashTest */,
 				8A2565081E9F8FBB00F0E47D /* AMPCreatureTest */,
 			);
@@ -234,6 +269,7 @@
 		8AA544141EACAB390085A52F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				8A0C705F1EAFC736001A8914 /* AMPObservableObject */,
 				8AA544151EACAB390085A52F /* AMPCarWash */,
 				8AA544361EACAB390085A52F /* AMPCreature */,
 				8AA5443E1EACAB390085A52F /* AMPNumberArray */,
@@ -406,6 +442,7 @@
 			children = (
 				8AAB1EA51EA6228000F461D3 /* Info.plist */,
 				8A657A341EA628CD008BA2AC /* AMPNumberArraySpec.m */,
+				8A0C70871EAFE0AA001A8914 /* AMPObservableObjectSpec.m */,
 			);
 			path = AMPObjCStudyTest;
 			sourceTree = "<group>";
@@ -602,6 +639,7 @@
 				8AA544801EACAB390085A52F /* AMPRangeNumberArray.m in Sources */,
 				8AA5446E1EACAB390085A52F /* AMPRoom.m in Sources */,
 				8AA5445C1EACAB390085A52F /* AMPCarWashBuilding.m in Sources */,
+				8A0C70811EAFDCB1001A8914 /* AMPConcreteObservableObject.m in Sources */,
 				8AA544781EACAB390085A52F /* AMPArrayNumberArray.m in Sources */,
 				8AA544581EACAB390085A52F /* AMPBuilding.m in Sources */,
 				8AA5446C1EACAB390085A52F /* AMPCarWashRoom.m in Sources */,
@@ -617,9 +655,11 @@
 				8AA5447E1EACAB390085A52F /* AMPLinkedListNumberArray.m in Sources */,
 				8A25650E1E9F902F00F0E47D /* AMPCreatureTest.m in Sources */,
 				8AA5447A1EACAB390085A52F /* AMPLinkedList.m in Sources */,
+				8A0C70621EAFC756001A8914 /* AMPObservableObject.m in Sources */,
 				8AA5440F1EA911530085A52F /* AMPCarWashTest.m in Sources */,
 				8AA544661EACAB390085A52F /* AMPDirector.m in Sources */,
 				8AA544601EACAB390085A52F /* AMPCarWash.m in Sources */,
+				8A0C70851EAFDCD3001A8914 /* AMPConcreteObserver.m in Sources */,
 				8AA5445E1EACAB390085A52F /* AMPCar.m in Sources */,
 				8AA5446A1EACAB390085A52F /* AMPWasher.m in Sources */,
 			);
@@ -630,10 +670,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A0C70251EACD8EF001A8914 /* AMPExtern.m in Sources */,
+				8A0C70821EAFDCB1001A8914 /* AMPConcreteObservableObject.m in Sources */,
 				8AA544731EACAB390085A52F /* AMPCreatureFemale.m in Sources */,
 				8AA544851EACAB390085A52F /* NSObject+AMPExtensions.m in Sources */,
 				8AA544631EACAB390085A52F /* AMPAccountant.m in Sources */,
 				8AA544771EACAB390085A52F /* AMPNumberArray.m in Sources */,
+				8A0C70631EAFC756001A8914 /* AMPObservableObject.m in Sources */,
 				8AA544691EACAB390085A52F /* AMPHuman.m in Sources */,
 				8AA544671EACAB390085A52F /* AMPDirector.m in Sources */,
 				8AA544611EACAB390085A52F /* AMPCarWash.m in Sources */,
@@ -641,6 +683,7 @@
 				8AA5446B1EACAB390085A52F /* AMPWasher.m in Sources */,
 				8AA544591EACAB390085A52F /* AMPBuilding.m in Sources */,
 				8AA544811EACAB390085A52F /* AMPRangeNumberArray.m in Sources */,
+				8A0C70861EAFDCD3001A8914 /* AMPConcreteObserver.m in Sources */,
 				8AA544831EACAB390085A52F /* NSArray+AMPExtensions.m in Sources */,
 				8AA5447D1EACAB390085A52F /* AMPLinkedListNode.m in Sources */,
 				8AA544791EACAB390085A52F /* AMPArrayNumberArray.m in Sources */,
@@ -651,6 +694,7 @@
 				8AA544871EACAB390085A52F /* NSString+AMPRandom.m in Sources */,
 				8AA5447F1EACAB390085A52F /* AMPLinkedListNumberArray.m in Sources */,
 				8AA5447B1EACAB390085A52F /* AMPLinkedList.m in Sources */,
+				8A0C70881EAFE0AA001A8914 /* AMPObservableObjectSpec.m in Sources */,
 				8AA544711EACAB390085A52F /* AMPCreature.m in Sources */,
 				8AA5446D1EACAB390085A52F /* AMPCarWashRoom.m in Sources */,
 				8AA544101EA911530085A52F /* AMPCarWashTest.m in Sources */,
@@ -774,6 +818,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1CB7087AC0291DFEB6BC6A37 /* Pods-AMPObjCStudyTest.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = FWP6H8H8UZ;
 				INFOPLIST_FILE = AMPObjCStudyTest/Info.plist;
@@ -787,6 +832,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 155F04F9C1DF311A9C967710 /* Pods-AMPObjCStudyTest.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = FWP6H8H8UZ;
 				INFOPLIST_FILE = AMPObjCStudyTest/Info.plist;

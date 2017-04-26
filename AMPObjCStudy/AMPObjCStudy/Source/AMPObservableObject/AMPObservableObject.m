@@ -1,0 +1,90 @@
+//
+//  AMPObservableObject.m
+//  AMPObjCStudy
+//
+//  Created by pilotns on 25.04.17.
+//  Copyright © 2017 pilotns. All rights reserved.
+//
+
+#import "AMPObservableObject.h"
+
+@interface AMPObservableObject ()
+@property (nonatomic, retain)   NSHashTable     *mutableObservers;
+
+- (void)notifyOfStateWithSelector:(SEL)aSelector userInfo:(id)userInfo;
+
+@end
+
+@implementation AMPObservableObject
+
+@dynamic observers;
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    self.mutableObservers = nil;
+    
+    [super dealloc];
+}
+
+- (instancetype)init {
+    self = [super init];
+    self.mutableObservers = [NSHashTable weakObjectsHashTable];
+    
+    return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (NSSet *)observers {
+    return [self.mutableObservers setRepresentation];
+}
+
+- (void)setState:(NSUInteger)state {
+    [self setState:state userInfo:nil];
+}
+
+- (void)setState:(NSUInteger)state userInfo:(id)userInfo {
+    if (_state != state) {
+        _state = state;
+        
+        [self notifyOfStateWithSelector:[self selectorForState:state] userInfo:userInfo];
+    }
+}
+
+#pragma mark -
+#pragma mark Public Methods
+
+- (void)addObserver:(id)observer {
+    [self.mutableObservers addObject:observer];
+}
+
+- (void)removeObserver:(id)observer {
+    [self.mutableObservers removeObject:observer];
+}
+
+- (BOOL)isObserver:(id)observer {
+    BOOL result = [self.mutableObservers containsObject:observer];
+    return result;
+}
+
+- (SEL)selectorForState:(NSUInteger)state {
+    [self doesNotRecognizeSelector:_cmd];
+    
+    return NULL;
+}
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (void)notifyOfStateWithSelector:(SEL)aSelector userInfo:(id)userInfo {
+    for (id observer in self.mutableObservers) {
+        if ([observer respondsToSelector:aSelector]) {
+            [observer performSelector:aSelector withObject:self withObject:userInfo];
+        }
+    }
+}
+
+@end
