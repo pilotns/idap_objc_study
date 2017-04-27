@@ -20,6 +20,4 @@ void AMPCarWashTest() {
         
         [carWash addCarInQueue:car];
     }
-    
-    NSLog(@"");
 }

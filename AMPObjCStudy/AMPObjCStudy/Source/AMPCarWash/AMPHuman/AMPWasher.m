@@ -16,20 +16,19 @@
 #pragma mark Public
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
+    self.state = AMPEmployeeDidBecomeBusy;
     [self performWashWithCar:object];
+    self.state = AMPEmployeeDidFinishWork;
 }
 
 #pragma mark -
 #pragma mark AMPCarWashWasher
 
 - (void)performWashWithCar:(AMPCar<AMPMoneyFlow> *)car {
-    NSLog(@"Washing begin...");
-    if (car.money) {
+    if (car.money && [car respondsToSelector:@selector(giveMoneyToEmployee:)]) {
         car.clean = YES;
         [car giveMoneyToEmployee:self];
     }
-    
-    NSLog(@"Washing end.");
 }
 
 @end
