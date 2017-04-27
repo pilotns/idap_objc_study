@@ -9,7 +9,7 @@
 #import "AMPCopyReference.h"
 
 @interface AMPCopyReference ()
-@property (nonatomic, copy) id target;
+@property (nonatomic, copy) id<NSCopying> target;
 
 @end
 

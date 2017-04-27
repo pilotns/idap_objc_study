@@ -32,7 +32,7 @@
     return [[[AMPAssignReference alloc] initWithTarget:target] autorelease];
 }
     
-+ (instancetype)copyReferenceWithTarget:(id)target {
++ (instancetype)copyReferenceWithTarget:(id<NSCopying>)target {
     return [[[AMPCopyReference alloc] initWithTarget:target] autorelease];
 }
 
