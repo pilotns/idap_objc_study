@@ -78,10 +78,8 @@
             return @selector(employeeDidFinishWork:);
             
         default:
-            [super selectorForState:state];
+            return [super selectorForState:state];
     }
-    
-    return NULL;
 }
 
 @end

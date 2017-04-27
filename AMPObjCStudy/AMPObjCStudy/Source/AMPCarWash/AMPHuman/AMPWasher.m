@@ -16,7 +16,9 @@
 #pragma mark Public
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
+    self.state = AMPEmployeeDidBecomeBusy;
     [self performWashWithCar:object];
+    self.state = AMPEmployeeDidFinishWork;
 }
 
 #pragma mark -
@@ -24,10 +26,8 @@
 
 - (void)performWashWithCar:(AMPCar<AMPMoneyFlow> *)car {
     if (car.money && [car respondsToSelector:@selector(giveMoneyToEmployee:)]) {
-        self.state = AMPEmployeeDidBecomeBusy;
         car.clean = YES;
         [car giveMoneyToEmployee:self];
-        self.state = AMPEmployeeDidFinishWork;
     }
 }
 
