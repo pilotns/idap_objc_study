@@ -11,7 +11,7 @@
 #import "AMPObservationContext.h"
 
 @interface AMPBlockObservableObject ()
-@property (nonatomic, retain)   NSMutableSet  *observayionContexts;
+@property (nonatomic, retain)   NSMutableSet  *observationContexts;
 
 - (AMPObservationContext *)contextForObserver:(id)observer;
 - (void)notifyOfStateChangeWithUserInfo:(id)userInfo;
@@ -24,14 +24,14 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.observayionContexts = nil;
+    self.observationContexts = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
-    self.observayionContexts = [NSMutableSet set];
+    self.observationContexts = [NSMutableSet set];
     
     return self;
 }
@@ -60,15 +60,19 @@
     }
 
     AMPObservationContext *context = [self contextForObserver:observer];
-    context[state] = handler;
+    if (!context) {
+        context = [AMPObservationContext contextWithObserver:observer
+                                            observableObject:self];
+    }
     
-    [self.observayionContexts addObject:context];
+    context[state] = handler;
+    [self.observationContexts addObject:context];
 }
 
 - (void)removeObserver:(id)observer {
     AMPObservationContext *context = [self contextForObserver:observer];
     if (context) {
-        [self.observayionContexts removeObject:context];
+        [self.observationContexts removeObject:context];
     }
 }
 
@@ -83,7 +87,7 @@
 #pragma mark Private Methods
 
 - (AMPObservationContext *)contextForObserver:(id)observer {
-    for (AMPObservationContext *context in self.observayionContexts) {
+    for (AMPObservationContext *context in self.observationContexts) {
         if (context.observer == observer) {
             return context;
         }
@@ -93,7 +97,7 @@
 }
 
 - (void)notifyOfStateChangeWithUserInfo:(id)userInfo {
-    for (AMPObservationContext *context in self.observayionContexts) {
+    for (AMPObservationContext *context in self.observationContexts) {
         [context notifyOfState:self.state userInfo:userInfo];
     }
 }

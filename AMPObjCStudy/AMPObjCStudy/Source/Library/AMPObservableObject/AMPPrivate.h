@@ -11,6 +11,6 @@
 
 @class AMPObservationContext;
 
-typedef void(^AMPObservationHandler)(id observer, id bservableObject, id userInfo);
+typedef void(^AMPObservationHandler)(id observer, id observableObject, id userInfo);
 
 #endif /* AMPPrivate_h */

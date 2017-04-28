@@ -39,6 +39,8 @@
                 observableObject:(AMPBlockObservableObject *)observableObject
 {
     self = [super init];
+    self.observer = observer;
+    self.observableObject = observableObject;
     self.stateHandlers = [NSMutableDictionary dictionary];
     
     return self;
