@@ -1,12 +1,12 @@
 //
-//  AMPExtern.m
+//  AMPRandom.h
 //  AMPObjCStudy
 //
 //  Created by pilotns on 23.04.17.
 //  Copyright © 2017 pilotns. All rights reserved.
 //
 
-#import "AMPExtern.h"
+#import "AMPRandom.h"
 
 NSRange AMPMakeRange(NSUInteger firstNumber, NSUInteger lastNumber) {
     NSUInteger minValue = MIN(firstNumber, lastNumber);

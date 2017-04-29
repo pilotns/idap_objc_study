@@ -18,6 +18,6 @@ void AMPCarWashTest() {
     for (NSUInteger iterator = 0; iterator < 100; iterator++) {
         AMPCar *car = [AMPCar object];
         
-        [carWash addCarInQueue:car];
+        [carWash washCar:car];
     }
 }

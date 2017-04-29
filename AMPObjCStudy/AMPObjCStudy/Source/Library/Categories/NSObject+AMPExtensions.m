@@ -22,24 +22,6 @@
     }];
 }
 
-- (id)objectWithClass:(Class)aClass {
-    return [[self objectsWithClass:aClass] firstObject];
-}
 
-- (NSArray *)objectsWithClass:(Class)aClass {
-    if ([self conformsToProtocol:@protocol(NSFastEnumeration)] && [self respondsToSelector:@selector(count)]) {
-        id reciever = self;
-        NSMutableArray *result = [NSMutableArray arrayWithCapacity:[reciever count]];
-        for (id object in reciever) {
-            if ([object isMemberOfClass:aClass]) {
-                [result addObject:object];
-            }
-        }
-        
-        return result.count ? [[result copy] autorelease] : nil;
-    }
-    
-    return nil;
-}
 
 @end

@@ -13,6 +13,7 @@
 #import "AMPWasher.h"
 
 #import "NSObject+AMPExtensions.h"
+#import "NSSet+AMPExtensions.h"
 
 static const NSUInteger AMPDefaultWasherCount = 10;
 
@@ -20,8 +21,13 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 @property (nonatomic, retain) NSMutableSet      *mutableEmployees;
 @property (nonatomic, retain) NSMutableArray    *mutableCarQueue;
 
+- (void)removeCarFromQueue:(AMPCar *)car;
+- (void)hireEmployee:(AMPHuman<AMPMoneyFlow> *)employee;
+- (void)dismissEmployee:(AMPHuman<AMPMoneyFlow> *)employee;
+- (void)performWork;
+
 - (id)employeeWithClass:(Class)aClass;
-- (NSArray *)employeesWithClass:(Class)aClass;
+- (NSSet *)employeesWithClass:(Class)aClass;
 
 - (id)director;
 - (id)accountant;
@@ -29,7 +35,7 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 
 - (void)prepareHierarchy;
 - (void)hireEmployees:(NSArray *)employees;
-- (AMPCar *)nextCar;
+- (AMPCar *)dequeueCar;
 
 @end
 
@@ -56,25 +62,39 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)addCarInQueue:(AMPCar *)car {
+- (void)washCar:(AMPCar *)car {
     if (car) {
         [self.mutableCarQueue addObject:car];
         [self performWork];
     }
 }
 
+#pragma mark -
+#pragma mark Private Methods
+
 - (void)removeCarFromQueue:(AMPCar *)car {
     [self.mutableCarQueue removeObject:car];
 }
 
-- (void)hireEmployee:(AMPHuman<AMPMoneyFlow> *)employee {
+- (Class)observerClassForEmployee:(AMPHuman *)employee {
     if ([employee isKindOfClass:[AMPAccountant class]]) {
-        [employee addObserver:[self director]];
+        return [AMPDirector class];
     }
     
     if ([employee isKindOfClass:[AMPWasher class]]) {
-        [employee addObserver:[self accountant]];
+        return [AMPAccountant class];
     }
+    
+    return Nil;
+}
+
+- (AMPHuman *)observerForEmployee:(AMPHuman *)employee {
+    return [self employeeWithClass:[self observerClassForEmployee:employee]];
+}
+
+- (void)hireEmployee:(AMPHuman<AMPMoneyFlow> *)employee {
+    AMPHuman *observer = [self observerForEmployee:employee];
+    [employee addObserver:observer];
     
     [self.mutableEmployees addObject:employee];
 }
@@ -86,22 +106,19 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 - (void)performWork {
     NSMutableArray *carQueue = self.mutableCarQueue;
     while (carQueue.count) {
-        id car = [self nextCar];
+        id car = [self dequeueCar];
         id washer = [self washer];
         if (washer) {
-            [washer performWorkWithObject:car];    
+            [washer performWorkWithObject:car];
         }
     }
 }
 
-#pragma mark -
-#pragma mark Private Methods
-
 - (id)employeeWithClass:(Class)aClass {
-    return [[self employeesWithClass:aClass] firstObject];
+    return [[self employeesWithClass:aClass] anyObject];
 }
 
-- (NSArray *)employeesWithClass:(Class)aClass {
+- (NSSet *)employeesWithClass:(Class)aClass {
     return [self.mutableEmployees objectsWithClass:aClass];
 }
 
@@ -118,9 +135,13 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 }
 
 - (void)prepareHierarchy {
-    [self hireEmployee:[AMPDirector object]];
-    [self hireEmployee:[AMPAccountant object]];
-    [self hireEmployees:[AMPWasher objectsWithCount:AMPDefaultWasherCount]];
+    
+    NSArray *shift = @[@[[AMPDirector object]], @[[AMPAccountant object]],
+                           [AMPWasher objectsWithCount:AMPDefaultWasherCount]];
+    
+    for (NSArray *employees in shift) {
+        [self hireEmployees:employees];
+    }
 }
 
 - (void)hireEmployees:(NSArray *)employees {
@@ -129,12 +150,12 @@ static const NSUInteger AMPDefaultWasherCount = 10;
     }
 }
 
-- (AMPCar *)nextCar {
+- (AMPCar *)dequeueCar {
     NSMutableArray *carsQueue = self.mutableCarQueue;
     AMPCar *car = [carsQueue objectAtIndex:0];
     [self removeCarFromQueue:car];
     
-    return car;
+    return [[car retain] autorelease];
 }
 
 @end

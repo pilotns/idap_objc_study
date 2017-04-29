@@ -8,6 +8,8 @@
 
 #import "AMPHuman.h"
 
+#import "AMPDirector.h"
+
 #import "NSString+AMPRandom.h"
 
 @interface AMPHuman ()
@@ -39,24 +41,31 @@
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
     self.state = AMPEmployeeDidBecomeBusy;
-    if ([object respondsToSelector:@selector(giveMoneyToEmployee:)]) {
-        [object giveMoneyToEmployee:self];
-    }
+    [self handlingObject:object];
     self.state = AMPEmployeeDidFinishWork;
+}
+
+- (void)handlingObject:(id<AMPMoneyFlow>)object {
+    [self receiveMoney:[object giveMoney]];
 }
 
 #pragma mark -
 #pragma mark AMPMoneyFlow
 
-- (void)giveMoneyToEmployee:(id<AMPMoneyFlow>)employee {
-    if ([employee respondsToSelector:@selector(takeMoneyFromSender:)]) {
-        [employee takeMoneyFromSender:self];
-        self.money = 0;
+
+- (NSUInteger)giveMoney {
+    if ([self isMemberOfClass:[AMPDirector class]]) {
+        return 0;
     }
+    
+    NSUInteger money = self.money;
+    self.money = 0;
+    
+    return money;
 }
 
-- (void)takeMoneyFromSender:(id<AMPMoneyFlow>)sender {
-    self.money += sender.money;
+- (void)receiveMoney:(NSUInteger)money {
+    self.money += money;
 }
 
 #pragma mark -
@@ -80,6 +89,10 @@
         default:
             return [super selectorForState:state];
     }
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@ - %@", [super description], self.name];
 }
 
 @end

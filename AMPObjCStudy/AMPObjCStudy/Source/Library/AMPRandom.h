@@ -1,5 +1,5 @@
 //
-//  AMPExtern.h
+//  AMPRandom.h
 //  AMPObjCStudy
 //
 //  Created by pilotns on 23.04.17.
@@ -10,3 +10,4 @@
 
 NSRange AMPMakeRange(NSUInteger firstNumber, NSUInteger lastNumber);
 NSUInteger AMPRandomValueWithRange(NSRange range);
+

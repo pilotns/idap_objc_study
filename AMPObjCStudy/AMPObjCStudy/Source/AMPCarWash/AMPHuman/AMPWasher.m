@@ -10,25 +10,30 @@
 
 #import "AMPCar.h"
 
+@interface AMPWasher ()
+
+- (void)performWashWithCar:(AMPCar *)car;
+
+@end
+
 @implementation AMPWasher
 
 #pragma mark -
 #pragma mark Public
 
-- (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
-    self.state = AMPEmployeeDidBecomeBusy;
+- (void)handlingObject:(id<AMPMoneyFlow>)object {
     [self performWashWithCar:object];
-    self.state = AMPEmployeeDidFinishWork;
+    
+    [super handlingObject:object];
 }
 
 #pragma mark -
-#pragma mark AMPCarWashWasher
+#pragma mark Private Methods
 
-- (void)performWashWithCar:(AMPCar<AMPMoneyFlow> *)car {
-    if (car.money && [car respondsToSelector:@selector(giveMoneyToEmployee:)]) {
-        car.clean = YES;
-        [car giveMoneyToEmployee:self];
-    }
+- (void)performWashWithCar:(AMPCar *)car {
+    NSLog(@"%@ start working...", [self description]);
+    car.clean = YES;
+    NSLog(@"finish working.");
 }
 
 @end

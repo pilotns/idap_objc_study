@@ -8,7 +8,7 @@
 
 #import "AMPRangeNumberArray.h"
 
-#import "AMPExtern.h"
+#import "AMPRandom.h"
 
 @interface AMPRangeNumberArray ()
 @property (nonatomic, assign) NSRange numbers;

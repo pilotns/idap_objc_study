@@ -8,8 +8,6 @@
 
 #import "AMPHuman.h"
 
-#import "AMPCarWashWasher.h"
-
-@interface AMPWasher : AMPHuman <AMPCarWashWasher>
+@interface AMPWasher : AMPHuman
 
 @end

@@ -13,7 +13,4 @@
 + (instancetype)object;
 + (NSArray *)objectsWithCount:(NSUInteger)count;
 
-- (id)objectWithClass:(Class)aClass;
-- (NSArray *)objectsWithClass:(Class)aClass;
-
 @end

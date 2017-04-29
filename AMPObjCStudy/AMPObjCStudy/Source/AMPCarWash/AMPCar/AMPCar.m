@@ -8,7 +8,7 @@
 
 #import "AMPCar.h"
 
-#import "AMPExtern.h"
+#import "AMPRandom.h"
 
 @interface AMPCar ()
 @property (nonatomic, assign)   NSUInteger  money;
@@ -30,11 +30,15 @@
 #pragma mark -
 #pragma mark AMPMoneyFlow
 
-- (void)giveMoneyToEmployee:(id<AMPMoneyFlow>)employee {
-    if ([employee respondsToSelector:@selector(takeMoneyFromSender:)]) {
-        [employee takeMoneyFromSender:self];
-        self.money = 0;
-    }
+- (NSUInteger)giveMoney {
+    NSUInteger money = self.money;
+    self.money = 0;
+    
+    return money;
+}
+
+- (void)receiveMoney:(NSUInteger)money {
+    self.money += money;
 }
 
 @end

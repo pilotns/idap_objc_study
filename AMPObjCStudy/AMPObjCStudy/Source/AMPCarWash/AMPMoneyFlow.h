@@ -13,8 +13,7 @@
 @protocol AMPMoneyFlow <NSObject>
 @property (nonatomic, readonly) NSUInteger money;
 
-@optional
-- (void)giveMoneyToEmployee:(id<AMPMoneyFlow>)employee;
-- (void)takeMoneyFromSender:(id<AMPMoneyFlow>)sender;
+- (NSUInteger)giveMoney;
+- (void)receiveMoney:(NSUInteger)money;
 
 @end

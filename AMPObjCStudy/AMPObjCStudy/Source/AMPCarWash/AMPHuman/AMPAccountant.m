@@ -13,4 +13,14 @@
 
 @implementation AMPAccountant
 
+#pragma mark -
+#pragma mark Override Methods
+
+- (void)handlingObject:(id<AMPMoneyFlow>)object {
+    NSLog(@"%@ start calculating...", [self description]);
+    [super handlingObject:object];
+    NSLog(@"finish calculating - %lu$", self.money);
+}
+
+
 @end

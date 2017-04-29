@@ -28,4 +28,7 @@ typedef NS_ENUM(NSUInteger, AMPWasherState) {
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object;
 
+// this method is intended for subсassing, do not call it directly
+- (void)handlingObject:(id<AMPMoneyFlow>)object;
+
 @end

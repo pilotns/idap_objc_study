@@ -14,12 +14,6 @@
 
 @interface AMPCarWash : NSObject
 
-- (void)addCarInQueue:(AMPCar *)car;
-- (void)removeCarFromQueue:(AMPCar *)car;
-
-- (void)hireEmployee:(AMPHuman<AMPMoneyFlow> *)employee;
-- (void)dismissEmployee:(AMPHuman<AMPMoneyFlow> *)employee;
-
-- (void)performWork;
+- (void)washCar:(AMPCar *)car;
 
 @end

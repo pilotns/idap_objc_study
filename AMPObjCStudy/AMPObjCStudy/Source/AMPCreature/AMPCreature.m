@@ -8,7 +8,7 @@
 
 #import "AMPCreature.h"
 
-#import "AMPExtern.h"
+#import "AMPRandom.h"
 
 #import "NSString+AMPRandom.h"
 
