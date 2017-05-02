@@ -21,7 +21,9 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 @property (nonatomic, retain) NSMutableSet      *mutableEmployees;
 @property (nonatomic, retain) NSMutableArray    *mutableCarQueue;
 
-- (void)removeCarFromQueue:(AMPCar *)car;
+- (Class)observerClassForEmployee:(AMPHuman *)employee;
+- (AMPHuman *)observerForEmployee:(AMPHuman *)employee;
+
 - (void)hireEmployee:(AMPHuman<AMPMoneyFlow> *)employee;
 - (void)dismissEmployee:(AMPHuman<AMPMoneyFlow> *)employee;
 - (void)performWork;
@@ -72,10 +74,6 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)removeCarFromQueue:(AMPCar *)car {
-    [self.mutableCarQueue removeObject:car];
-}
-
 - (Class)observerClassForEmployee:(AMPHuman *)employee {
     if ([employee isKindOfClass:[AMPAccountant class]]) {
         return [AMPDirector class];
@@ -94,9 +92,10 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 
 - (void)hireEmployee:(AMPHuman<AMPMoneyFlow> *)employee {
     AMPHuman *observer = [self observerForEmployee:employee];
-    [employee addObserver:observer];
-    
-    [self.mutableEmployees addObject:employee];
+    if (observer) {
+        [employee addObserver:observer];
+        [self.mutableEmployees addObject:employee];
+    }
 }
 
 - (void)dismissEmployee:(AMPHuman<AMPMoneyFlow> *)employee {
@@ -137,7 +136,7 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 - (void)prepareHierarchy {
     
     NSArray *shift = @[@[[AMPDirector object]], @[[AMPAccountant object]],
-                           [AMPWasher objectsWithCount:AMPDefaultWasherCount]];
+                        [AMPWasher objectsWithCount:AMPDefaultWasherCount]];
     
     for (NSArray *employees in shift) {
         [self hireEmployees:employees];
@@ -153,7 +152,7 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 - (AMPCar *)dequeueCar {
     NSMutableArray *carsQueue = self.mutableCarQueue;
     AMPCar *car = [carsQueue objectAtIndex:0];
-    [self removeCarFromQueue:car];
+    [carsQueue removeObject:car];
     
     return [[car retain] autorelease];
 }

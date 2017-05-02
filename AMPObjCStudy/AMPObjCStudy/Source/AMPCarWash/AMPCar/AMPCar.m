@@ -22,7 +22,7 @@
 
 - (instancetype)init {
     self = [super init];
-    self.money = AMPRandomValueWithRange(NSMakeRange(300, 200));
+    [self receiveMoney:AMPRandomValueWithRange(NSMakeRange(300, 200))];
     
     return self;
 }

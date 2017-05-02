@@ -8,7 +8,7 @@
 
 #import "NSString+AMPRandom.h"
 
-static const NSUInteger AMPDefaultLength = 10;
+static const NSUInteger AMPDefaultLength = 5;
 
 NSRange AMPMakeCharacterRange(unichar firstCharacter, unichar lastCharacter) {
     unichar minValue = MIN(firstCharacter, lastCharacter);
