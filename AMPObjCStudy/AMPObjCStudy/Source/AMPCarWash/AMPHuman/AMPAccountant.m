@@ -16,11 +16,11 @@
 #pragma mark -
 #pragma mark Override Methods
 
-- (void)handlingObject:(id<AMPMoneyFlow>)object {
-    NSLog(@"%@ start calculating...", [self description]);
+- (void)handlingObject:(AMPHuman<AMPMoneyFlow> *)object {
+    NSLog(@"Accountant start calculating...");
     [super handlingObject:object];
     NSLog(@"finish calculating - %lu$", self.money);
+    object.state = AMPEmployeeDidBecomeFree;
 }
-
 
 @end

@@ -13,9 +13,9 @@
 #pragma mark -
 #pragma mark Override Methods
 
-- (void)handlingObject:(id<AMPMoneyFlow>)object {
+- (void)handlingObject:(AMPHuman<AMPMoneyFlow> *)object {
     [super handlingObject:object];
-    NSLog(@"%@ take profit - %lu$", [self description], self.money);
+    NSLog(@"Director take profit - %lu$", self.money);
 }
 
 @end

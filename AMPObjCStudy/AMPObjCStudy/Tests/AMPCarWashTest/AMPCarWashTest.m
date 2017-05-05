@@ -13,11 +13,10 @@
 
 #import "NSObject+AMPExtensions.h"
 
+static const NSUInteger AMPDefaultCarCount = 20;
+
 void AMPCarWashTest() {
     AMPCarWash *carWash = [AMPCarWash object];
-    for (NSUInteger iterator = 0; iterator < 100; iterator++) {
-        AMPCar *car = [AMPCar object];
-        
-        [carWash washCar:car];
-    }
+    
+    [carWash washCarsWithCount:AMPDefaultCarCount];
 }

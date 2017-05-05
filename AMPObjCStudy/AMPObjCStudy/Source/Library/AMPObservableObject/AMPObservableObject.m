@@ -11,7 +11,7 @@
 @interface AMPObservableObject ()
 @property (nonatomic, retain)   NSHashTable     *mutableObservers;
 
-- (void)notifyOfStateWithSelector:(SEL)aSelector userInfo:(id)userInfo;
+- (void)notifyOfStateWithSelector:(SEL)aSelector;
 
 @end
 
@@ -39,18 +39,18 @@
 #pragma mark Accessors
 
 - (NSSet *)observers {
-    return [self.mutableObservers setRepresentation];
+    @synchronized (self) {
+        return [self.mutableObservers setRepresentation];
+    }
 }
 
 - (void)setState:(NSUInteger)state {
-    [self setState:state userInfo:nil];
-}
-
-- (void)setState:(NSUInteger)state userInfo:(id)userInfo {
-    if (_state != state) {
-        _state = state;
-        
-        [self notifyOfStateWithSelector:[self selectorForState:state] userInfo:userInfo];
+    @synchronized (self) {
+        if (_state != state) {
+            _state = state;
+            
+            [self notifyOfStateWithSelector:[self selectorForState:state]];
+        }
     }
 }
 
@@ -58,16 +58,21 @@
 #pragma mark Public Methods
 
 - (void)addObserver:(id)observer {
-    [self.mutableObservers addObject:observer];
+    @synchronized (self) {
+        [self.mutableObservers addObject:observer];
+    }
 }
 
 - (void)removeObserver:(id)observer {
-    [self.mutableObservers removeObject:observer];
+    @synchronized (self) {
+        [self.mutableObservers removeObject:observer];
+    }
 }
 
 - (BOOL)isObserver:(id)observer {
-    BOOL result = [self.mutableObservers containsObject:observer];
-    return result;
+    @synchronized (self) {
+        return [self.mutableObservers containsObject:observer];
+    }
 }
 
 - (SEL)selectorForState:(NSUInteger)state {
@@ -79,10 +84,10 @@
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)notifyOfStateWithSelector:(SEL)aSelector userInfo:(id)userInfo {
+- (void)notifyOfStateWithSelector:(SEL)aSelector {
     for (id observer in self.mutableObservers) {
         if ([observer respondsToSelector:aSelector]) {
-            [observer performSelector:aSelector withObject:self withObject:userInfo];
+            [observer performSelectorOnMainThread:aSelector withObject:self waitUntilDone:NO];
         }
     }
 }

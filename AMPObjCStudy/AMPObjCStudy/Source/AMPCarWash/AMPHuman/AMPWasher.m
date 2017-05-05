@@ -22,18 +22,17 @@
 #pragma mark Public
 
 - (void)handlingObject:(id<AMPMoneyFlow>)object {
+    NSLog(@"Washer start working...");
     [self performWashWithCar:object];
-    
     [super handlingObject:object];
+    NSLog(@"finish working.");
 }
 
 #pragma mark -
 #pragma mark Private Methods
 
 - (void)performWashWithCar:(AMPCar *)car {
-    NSLog(@"%@ start working...", [self description]);
     car.clean = YES;
-    NSLog(@"finish working.");
 }
 
 @end
