@@ -11,6 +11,7 @@
 #import "AMPMoneyFlow.h"
 
 typedef NS_ENUM(NSUInteger, AMPWasherState) {
+    AMPEmployeeDidBecomeFree,
     AMPEmployeeDidBecomeBusy,
     AMPEmployeeDidFinishWork
 };
@@ -18,6 +19,7 @@ typedef NS_ENUM(NSUInteger, AMPWasherState) {
 @protocol AMPEmployeeObsever <NSObject>
 
 @optional
+- (void)employeeDidBecomeFree:(id<AMPMoneyFlow>)employee;
 - (void)employeeDidBecomeBusy:(id<AMPMoneyFlow>)employee;
 - (void)employeeDidFinishWork:(id<AMPMoneyFlow>)employee;
 
@@ -28,7 +30,8 @@ typedef NS_ENUM(NSUInteger, AMPWasherState) {
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object;
 
-// this method is intended for subсassing, do not call it directly
+// this method will be executed in background,
+// and intended for subсassing, do not call it directly
 - (void)handlingObject:(id<AMPMoneyFlow>)object;
 
 @end

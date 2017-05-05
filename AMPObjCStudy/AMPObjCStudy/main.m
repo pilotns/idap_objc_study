@@ -18,6 +18,7 @@ int main(int argc, const char * argv[]) {
         AMPCallTest(AMPCreatureSayHelloTest, AMPEmptyParameter);
         AMPCallTest(AMPCarWashTest, AMPEmptyParameter);
 
+        [[NSRunLoop mainRunLoop] run];
     }
     return 0;
 }

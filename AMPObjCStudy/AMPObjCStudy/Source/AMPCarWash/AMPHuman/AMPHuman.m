@@ -12,9 +12,16 @@
 
 #import "NSString+AMPRandom.h"
 
+extern
+NSUInteger AMPRandomValueWithRange(NSRange range);
+
 @interface AMPHuman ()
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, assign)   NSUInteger  money;
+@property (nonatomic, retain)   NSLock      *lock;
+
+- (void)randomSleep;
+- (void)backgroundProcessWithObject:(id<AMPMoneyFlow>)object;
 
 @end
 
@@ -25,6 +32,7 @@
 
 - (void)dealloc {
     self.name = nil;
+    self.lock = nil;
     
     [super dealloc];
 }
@@ -32,6 +40,7 @@
 - (instancetype)init {
     self = [super init];
     self.name = [[NSString randomString] capitalizedString];
+    self.lock = [[NSLock new] autorelease];
     
     return self;
 }
@@ -40,18 +49,31 @@
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
-    self.state = AMPEmployeeDidBecomeBusy;
-    [self handlingObject:object];
-    self.state = AMPEmployeeDidFinishWork;
+    [self performSelectorInBackground:@selector(backgroundProcessWithObject:) withObject:object];
 }
 
-- (void)handlingObject:(id<AMPMoneyFlow>)object {
+- (void)handlingObject:(id)object {
     [self receiveMoney:[object giveMoney]];
 }
 
 #pragma mark -
-#pragma mark AMPMoneyFlow
+#pragma mark Private Methods
 
+- (void)backgroundProcessWithObject:(id<AMPMoneyFlow>)object {
+    @synchronized (self) {
+        self.state = AMPEmployeeDidBecomeBusy;
+        [self handlingObject:object];
+        self.state = AMPEmployeeDidFinishWork;
+    }
+
+}
+
+- (void)randomSleep {
+    usleep(1000 * (useconds_t)(AMPRandomValueWithRange(NSMakeRange(200, 300))));
+}
+
+#pragma mark -
+#pragma mark AMPMoneyFlow
 
 - (NSUInteger)giveMoney {
     if ([self isMemberOfClass:[AMPDirector class]]) {
@@ -65,6 +87,7 @@
 }
 
 - (void)receiveMoney:(NSUInteger)money {
+    [self randomSleep];
     self.money += money;
 }
 
@@ -80,6 +103,9 @@
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
+        case AMPEmployeeDidBecomeFree:
+            return @selector(employeeDidBecomeFree:);
+            
         case AMPEmployeeDidBecomeBusy:
             return @selector(employeeDidBecomeBusy:);
             

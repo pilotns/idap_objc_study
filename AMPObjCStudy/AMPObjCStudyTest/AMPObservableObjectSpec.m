@@ -23,6 +23,7 @@ describe(@"AMPConcreteObservableObject", ^{
         
         observer.observableObject = observableObject;
     });
+
     
     context(@"when seting observableObject to observer.observableObject", ^{
         it(@"should be is observer", ^{
@@ -31,16 +32,16 @@ describe(@"AMPConcreteObservableObject", ^{
     });
     
     context(@"when set number with @2", ^{
-        it(@"should receive -observableObjectWillChangeState: and observableObjectDidChangeState:userInfo:", ^{
+        it(@"should receive -observableObjectWillChangeState: and observableObjectDidChangeState:", ^{
             [[observer should] receive:@selector(observableObjectWillChangeState:)];
-            [[observer should] receive:@selector(observableObjectDidChangeState:userInfo:)];
+            [[observer should] receive:@selector(observableObjectDidChangeState:)];
             
             observableObject.number = @2;
         });
         
-        it(@"should not receive -observableObjectWillChangeState: and observableObjectDidChangeState:userInfo:", ^{
+        it(@"should not receive -observableObjectWillChangeState: and observableObjectDidChangeState:", ^{
             [[observer shouldNot] receive:@selector(observableObjectWillChangeState:)];
-            [[observer shouldNot] receive:@selector(observableObjectDidChangeState:userInfo:)];
+            [[observer shouldNot] receive:@selector(observableObjectDidChangeState:)];
             
             observableObject.number = @2;
         });

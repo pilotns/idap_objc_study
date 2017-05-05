@@ -36,13 +36,11 @@
 #pragma mark AMPObserver
 
 - (void)observableObjectWillChangeState:(AMPConcreteObservableObject *)observableObject {
-
+    
 }
 
-- (void)observableObjectDidChangeState:(AMPConcreteObservableObject *)observableObject
-                              userInfo:(id)userInfo
-{
-
+- (void)observableObjectDidChangeState:(AMPConcreteObservableObject *)observableObject {
+    
 }
 
 @end

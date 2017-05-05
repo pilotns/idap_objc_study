@@ -8,36 +8,13 @@
 
 #import "AMPCarWash.h"
 
-#import "AMPAccountant.h"
-#import "AMPDirector.h"
-#import "AMPWasher.h"
+#import "AMPCarWashController.h"
+#import "AMPCar.h"
 
 #import "NSObject+AMPExtensions.h"
-#import "NSSet+AMPExtensions.h"
-
-static const NSUInteger AMPDefaultWasherCount = 10;
 
 @interface AMPCarWash ()
-@property (nonatomic, retain) NSMutableSet      *mutableEmployees;
-@property (nonatomic, retain) NSMutableArray    *mutableCarQueue;
-
-- (Class)observerClassForEmployee:(AMPHuman *)employee;
-- (AMPHuman *)observerForEmployee:(AMPHuman *)employee;
-
-- (void)hireEmployee:(AMPHuman<AMPMoneyFlow> *)employee;
-- (void)dismissEmployee:(AMPHuman<AMPMoneyFlow> *)employee;
-- (void)performWork;
-
-- (id)employeeWithClass:(Class)aClass;
-- (NSSet *)employeesWithClass:(Class)aClass;
-
-- (id)director;
-- (id)accountant;
-- (id)washer;
-
-- (void)prepareHierarchy;
-- (void)hireEmployees:(NSArray *)employees;
-- (AMPCar *)dequeueCar;
+@property (nonatomic, retain)   AMPCarWashController    *controller;
 
 @end
 
@@ -47,16 +24,14 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.mutableCarQueue = nil;
+    self.controller = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
-    self.mutableCarQueue = [NSMutableArray array];
-    self.mutableEmployees = [NSMutableSet set];
-    [self prepareHierarchy];
+    self.controller = [AMPCarWashController object];
     
     return self;
 }
@@ -64,97 +39,13 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)washCar:(AMPCar *)car {
-    if (car) {
-        [self.mutableCarQueue addObject:car];
-        [self performWork];
-    }
-}
-
-#pragma mark -
-#pragma mark Private Methods
-
-- (Class)observerClassForEmployee:(AMPHuman *)employee {
-    if ([employee isKindOfClass:[AMPAccountant class]]) {
-        return [AMPDirector class];
+- (void)washCarsWithCount:(NSUInteger)count {
+    AMPCarWashController *controller = self.controller;
+    for (NSUInteger iterator = 0; iterator < count; iterator++) {
+        [controller washCar:[AMPCar object]];
     }
     
-    if ([employee isKindOfClass:[AMPWasher class]]) {
-        return [AMPAccountant class];
-    }
-    
-    return Nil;
-}
-
-- (AMPHuman *)observerForEmployee:(AMPHuman *)employee {
-    return [self employeeWithClass:[self observerClassForEmployee:employee]];
-}
-
-- (void)hireEmployee:(AMPHuman<AMPMoneyFlow> *)employee {
-    AMPHuman *observer = [self observerForEmployee:employee];
-    if (observer) {
-        [employee addObserver:observer];
-        [self.mutableEmployees addObject:employee];
-    }
-}
-
-- (void)dismissEmployee:(AMPHuman<AMPMoneyFlow> *)employee {
-    [self.mutableEmployees removeObject:employee];
-}
-
-- (void)performWork {
-    NSMutableArray *carQueue = self.mutableCarQueue;
-    while (carQueue.count) {
-        id car = [self dequeueCar];
-        id washer = [self washer];
-        if (washer) {
-            [washer performWorkWithObject:car];
-        }
-    }
-}
-
-- (id)employeeWithClass:(Class)aClass {
-    return [[self employeesWithClass:aClass] anyObject];
-}
-
-- (NSSet *)employeesWithClass:(Class)aClass {
-    return [self.mutableEmployees objectsWithClass:aClass];
-}
-
-- (id)director {
-    return [self employeeWithClass:[AMPDirector class]];
-}
-
-- (id)accountant {
-    return [self employeeWithClass:[AMPAccountant class]];
-}
-
-- (id)washer {
-    return [self employeeWithClass:[AMPWasher class]];
-}
-
-- (void)prepareHierarchy {
-    
-    NSArray *shift = @[@[[AMPDirector object]], @[[AMPAccountant object]],
-                        [AMPWasher objectsWithCount:AMPDefaultWasherCount]];
-    
-    for (NSArray *employees in shift) {
-        [self hireEmployees:employees];
-    }
-}
-
-- (void)hireEmployees:(NSArray *)employees {
-    for (id employee in employees) {
-        [self hireEmployee:employee];
-    }
-}
-
-- (AMPCar *)dequeueCar {
-    NSMutableArray *carsQueue = self.mutableCarQueue;
-    AMPCar *car = [carsQueue objectAtIndex:0];
-    [carsQueue removeObject:car];
-    
-    return [[car retain] autorelease];
+    [self.controller performWork];
 }
 
 @end

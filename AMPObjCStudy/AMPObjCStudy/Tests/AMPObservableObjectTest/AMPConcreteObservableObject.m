@@ -33,13 +33,10 @@
     if (_number != number) {
         self.state = AMPNumberWillChangeState;
         
-        id oldNumber = _number ? _number : [NSNull null];
-        NSDictionary *userInfo = @{@"oldNumber" : oldNumber, @"newNumber" : number};
-        
         [_number release];
         _number = [number retain];
         
-        [self setState:AMPNumberDidChangeState userInfo:userInfo];
+        self.state = AMPNumberDidChangeState;
     }
 }
 
@@ -52,7 +49,7 @@
             return @selector(observableObjectWillChangeState:);
             
         case AMPNumberDidChangeState:
-            return @selector(observableObjectDidChangeState:userInfo:);
+            return @selector(observableObjectDidChangeState:);
             
         default:
             
