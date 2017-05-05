@@ -30,8 +30,7 @@ typedef NS_ENUM(NSUInteger, AMPWasherState) {
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object;
 
-// this method will be executed in background,
-// and intended for subсassing, do not call it directly
+// this method will be executed in background
 - (void)handlingObject:(id<AMPMoneyFlow>)object;
 
 @end

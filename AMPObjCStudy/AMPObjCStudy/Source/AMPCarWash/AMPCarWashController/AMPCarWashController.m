@@ -74,7 +74,7 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 #pragma mark AMPEmployeeObserver
 
 - (void)employeeDidBecomeFree:(AMPHuman<AMPMoneyFlow> *)employee {
-    id car = [self.carQueue pop];
+    id car = [self dequeueCar];
     if (car) {
         [employee performWorkWithObject:car];
     }
@@ -163,7 +163,7 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 
 - (void)prepareHierarchy {
     NSArray *shift = @[@[[AMPDirector object], [AMPAccountant object]],
-                           [AMPWasher objectsWithCount:AMPDefaultWasherCount]];
+                       [AMPWasher objectsWithCount:AMPDefaultWasherCount]];
     
     for (NSArray *employees in shift) {
         [self hireEmployees:employees];

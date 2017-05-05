@@ -18,7 +18,6 @@ NSUInteger AMPRandomValueWithRange(NSRange range);
 @interface AMPHuman ()
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, assign)   NSUInteger  money;
-@property (nonatomic, retain)   NSLock      *lock;
 
 - (void)randomSleep;
 - (void)backgroundProcessWithObject:(id<AMPMoneyFlow>)object;
@@ -32,7 +31,6 @@ NSUInteger AMPRandomValueWithRange(NSRange range);
 
 - (void)dealloc {
     self.name = nil;
-    self.lock = nil;
     
     [super dealloc];
 }
@@ -40,7 +38,6 @@ NSUInteger AMPRandomValueWithRange(NSRange range);
 - (instancetype)init {
     self = [super init];
     self.name = [[NSString randomString] capitalizedString];
-    self.lock = [[NSLock new] autorelease];
     
     return self;
 }
