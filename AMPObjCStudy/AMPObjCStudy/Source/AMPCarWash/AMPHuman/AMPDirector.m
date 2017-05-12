@@ -8,14 +8,28 @@
 
 #import "AMPDirector.h"
 
+#import "AMPAccountant.h"
+
 @implementation AMPDirector
 
 #pragma mark -
 #pragma mark Override Methods
 
-- (void)handlingObject:(AMPHuman<AMPMoneyFlow> *)object {
-    [super handlingObject:object];
+- (void)handleObject:(AMPHuman<AMPMoneyFlow> *)object {
+    [super handleObject:object];
     NSLog(@"Director take profit - %lu$", self.money);
+}
+
+- (void)finishProcessingObject:(AMPHuman *)object {
+    [super finishProcessingObject:object];
+    self.state = AMPEmployeeDidBecomeFree;
+}
+
+#pragma mark -
+#pragma mark AMPMoneyFlow
+
+- (NSUInteger)giveMoney {
+    return 0;
 }
 
 @end

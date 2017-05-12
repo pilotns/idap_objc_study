@@ -10,6 +10,8 @@
 
 #import "AMPMoneyFlow.h"
 
+@class AMPQueue;
+
 typedef NS_ENUM(NSUInteger, AMPWasherState) {
     AMPEmployeeDidBecomeFree,
     AMPEmployeeDidBecomeBusy,
@@ -27,10 +29,17 @@ typedef NS_ENUM(NSUInteger, AMPWasherState) {
 
 @interface AMPHuman : AMPObservableObject <AMPMoneyFlow, AMPEmployeeObsever>
 @property (nonatomic, readonly) NSString    *name;
+@property (nonatomic, readonly) AMPQueue    *queue;
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object;
 
 // this method will be executed in background
-- (void)handlingObject:(id<AMPMoneyFlow>)object;
+- (void)handleObject:(id<AMPMoneyFlow>)object;
+
+// this method is intended for subclassing, do not call it directly
+- (void)finishProcessingObject:(id<AMPMoneyFlow>)object;
+
+// this method is intended for subclassing, do not call it directly
+- (void)finishProcessing;
 
 @end

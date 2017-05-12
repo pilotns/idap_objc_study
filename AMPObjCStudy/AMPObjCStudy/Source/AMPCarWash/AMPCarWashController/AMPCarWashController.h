@@ -12,9 +12,7 @@
 @class AMPQueue;
 
 @interface AMPCarWashController : NSObject
-@property (nonatomic, retain)   AMPQueue        *carQueue;
 
 - (void)washCar:(AMPCar *)car;
-- (void)performWork;
 
 @end

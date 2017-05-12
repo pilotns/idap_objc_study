@@ -9,18 +9,22 @@
 #import "AMPHuman.h"
 
 #import "AMPDirector.h"
+#import "AMPQueue.h"
+#import "AMPRandom.h"
 
 #import "NSString+AMPRandom.h"
+#import "NSObject+AMPExtensions.h"
 
-extern
-NSUInteger AMPRandomValueWithRange(NSRange range);
+static const NSRange AMPDefaultSleepRange = {50, 10};
 
 @interface AMPHuman ()
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, assign)   NSUInteger  money;
+@property (nonatomic, retain)   AMPQueue    *queue;
 
 - (void)randomSleep;
-- (void)backgroundProcessWithObject:(id<AMPMoneyFlow>)object;
+- (void)backgroundProcessingObject:(id<AMPMoneyFlow>)object;
+- (void)finishProcessingObjectOnMainThread:(id<AMPMoneyFlow>)object;
 
 @end
 
@@ -31,6 +35,7 @@ NSUInteger AMPRandomValueWithRange(NSRange range);
 
 - (void)dealloc {
     self.name = nil;
+    self.queue = nil;
     
     [super dealloc];
 }
@@ -38,6 +43,7 @@ NSUInteger AMPRandomValueWithRange(NSRange range);
 - (instancetype)init {
     self = [super init];
     self.name = [[NSString randomString] capitalizedString];
+    self.queue = [AMPQueue object];
     
     return self;
 }
@@ -46,53 +52,73 @@ NSUInteger AMPRandomValueWithRange(NSRange range);
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
-    [self performSelectorInBackground:@selector(backgroundProcessWithObject:) withObject:object];
+    self.state = AMPEmployeeDidBecomeBusy;
+    [self performSelectorInBackground:@selector(backgroundProcessingObject:) withObject:object];
 }
 
-- (void)handlingObject:(id)object {
-    [self receiveMoney:[object giveMoney]];
+- (void)handleObject:(id<AMPMoneyFlow>)object {
+    [self randomSleep];
+    [self takeMoneyFormObject:object];
+}
+
+- (void)finishProcessingObject:(AMPHuman *)object {
+    [object finishProcessing];
+}
+
+- (void)finishProcessing {
+    self.state = AMPEmployeeDidBecomeFree;
 }
 
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)backgroundProcessWithObject:(id<AMPMoneyFlow>)object {
-    @synchronized (self) {
-        self.state = AMPEmployeeDidBecomeBusy;
-        [self handlingObject:object];
-        self.state = AMPEmployeeDidFinishWork;
-    }
-
+- (void)randomSleep {
+    usleep(1000 * (useconds_t)(AMPRandomValueWithRange(AMPDefaultSleepRange)));
 }
 
-- (void)randomSleep {
-    usleep(1000 * (useconds_t)(AMPRandomValueWithRange(NSMakeRange(200, 300))));
+- (void)backgroundProcessingObject:(id<AMPMoneyFlow>)object {
+    [self handleObject:object];
+    
+    [self performSelectorOnMainThread:@selector(finishProcessingObjectOnMainThread:)
+                           withObject:object
+                        waitUntilDone:NO];
+}
+
+- (void)finishProcessingObjectOnMainThread:(id<AMPMoneyFlow>)object {
+    [self finishProcessingObject:object];
 }
 
 #pragma mark -
 #pragma mark AMPMoneyFlow
 
 - (NSUInteger)giveMoney {
-    if ([self isMemberOfClass:[AMPDirector class]]) {
-        return 0;
+    @synchronized (self) {
+        NSUInteger money = self.money;
+        self.money = 0;
+        
+        return money;
     }
-    
-    NSUInteger money = self.money;
-    self.money = 0;
-    
-    return money;
 }
 
 - (void)receiveMoney:(NSUInteger)money {
-    [self randomSleep];
-    self.money += money;
+    @synchronized (self) {
+        self.money += money;
+    }
+}
+
+- (void)takeMoneyFormObject:(id<AMPMoneyFlow>)object {
+    [self receiveMoney:[object giveMoney]];
 }
 
 #pragma mark -
 #pragma mark AMPEmployeeObserver
 
 - (void)employeeDidFinishWork:(id<AMPMoneyFlow>)employee {
-    [self performWorkWithObject:employee];
+    if (AMPEmployeeDidBecomeFree == self.state) {
+        [self performWorkWithObject:employee];
+    } else {
+        [self.queue pushObject:employee];
+    }
 }
 
 #pragma mark -

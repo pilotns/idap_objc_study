@@ -44,8 +44,6 @@
     for (NSUInteger iterator = 0; iterator < count; iterator++) {
         [controller washCar:[AMPCar object]];
     }
-    
-    [self.controller performWork];
 }
 
 @end

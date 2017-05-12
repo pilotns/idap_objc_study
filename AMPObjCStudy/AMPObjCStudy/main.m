@@ -12,6 +12,11 @@
 #import "AMPMacros.h"
 #import "AMPCarWashTest.h"
 
+#import "NSArray+AMPExtensions.h"
+#import "NSObject+AMPExtensions.h"
+
+typedef id(^AMPBlock)(void);
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         AMPCallTest(AMPCreatureWarOrBirthTest, AMPEmptyParameter);

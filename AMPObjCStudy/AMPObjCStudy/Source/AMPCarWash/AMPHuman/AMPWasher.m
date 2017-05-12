@@ -12,7 +12,7 @@
 
 @interface AMPWasher ()
 
-- (void)performWashWithCar:(AMPCar *)car;
+- (void)washCar:(AMPCar *)car;
 
 @end
 
@@ -21,17 +21,25 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)handlingObject:(id<AMPMoneyFlow>)object {
+- (void)handleObject:(id<AMPMoneyFlow>)object {
     NSLog(@"Washer start working...");
-    [self performWashWithCar:object];
-    [super handlingObject:object];
+    [super handleObject:object];
     NSLog(@"finish working.");
+}
+
+- (void)finishProcessingObject:(id<AMPMoneyFlow>)object {
+    [self washCar:object];
+    self.state = AMPEmployeeDidFinishWork;
+}
+
+- (void)finishProcessing {
+    self.state = AMPEmployeeDidBecomeFree;
 }
 
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)performWashWithCar:(AMPCar *)car {
+- (void)washCar:(AMPCar *)car {
     car.clean = YES;
 }
 

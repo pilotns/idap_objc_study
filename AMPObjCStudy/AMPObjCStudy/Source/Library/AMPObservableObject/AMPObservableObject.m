@@ -11,7 +11,7 @@
 @interface AMPObservableObject ()
 @property (nonatomic, retain)   NSHashTable     *mutableObservers;
 
-- (void)notifyOfStateWithSelector:(SEL)aSelector;
+- (void)notifyOfStateWithSelector:(SEL)aSelector userInfo:(id)userInfo;
 
 @end
 
@@ -45,11 +45,15 @@
 }
 
 - (void)setState:(NSUInteger)state {
+    [self setState:state userInfo:nil];
+}
+
+- (void)setState:(NSUInteger)state userInfo:(id)userInfo {
     @synchronized (self) {
         if (_state != state) {
             _state = state;
             
-            [self notifyOfStateWithSelector:[self selectorForState:state]];
+            [self notifyOfStateWithSelector:[self selectorForState:state] userInfo:userInfo];
         }
     }
 }
@@ -75,19 +79,25 @@
     }
 }
 
+- (void)notifyOfState:(NSUInteger)state {
+    [self notifyOfState:state userInfo:nil];
+}
+
+- (void)notifyOfState:(NSUInteger)state userInfo:(id)userInfo {
+    [self notifyOfStateWithSelector:[self selectorForState:state] userInfo:userInfo];
+}
+
 - (SEL)selectorForState:(NSUInteger)state {
-    [self doesNotRecognizeSelector:_cmd];
-    
     return NULL;
 }
 
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)notifyOfStateWithSelector:(SEL)aSelector {
+- (void)notifyOfStateWithSelector:(SEL)aSelector userInfo:(id)userInfo {
     for (id observer in self.mutableObservers) {
         if ([observer respondsToSelector:aSelector]) {
-            [observer performSelectorOnMainThread:aSelector withObject:self waitUntilDone:NO];
+            [observer performSelector:aSelector withObject:self withObject:userInfo];
         }
     }
 }

@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern
-NSArray* AMPObjectsWithClassInCollection(Class class, id<NSFastEnumeration> collection);
-
 typedef id(^AMPFactoryBlock)(void);
 
 @interface NSArray (AMPExtensions)

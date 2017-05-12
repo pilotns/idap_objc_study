@@ -10,17 +10,32 @@
 
 #import "AMPCarWash.h"
 #import "AMPDirector.h"
+#import "AMPQueue.h"
 
 @implementation AMPAccountant
 
 #pragma mark -
 #pragma mark Override Methods
 
-- (void)handlingObject:(AMPHuman<AMPMoneyFlow> *)object {
+- (void)handleObject:(AMPHuman<AMPMoneyFlow> *)object {
     NSLog(@"Accountant start calculating...");
-    [super handlingObject:object];
+    [super handleObject:object];
     NSLog(@"finish calculating - %lu$", self.money);
-    object.state = AMPEmployeeDidBecomeFree;
+}
+
+- (void)finishProcessingObject:(AMPHuman *)object {
+    [super finishProcessingObject:object];
+    self.state = AMPEmployeeDidFinishWork;
+}
+
+- (void)finishProcessing {
+    AMPQueue *queue = self.queue;
+    if (queue.count) {
+        id object = [queue pop];
+        [self performWorkWithObject:object];
+    } else {
+        [super finishProcessing];
+    }
 }
 
 @end
