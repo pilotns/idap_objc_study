@@ -16,4 +16,7 @@
 - (NSUInteger)giveMoney;
 - (void)receiveMoney:(NSUInteger)money;
 
+@optional
+- (void)takeMoneyFormObject:(id<AMPMoneyFlow>)object;
+
 @end

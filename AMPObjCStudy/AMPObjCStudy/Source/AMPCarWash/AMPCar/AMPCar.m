@@ -10,6 +10,8 @@
 
 #import "AMPRandom.h"
 
+static const NSRange AMPCarMoneyDefaultRange = {300, 200};
+
 @interface AMPCar ()
 @property (nonatomic, assign)   NSUInteger  money;
 
@@ -22,7 +24,7 @@
 
 - (instancetype)init {
     self = [super init];
-    [self receiveMoney:AMPRandomValueWithRange(NSMakeRange(300, 200))];
+    [self receiveMoney:AMPRandomValueWithRange(AMPCarMoneyDefaultRange)];
     
     return self;
 }

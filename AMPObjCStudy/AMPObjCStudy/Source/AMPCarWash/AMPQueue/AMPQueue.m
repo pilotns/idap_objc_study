@@ -8,13 +8,6 @@
 
 #import "AMPQueue.h"
 
-#define AMPLock() \
-    NSLock *lock = self.lock; \
-    [lock lock]
-
-#define AMPunlock() \
-    [lock unlock]
-
 @interface AMPQueue ()
 @property (nonatomic, retain) NSMutableArray    *storage;
 
@@ -36,7 +29,7 @@
 - (instancetype)init {
     self = [super init];
     self.storage = [NSMutableArray array];
-
+    
     return self;
 }
 
@@ -64,12 +57,12 @@
 
 - (id)pop {
     @synchronized (self) {
-        id object = [self.storage firstObject];
+        id object = [[[self.storage firstObject] retain] autorelease];
         if (object) {
             [self.storage removeObjectAtIndex:0];
         }
         
-        return [[object retain] autorelease];
+        return object;
     }
 }
 

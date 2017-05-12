@@ -8,16 +8,7 @@
 
 #import "NSArray+AMPExtensions.h"
 
-NSArray* AMPObjectsWithClassInCollection(Class class, id<NSFastEnumeration> collection) {
-    NSMutableArray *result = [NSMutableArray array];
-    for (id object in collection) {
-        if ([object isMemberOfClass:class]) {
-            [result addObject:object];
-        }
-    }
-    
-    return result.count ? [[result copy] autorelease] : nil;
-}
+#import "AMPCollectionFiltering.h"
 
 @implementation NSArray (AMPExtensions)
 

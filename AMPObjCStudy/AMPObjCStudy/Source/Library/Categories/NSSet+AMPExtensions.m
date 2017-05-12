@@ -8,8 +8,7 @@
 
 #import "NSSet+AMPExtensions.h"
 
-extern
-NSArray *AMPObjectsWithClassInCollection(Class class, id<NSFastEnumeration> collection);
+#import "AMPCollectionFiltering.h"
 
 @implementation NSSet (AMPExtensions)
 
