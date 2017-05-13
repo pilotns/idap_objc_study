@@ -8,12 +8,12 @@
 
 #import "NSSet+AMPExtensions.h"
 
-#import "AMPCollectionFiltering.h"
-
 @implementation NSSet (AMPExtensions)
 
 - (NSSet *)objectsWithClass:(Class)class {
-    return [NSSet setWithArray:AMPObjectsWithClassInCollection(class, self)];
+    return [self objectsPassingTest:^BOOL(id object, BOOL *stop) {
+        return [object isMemberOfClass:class];
+    }];
 }
 
 @end

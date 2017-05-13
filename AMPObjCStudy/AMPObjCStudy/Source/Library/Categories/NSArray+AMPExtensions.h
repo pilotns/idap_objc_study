@@ -15,5 +15,6 @@ typedef id(^AMPFactoryBlock)(void);
 + (instancetype)arrayWithObjectsCount:(NSUInteger)count factoryBlock:(AMPFactoryBlock)block;
 
 - (instancetype)objectsWithClass:(Class)aClass;
+- (instancetype)filteredObjectsUsingBlock:(BOOL(^)(id object))block;
 
 @end
