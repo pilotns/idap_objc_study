@@ -12,8 +12,6 @@
 
 @interface AMPWasher ()
 
-- (void)washCar:(AMPCar *)car;
-
 @end
 
 @implementation AMPWasher
@@ -26,21 +24,8 @@
     [super handleObject:object];
     NSLog(@"finish working.");
 }
-
-- (void)finishProcessingObject:(id<AMPMoneyFlow>)object {
-    [self washCar:object];
-    self.state = AMPEmployeeDidFinishWork;
-}
-
-- (void)finishProcessing {
-    self.state = AMPEmployeeDidBecomeFree;
-}
-
-#pragma mark -
-#pragma mark Private Methods
-
-- (void)washCar:(AMPCar *)car {
-    car.clean = YES;
+- (void)finishProcessingObject:(AMPCar *)object {
+    object.state = AMPCarClean;
 }
 
 @end

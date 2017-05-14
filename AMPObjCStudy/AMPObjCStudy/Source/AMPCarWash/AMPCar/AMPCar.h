@@ -12,7 +12,12 @@
 
 @class AMPCarDriver;
 
+typedef NS_ENUM(NSUInteger, AMPCarState) {
+    AMPCarDirty,
+    AMPCarClean
+};
+
 @interface AMPCar : NSObject <AMPMoneyFlow>
-@property (nonatomic, assign, getter=isClean)   BOOL    clean;
+@property (nonatomic, assign)   AMPCarState state;
 
 @end

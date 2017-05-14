@@ -20,11 +20,6 @@
     NSLog(@"Director take profit - %lu$", self.money);
 }
 
-- (void)finishProcessingObject:(AMPHuman *)object {
-    [super finishProcessingObject:object];
-    self.state = AMPEmployeeDidBecomeFree;
-}
-
 #pragma mark -
 #pragma mark AMPMoneyFlow
 

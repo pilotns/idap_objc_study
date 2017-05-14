@@ -142,7 +142,7 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 #pragma mark -
 #pragma mark AMPEmployeeObserver
 
-- (void)employeeDidBecomeFree:(AMPHuman<AMPMoneyFlow> *)employee {
+- (void)employeeDidBecomeFree:(AMPHuman *)employee {
     id car = [self.carQueue pop];
     if (car) {
         [employee performWorkWithObject:car];
