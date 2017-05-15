@@ -23,19 +23,4 @@
     NSLog(@"finish calculating - %lu$", self.money);
 }
 
-- (void)finishProcessingObject:(AMPHuman *)object {
-    [super finishProcessingObject:object];
-    self.state = AMPEmployeeDidFinishWork;
-}
-
-- (void)finishProcessing {
-    AMPQueue *queue = self.queue;
-    if (queue.count) {
-        id object = [queue pop];
-        [self performWorkWithObject:object];
-    } else {
-        [super finishProcessing];
-    }
-}
-
 @end

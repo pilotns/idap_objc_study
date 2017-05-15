@@ -10,6 +10,6 @@
 
 @interface NSSet (AMPExtensions)
 
-- (NSSet *)objectsWithClass:(Class)class;
+- (instancetype)objectsWithClass:(Class)class;
 
 @end

@@ -15,7 +15,7 @@
 #import "NSString+AMPRandom.h"
 #import "NSObject+AMPExtensions.h"
 
-static const NSRange AMPDefaultSleepRange = {50, 10};
+static const NSRange AMPDefaultSleepRange = { 50, 10 };
 
 @interface AMPHuman ()
 @property (nonatomic, copy)     NSString    *name;
@@ -62,11 +62,17 @@ static const NSRange AMPDefaultSleepRange = {50, 10};
 }
 
 - (void)finishProcessingObject:(AMPHuman *)object {
-    [object finishProcessing];
+    object.state = AMPEmployeeDidBecomeFree;
 }
 
 - (void)finishProcessing {
-    self.state = AMPEmployeeDidBecomeFree;
+    AMPQueue *queue = self.queue;
+    if (queue.count) {
+        id object = [queue pop];
+        [self performWorkWithObject:object];
+    } else {
+        self.state = AMPEmployeeDidFinishWork;
+    }
 }
 
 #pragma mark -
@@ -86,6 +92,7 @@ static const NSRange AMPDefaultSleepRange = {50, 10};
 
 - (void)finishProcessingObjectOnMainThread:(id<AMPMoneyFlow>)object {
     [self finishProcessingObject:object];
+    [self finishProcessing];
 }
 
 #pragma mark -

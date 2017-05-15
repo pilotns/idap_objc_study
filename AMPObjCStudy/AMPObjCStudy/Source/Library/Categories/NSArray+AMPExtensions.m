@@ -8,8 +8,6 @@
 
 #import "NSArray+AMPExtensions.h"
 
-#import "AMPCollectionFiltering.h"
-
 @implementation NSArray (AMPExtensions)
 
 + (instancetype)arrayWithObjectsCount:(NSUInteger)count factoryBlock:(AMPFactoryBlock)block {
@@ -27,7 +25,21 @@
 }
 
 - (instancetype)objectsWithClass:(Class)class {
-    return AMPObjectsWithClassInCollection(class, self);
+    return [self filteredObjectsUsingBlock:^BOOL(id object) {
+        return [object isMemberOfClass:class];
+    }];
+}
+
+- (instancetype)filteredObjectsUsingBlock:(BOOL(^)(id object))block {
+    if (!block) {
+        return nil;
+    }
+    
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, id bindings) {
+        return block(evaluatedObject);
+    }];
+    
+    return [self filteredArrayUsingPredicate:predicate];
 }
 
 @end
