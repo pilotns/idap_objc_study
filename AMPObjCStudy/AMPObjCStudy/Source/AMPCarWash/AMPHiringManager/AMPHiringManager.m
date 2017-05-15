@@ -12,6 +12,8 @@
 
 #import "NSSet+AMPExtensions.h"
 
+typedef void(^AMPSetupObservationHandler)(id observer);
+
 @interface AMPHiringManager ()
 @property (nonatomic, retain)   NSMutableSet    *employees;
 
@@ -20,7 +22,8 @@
 
 - (void)hireEmployees:(NSArray *)employees;
 
-- (void)prepareObservationForEmployee:(AMPHuman *)employee selector:(SEL)selector;
+- (void)prepareObservationForEmployee:(AMPHuman *)employee
+                              handler:(AMPSetupObservationHandler)handler;
 
 @end
 
@@ -72,22 +75,32 @@
     }
     
     @synchronized (self) {
-        [self prepareObservationForEmployee:employee selector:@selector(addObserver:)];
+        [self prepareObservationForEmployee:employee handler:^(id observer) {
+            [employee addObserver:observer];
+        }];
+        
         [self.employees addObject:employee];
     }
 }
 
 - (void)dismissEmployee:(id)employee {
     @synchronized (self) {
-        [self prepareObservationForEmployee:employee selector:@selector(addObserver:)];
+        [self prepareObservationForEmployee:employee handler:^(id observer) {
+            [employee removeObserver:observer];
+        }];
+        
         [self.employees removeObject:employee];
     }
 }
 
-- (void)prepareObservationForEmployee:(AMPHuman *)employee selector:(SEL)selector {
+- (void)prepareObservationForEmployee:(AMPHuman *)employee handler:(AMPSetupObservationHandler)handler {
+    if (!handler) {
+        return;
+    }
+    
     NSArray *observers = [self.delegate hiringManager:self observersForEmployee:employee];
     for (id observer in observers) {
-        [employee performSelector:selector withObject:observer];
+        handler(observer);
     }
 }
 
