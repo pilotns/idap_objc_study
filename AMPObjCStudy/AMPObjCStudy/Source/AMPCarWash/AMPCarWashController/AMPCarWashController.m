@@ -13,25 +13,28 @@
 #import "AMPAccountant.h"
 #import "AMPWasher.h"
 #import "AMPHiringManager.h"
+#import "AMPWasherDispatcher.h"
+#import "AMPAccountantDispatcher.h"
+#import "AMPDirectorDispatcher.h"
 
 #import "NSObject+AMPExtensions.h"
 #import "NSSet+AMPExtensions.h"
 
-static const NSUInteger AMPDefaultWasherCount = 10;
+static const NSUInteger AMPDefaultWasherCount = 20;
+static const NSUInteger AMPDefaultAccountantCount = 10;
 
 @interface AMPCarWashController () <AMPEmployeeObsever, AMPHiringManagerDelegate>
 @property (nonatomic, retain)   AMPHiringManager    *hiringManager;
 
-@property (nonatomic, retain)   AMPQueue    *carQueue;
-@property (nonatomic, retain)   AMPQueue    *washerQueue;
+@property (nonatomic, retain)   AMPWasherDispatcher     *washersDispatcher;
+@property (nonatomic, retain)   AMPAccountantDispatcher *accountantsDispancher;
+@property (nonatomic, retain)   AMPDirectorDispatcher   *directorDispatcher;
 
 - (Class)observerClassForEmployee:(AMPHuman *)employee;
+- (NSArray *)observersForEmployee:(AMPHuman *)employee;
 
-- (void)prepareWasherQueue;
+- (void)prepareDispatchers;
 - (void)prepareHierarchy;
-- (void)performWork;
-
-- (id)dequeueCar;
 
 @end
 
@@ -42,8 +45,9 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 
 - (void)dealloc {
     self.hiringManager = nil;
-    self.carQueue = nil;
-    self.washerQueue = nil;
+    self.washersDispatcher = nil;
+    self.accountantsDispancher = nil;
+    self.directorDispatcher = nil;
     
     [super dealloc];
 }
@@ -51,11 +55,12 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 - (instancetype)init {
     self = [super init];
     self.hiringManager = [AMPHiringManager object];
-    self.washerQueue = [AMPQueue object];
-    self.carQueue = [AMPQueue object];
+    self.washersDispatcher = [AMPWasherDispatcher object];
+    self.accountantsDispancher = [AMPAccountantDispatcher object];
+    self.directorDispatcher = [AMPDirectorDispatcher object];
     
     [self prepareHierarchy];
-    [self prepareWasherQueue];
+    [self prepareDispatchers];
     
     return self;
 }
@@ -76,13 +81,12 @@ static const NSUInteger AMPDefaultWasherCount = 10;
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)washCar:(AMPCar *)car {
-    if (!car) {
+- (void)washCars:(NSArray *)cars {
+    if (!cars.count) {
         return;
     }
     
-    [self.carQueue pushObject:car];
-    [self performWork];
+    [self.washersDispatcher addObjectsForProcessing:cars];
 }
 
 #pragma mark -
@@ -100,55 +104,45 @@ static const NSUInteger AMPDefaultWasherCount = 10;
     return Nil;
 }
 
-- (void)prepareWasherQueue {
-    NSSet *washers = [self.hiringManager employeesWithClass:[AMPWasher class]];
-    for (AMPWasher *washer in washers) {
-        [self.washerQueue pushObject:washer];
+- (id)observersForEmployee:(NSArray *)employee {
+    if ([employee isKindOfClass:[AMPWasher class]]) {
+        return @[self.washersDispatcher, self.accountantsDispancher];
     }
+    
+    if ([employee isKindOfClass:[AMPAccountant class]]) {
+        return @[self.accountantsDispancher, self.directorDispatcher];
+    }
+    
+    if ([employee isKindOfClass:[AMPDirector class]]) {
+        return @[self.directorDispatcher];
+    }
+    
+    return nil;
+}
+
+- (void)prepareDispatchers {
+    NSSet *washers = [self.hiringManager employeesWithClass:[AMPWasher class]];
+    NSSet *accountants = [self.hiringManager employeesWithClass:[AMPAccountant class]];
+    NSSet *directors = [self.hiringManager employeesWithClass:[AMPDirector class]];
+    
+    [self.washersDispatcher addWorkers:washers];
+    [self.accountantsDispancher addWorkers:accountants];
+    [self.directorDispatcher addWorkers:directors];
 }
 
 - (void)prepareHierarchy {
-    NSArray *shift = @[@[[AMPDirector object], [AMPAccountant object]],
-                       [AMPWasher objectsWithCount:AMPDefaultWasherCount]];
+    NSArray *shift = @[@[[AMPDirector object]],
+                         [AMPAccountant objectsWithCount:AMPDefaultAccountantCount],
+                         [AMPWasher objectsWithCount:AMPDefaultWasherCount]];
     
     [self.hiringManager hireEmployees:shift];
-}
-
-- (void)performWork {
-    AMPWasher *washer = [self.washerQueue pop];
-    if (washer) {
-        id car = [self dequeueCar];
-        [washer performWorkWithObject:car];
-    }
-}
-
-- (id)dequeueCar {
-    return [self.carQueue pop];
 }
 
 #pragma mark -
 #pragma mark AMPHiringManagerDelegate
 
 - (NSArray *)hiringManager:(AMPHiringManager *)manager observersForEmployee:(AMPHuman *)employee {
-    AMPHuman *observer = [manager employeeWithClass:[self observerClassForEmployee:employee]];
-    
-    if (observer) {
-        return [employee isKindOfClass:[AMPWasher class]] ? @[self, observer] : @[observer];
-    }
-    
-    return nil;
-}
-
-#pragma mark -
-#pragma mark AMPEmployeeObserver
-
-- (void)employeeDidBecomeFree:(AMPHuman *)employee {
-    id car = [self.carQueue pop];
-    if (car) {
-        [employee performWorkWithObject:car];
-    } else {
-        [self.washerQueue pushObject:employee];
-    }
+    return [self observersForEmployee:employee];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "AMPObservableObject.h"
 
 #import "AMPMoneyFlow.h"
+#import "AMPDispatcherWorkingProcess.h"
 
 @class AMPQueue;
 
@@ -27,9 +28,8 @@ typedef NS_ENUM(NSUInteger, AMPWasherState) {
 
 @end
 
-@interface AMPHuman : AMPObservableObject <AMPMoneyFlow, AMPEmployeeObsever>
+@interface AMPHuman : AMPObservableObject <AMPMoneyFlow, AMPEmployeeObsever, AMPDispatcherWorkingProcess>
 @property (nonatomic, readonly) NSString    *name;
-@property (nonatomic, readonly) AMPQueue    *queue;
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object;
 

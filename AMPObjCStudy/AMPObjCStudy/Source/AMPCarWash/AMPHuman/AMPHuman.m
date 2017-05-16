@@ -20,7 +20,6 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 @interface AMPHuman ()
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, assign)   NSUInteger  money;
-@property (nonatomic, retain)   AMPQueue    *queue;
 
 - (void)randomSleep;
 - (void)backgroundProcessingObject:(id<AMPMoneyFlow>)object;
@@ -35,7 +34,6 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 
 - (void)dealloc {
     self.name = nil;
-    self.queue = nil;
     
     [super dealloc];
 }
@@ -43,7 +41,6 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 - (instancetype)init {
     self = [super init];
     self.name = [[NSString randomString] capitalizedString];
-    self.queue = [AMPQueue object];
     
     return self;
 }
@@ -66,13 +63,7 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 }
 
 - (void)finishProcessing {
-    AMPQueue *queue = self.queue;
-    if (queue.count) {
-        id object = [queue pop];
-        [self performWorkWithObject:object];
-    } else {
-        self.state = AMPEmployeeDidFinishWork;
-    }
+    self.state = AMPEmployeeDidFinishWork;
 }
 
 #pragma mark -
@@ -118,14 +109,10 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 }
 
 #pragma mark -
-#pragma mark AMPEmployeeObserver
+#pragma mark AMPDispatcherWorkingProcess
 
-- (void)employeeDidFinishWork:(id<AMPMoneyFlow>)employee {
-    if (AMPEmployeeDidBecomeFree == self.state) {
-        [self performWorkWithObject:employee];
-    } else {
-        [self.queue pushObject:employee];
-    }
+- (void)performProcessingObject:(id)object {
+    [self performWorkWithObject:object];
 }
 
 #pragma mark -

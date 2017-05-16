@@ -10,10 +10,18 @@
 
 #import "AMPDispatcherWorkingProcess.h"
 
-@interface AMPDispatcher : NSObject
+@class AMPQueue;
 
-- (void)addWorkers:(NSArray<id<AMPDispatcherWorkingProcess>> *)workers;
+@interface AMPDispatcher : NSObject
+@property (nonatomic, readonly) AMPQueue    *workers;
+@property (nonatomic, readonly) AMPQueue    *queue;
+
+- (void)addWorkers:(id<NSFastEnumeration>)workers;
 
 - (void)addObjectForProcessing:(id)object;
+- (void)addObjectsForProcessing:(NSArray *)objects;
+
+- (void)performWorkingProcessWithObject:(id)object;
+- (void)workerDidBecomeFree:(id)worker;
 
 @end

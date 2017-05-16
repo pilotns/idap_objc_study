@@ -13,6 +13,6 @@
 
 @interface AMPCarWashController : NSObject
 
-- (void)washCar:(AMPCar *)car;
+- (void)washCars:(NSArray *)cars;
 
 @end
