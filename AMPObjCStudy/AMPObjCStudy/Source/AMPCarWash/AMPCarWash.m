@@ -32,7 +32,7 @@ static const NSUInteger AMPDefaultFireCount = 5;
 
 - (void)dealloc {
     self.controller = nil;
-    [self.timer invalidate];
+    self.timer = nil;
     
     [super dealloc];
 }
@@ -43,6 +43,14 @@ static const NSUInteger AMPDefaultFireCount = 5;
     [self prepareTimer];
     
     return self;
+}
+
+- (void)setTimer:(NSTimer *)timer {
+    if (_timer != timer) {
+        [_timer invalidate];
+        
+        _timer = timer;
+    }
 }
 
 #pragma mark -
