@@ -27,4 +27,8 @@
     return 0;
 }
 
+- (void)finishProcessing {
+    self.state = AMPEmployeeDidBecomeFree;
+}
+
 @end

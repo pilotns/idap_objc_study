@@ -14,6 +14,4 @@
 
 @interface AMPCarWash : NSObject
 
-- (void)washCarsWithCount:(NSUInteger)count;
-
 @end

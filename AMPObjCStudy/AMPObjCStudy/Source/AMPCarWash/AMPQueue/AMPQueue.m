@@ -55,6 +55,14 @@
     }
 }
 
+- (void)pushObjects:(id<NSFastEnumeration>)objects {
+    @synchronized (self) {
+        for (id object in objects) {
+            [self pushObject:object];
+        }
+    }
+}
+
 - (id)pop {
     @synchronized (self) {
         id object = [[[self.storage firstObject] retain] autorelease];
