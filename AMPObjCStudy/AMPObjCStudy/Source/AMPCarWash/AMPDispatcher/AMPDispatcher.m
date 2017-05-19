@@ -13,11 +13,13 @@
 
 #import "NSObject+AMPExtensions.h"
 
+static BOOL isWorking = NO;
+
 @interface AMPDispatcher () <AMPEmployeeObsever>
 @property (nonatomic, retain)   AMPQueue    *workers;
 @property (nonatomic, retain)   AMPQueue    *queue;
 
-- (void)performWorkingProcess;
+- (void)performWork;
 
 @end
 
@@ -48,13 +50,13 @@
     [self.workers pushObjects:workers];
 }
 
-- (void)addObjectForProcessing:(id)object {
+- (void)addObjectForProcessing:(id<AMPDispatcherWorkingProcess>)object {
     [self performWorkingProcessWithObject:object];
 }
 
 - (void)addObjectsForProcessing:(NSArray *)objects {
     [self.queue pushObjects:objects];
-    [self performWorkingProcess];
+    [self performWork];
 }
 
 - (void)performWorkingProcessWithObject:(id)object {
@@ -78,13 +80,18 @@
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)performWorkingProcess {
-    AMPQueue *objectsQueue = self.queue;
-    if (!objectsQueue.count) {
+- (void)performWork {
+    if (isWorking) {
         return;
     }
     
-    [self performWorkingProcessWithObject:[objectsQueue pop]];
+    AMPQueue *objectsQueue = self.queue;
+    isWorking = YES;
+    while (objectsQueue.count) {
+        [self performWorkingProcessWithObject:[objectsQueue pop]];
+    }
+    
+    isWorking = NO;
 }
 
 @end

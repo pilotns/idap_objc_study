@@ -13,8 +13,8 @@
 
 #import "NSObject+AMPExtensions.h"
 
-static const NSUInteger AMPDefaultCarCount = 50;
-static const NSUInteger AMPDefaultTimeInterval = 5;
+static const NSUInteger AMPDefaultCarCount = 30;
+static const NSUInteger AMPDefaultTimeInterval = 2;
 static const NSUInteger AMPDefaultFireCount = 5;
 
 @interface AMPCarWash ()
@@ -51,6 +51,7 @@ static const NSUInteger AMPDefaultFireCount = 5;
 - (void)prepareTimer {
     __block NSUInteger count = 0;
     __block typeof(self) weakSelf = self;
+    
     void(^block)(NSTimer *) = ^(NSTimer *timer){
         NSArray *cars = [AMPCar objectsWithCount:AMPDefaultCarCount];
         [weakSelf.controller performSelectorInBackground:@selector(washCars:) withObject:cars];

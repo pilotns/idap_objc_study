@@ -18,7 +18,7 @@
 #pragma mark Override Methods
 
 - (void)handleObject:(AMPHuman<AMPMoneyFlow> *)object {
-    NSLog(@"Accountant start calculating...");
+    NSLog(@"Accountant start calculating... - %@", self.name);
     [super handleObject:object];
     NSLog(@"finish calculating - %lu$", self.money);
 }

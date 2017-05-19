@@ -18,10 +18,13 @@
 
 - (void)addWorkers:(id<NSFastEnumeration>)workers;
 
-- (void)addObjectForProcessing:(id)object;
+- (void)addObjectForProcessing:(id<AMPDispatcherWorkingProcess>)object;
 - (void)addObjectsForProcessing:(NSArray *)objects;
 
+// this method is intended for subclassing, do not call it directly
 - (void)performWorkingProcessWithObject:(id)object;
+
+// this method is intended for subclassing, do not call it directly
 - (void)workerDidBecomeFree:(id)worker;
 
 @end
