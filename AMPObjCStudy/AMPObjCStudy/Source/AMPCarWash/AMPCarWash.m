@@ -48,7 +48,6 @@ static const NSUInteger AMPDefaultFireCount = 5;
 - (void)setTimer:(NSTimer *)timer {
     if (_timer != timer) {
         [_timer invalidate];
-        
         _timer = timer;
     }
 }
