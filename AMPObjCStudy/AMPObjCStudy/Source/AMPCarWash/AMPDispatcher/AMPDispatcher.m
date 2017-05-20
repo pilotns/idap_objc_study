@@ -13,11 +13,11 @@
 
 #import "NSObject+AMPExtensions.h"
 
-static BOOL isWorking = NO;
-
 @interface AMPDispatcher () <AMPEmployeeObsever>
 @property (nonatomic, retain)   AMPQueue    *workers;
 @property (nonatomic, retain)   AMPQueue    *queue;
+
+@property (nonatomic, assign, getter=isWorking) BOOL    working;
 
 - (void)performWork;
 
@@ -81,17 +81,17 @@ static BOOL isWorking = NO;
 #pragma mark Private Methods
 
 - (void)performWork {
-    if (isWorking) {
+    if (self.isWorking) {
         return;
     }
     
     AMPQueue *objectsQueue = self.queue;
-    isWorking = YES;
+    self.working = YES;
     while (objectsQueue.count) {
         [self performWorkingProcessWithObject:[objectsQueue pop]];
     }
     
-    isWorking = NO;
+    self.working = NO;
 }
 
 @end
