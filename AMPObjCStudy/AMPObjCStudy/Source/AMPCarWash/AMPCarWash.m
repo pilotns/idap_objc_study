@@ -65,7 +65,7 @@ static const NSUInteger AMPDefaultFireCount = 5;
         count++;
         
         if (AMPDefaultFireCount == count) {
-            [timer invalidate];
+            weakSelf.timer = nil;
         }
     };
     
