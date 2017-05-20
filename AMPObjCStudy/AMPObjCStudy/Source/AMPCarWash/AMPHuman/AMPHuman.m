@@ -23,6 +23,7 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 @property (nonatomic, retain)   AMPQueue    *queue;
 
 - (void)randomSleep;
+- (void)processingObject:(id<AMPMoneyFlow>)object;
 - (void)backgroundProcessingObject:(id<AMPMoneyFlow>)object;
 - (void)finishProcessingObjectOnMainThread:(id<AMPMoneyFlow>)object;
 
@@ -52,8 +53,11 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
-    self.state = AMPEmployeeDidBecomeBusy;
-    [self performSelectorInBackground:@selector(backgroundProcessingObject:) withObject:object];
+    if (AMPEmployeeDidBecomeFree == self.state) {
+        [self processingObject:object];
+    } else {
+        [self.queue pushObject:object];
+    }
 }
 
 - (void)handleObject:(id<AMPMoneyFlow>)object {
@@ -66,13 +70,7 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 }
 
 - (void)finishProcessing {
-    AMPQueue *queue = self.queue;
-    if (queue.count) {
-        id object = [queue pop];
-        [self performWorkWithObject:object];
-    } else {
-        self.state = AMPEmployeeDidFinishWork;
-    }
+    self.state = AMPEmployeeDidFinishWork;
 }
 
 #pragma mark -
@@ -80,6 +78,11 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 
 - (void)randomSleep {
     usleep(1000 * (useconds_t)(AMPRandomValueWithRange(AMPDefaultSleepRange)));
+}
+
+- (void)processingObject:(id<AMPMoneyFlow>)object {
+    self.state = AMPEmployeeDidBecomeBusy;
+    [self performSelectorInBackground:@selector(backgroundProcessingObject:) withObject:object];
 }
 
 - (void)backgroundProcessingObject:(id<AMPMoneyFlow>)object {
@@ -92,7 +95,9 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 
 - (void)finishProcessingObjectOnMainThread:(id<AMPMoneyFlow>)object {
     [self finishProcessingObject:object];
-    [self finishProcessing];
+    
+    AMPQueue *queue = self.queue;
+    queue.count ? [self processingObject:[queue pop]] : [self finishProcessing];
 }
 
 #pragma mark -
@@ -121,11 +126,7 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 #pragma mark AMPEmployeeObserver
 
 - (void)employeeDidFinishWork:(id<AMPMoneyFlow>)employee {
-    if (AMPEmployeeDidBecomeFree == self.state) {
-        [self performWorkWithObject:employee];
-    } else {
-        [self.queue pushObject:employee];
-    }
+    [self performWorkWithObject:employee];
 }
 
 #pragma mark -

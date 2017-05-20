@@ -10,10 +10,6 @@
 
 #import "AMPCar.h"
 
-@interface AMPWasher ()
-
-@end
-
 @implementation AMPWasher
 
 #pragma mark -

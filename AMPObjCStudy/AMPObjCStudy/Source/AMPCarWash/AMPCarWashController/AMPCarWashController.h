@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @class AMPCar;
-@class AMPQueue;
 
 @interface AMPCarWashController : NSObject
 

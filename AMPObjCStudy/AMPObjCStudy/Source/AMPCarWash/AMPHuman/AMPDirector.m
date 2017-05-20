@@ -8,8 +8,6 @@
 
 #import "AMPDirector.h"
 
-#import "AMPAccountant.h"
-
 @implementation AMPDirector
 
 #pragma mark -
@@ -18,6 +16,10 @@
 - (void)handleObject:(AMPHuman<AMPMoneyFlow> *)object {
     [super handleObject:object];
     NSLog(@"Director take profit - %lu$", self.money);
+}
+
+- (void)finishProcessing {
+    self.state = AMPEmployeeDidBecomeFree;
 }
 
 #pragma mark -

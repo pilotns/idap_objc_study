@@ -8,8 +8,6 @@
 
 #import "AMPHuman.h"
 
-#import "AMPMoneyFlow.h"
-
 @interface AMPDirector : AMPHuman
 
 @end
