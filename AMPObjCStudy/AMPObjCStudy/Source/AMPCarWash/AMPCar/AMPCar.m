@@ -33,14 +33,18 @@ static const NSUInteger AMPCarDefaultMoney = 100;
 #pragma mark AMPMoneyFlow
 
 - (NSUInteger)giveMoney {
-    NSUInteger money = self.money;
-    self.money = 0;
-    
-    return money;
+    @synchronized (self) {
+        NSUInteger money = self.money;
+        self.money = 0;
+        
+        return money;
+    }
 }
 
 - (void)receiveMoney:(NSUInteger)money {
-    self.money += money;
+    @synchronized (self) {
+        self.money += money;
+    }
 }
 
 @end

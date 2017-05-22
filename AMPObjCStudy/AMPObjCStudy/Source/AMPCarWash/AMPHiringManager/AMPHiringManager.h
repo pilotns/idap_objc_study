@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @class AMPHiringManager;
-@class AMPHuman;
+@class AMPWorker;
 
 @protocol AMPHiringManagerDelegate <NSObject>
 
-- (NSArray *)hiringManager:(AMPHiringManager *)manager observersForEmployee:(AMPHuman *)employee;
+- (NSArray *)hiringManager:(AMPHiringManager *)manager observersForEmployee:(AMPWorker *)employee;
 
 @end
 

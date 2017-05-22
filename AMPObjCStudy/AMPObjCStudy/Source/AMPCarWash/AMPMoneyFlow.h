@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class AMPHuman;
+@class AMPWorker;
 
 @protocol AMPMoneyFlow <NSObject>
 @property (nonatomic, readonly) NSUInteger money;

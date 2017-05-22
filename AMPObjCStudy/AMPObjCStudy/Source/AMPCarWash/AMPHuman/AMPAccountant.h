@@ -6,10 +6,10 @@
 //  Copyright © 2017 pilotns. All rights reserved.
 //
 
-#import "AMPHuman.h"
+#import "AMPWorker.h"
 
 #import "AMPMoneyFlow.h"
 
-@interface AMPAccountant : AMPHuman
+@interface AMPAccountant : AMPWorker
 
 @end

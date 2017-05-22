@@ -6,8 +6,8 @@
 //  Copyright © 2017 pilotns. All rights reserved.
 //
 
-#import "AMPHuman.h"
+#import "AMPWorker.h"
 
-@interface AMPWasher : AMPHuman
+@interface AMPWasher : AMPWorker
 
 @end
