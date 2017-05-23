@@ -15,7 +15,7 @@
 #pragma mark -
 #pragma mark Override Methods
 
-- (void)handleObject:(AMPHuman<AMPMoneyFlow> *)object {
+- (void)handleObject:(AMPWorker<AMPMoneyFlow> *)object {
     [super handleObject:object];
     NSLog(@"Director take profit - %lu$", self.money);
 }

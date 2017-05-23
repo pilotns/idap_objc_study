@@ -22,7 +22,7 @@ typedef void(^AMPSetupObservationHandler)(id observer);
 
 - (void)hireEmployees:(NSArray *)employees;
 
-- (void)prepareObservationForEmployee:(AMPHuman *)employee
+- (void)prepareObservationForEmployee:(AMPWorker *)employee
                               handler:(AMPSetupObservationHandler)handler;
 
 @end
@@ -93,7 +93,7 @@ typedef void(^AMPSetupObservationHandler)(id observer);
     }
 }
 
-- (void)prepareObservationForEmployee:(AMPHuman *)employee handler:(AMPSetupObservationHandler)handler {
+- (void)prepareObservationForEmployee:(AMPWorker *)employee handler:(AMPSetupObservationHandler)handler {
     if (!handler) {
         return;
     }

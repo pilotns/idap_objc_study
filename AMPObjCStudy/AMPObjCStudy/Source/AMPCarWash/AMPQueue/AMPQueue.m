@@ -8,8 +8,12 @@
 
 #import "AMPQueue.h"
 
+#import "AMPQueue+AMPQueuePrivate.h"
+
 @interface AMPQueue ()
 @property (nonatomic, retain) NSMutableArray    *storage;
+
+- (BOOL)containsObject:(id)object;
 
 @end
 
@@ -46,12 +50,13 @@
 #pragma mark Public Methods
 
 - (void)pushObject:(id)object {
-    if (!object) {
+    NSMutableArray *storage = self.storage;
+    if (!object || [self containsObject:object]) {
         return;
     }
     
     @synchronized (self) {
-        [self.storage addObject:object];
+        [storage addObject:object];
     }
 }
 
@@ -71,6 +76,21 @@
         }
         
         return object;
+    }
+}
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (BOOL)containsObject:(id)object {
+    @synchronized (self) {
+        return [self.storage containsObject:object];
+    }
+}
+
+- (void)removeObject:(id)object {
+    @synchronized (self) {
+        [self.storage removeObject:object];
     }
 }
 

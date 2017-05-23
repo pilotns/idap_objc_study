@@ -1,12 +1,12 @@
 //
-//  AMPHuman.m
+//  AMPWorker.m
 //  AMPObjCStudy
 //
 //  Created by pilotns on 19.04.17.
 //  Copyright © 2017 pilotns. All rights reserved.
 //
 
-#import "AMPHuman.h"
+#import "AMPWorker.h"
 
 #import "AMPDirector.h"
 #import "AMPQueue.h"
@@ -15,9 +15,9 @@
 #import "NSString+AMPRandom.h"
 #import "NSObject+AMPExtensions.h"
 
-static const NSRange AMPDefaultSleepRange = { 300, 200 };
+static const NSRange AMPDefaultSleepRange = { 30, 15 };
 
-@interface AMPHuman ()
+@interface AMPWorker ()
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, assign)   NSUInteger  money;
 
@@ -27,7 +27,7 @@ static const NSRange AMPDefaultSleepRange = { 300, 200 };
 
 @end
 
-@implementation AMPHuman
+@implementation AMPWorker
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -58,7 +58,7 @@ static const NSRange AMPDefaultSleepRange = { 300, 200 };
     [self takeMoneyFormObject:object];
 }
 
-- (void)finishProcessingObject:(AMPHuman *)object {
+- (void)finishProcessingObject:(AMPWorker *)object {
     object.state = AMPEmployeeDidBecomeFree;
 }
 

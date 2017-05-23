@@ -13,9 +13,7 @@
 #import "AMPAccountant.h"
 #import "AMPWasher.h"
 #import "AMPHiringManager.h"
-#import "AMPWasherDispatcher.h"
-#import "AMPAccountantDispatcher.h"
-#import "AMPDirectorDispatcher.h"
+#import "AMPDispatcher.h"
 
 #import "NSObject+AMPExtensions.h"
 #import "NSSet+AMPExtensions.h"
@@ -26,12 +24,12 @@ static const NSUInteger AMPDefaultAccountantCount = 10;
 @interface AMPCarWashController () <AMPEmployeeObsever, AMPHiringManagerDelegate>
 @property (nonatomic, retain)   AMPHiringManager    *hiringManager;
 
-@property (nonatomic, retain)   AMPWasherDispatcher     *washersDispatcher;
-@property (nonatomic, retain)   AMPAccountantDispatcher *accountantsDispancher;
-@property (nonatomic, retain)   AMPDirectorDispatcher   *directorDispatcher;
+@property (nonatomic, retain)   AMPDispatcher   *washersDispatcher;
+@property (nonatomic, retain)   AMPDispatcher   *accountantsDispancher;
+@property (nonatomic, retain)   AMPDispatcher   *directorDispatcher;
 
-- (Class)observerClassForEmployee:(AMPHuman *)employee;
-- (NSArray *)observersForEmployee:(AMPHuman *)employee;
+- (Class)observerClassForEmployee:(AMPWorker *)employee;
+- (NSArray *)observersForEmployee:(AMPWorker *)employee;
 
 - (void)prepareDispatchers;
 - (void)prepareHierarchy;
@@ -55,9 +53,9 @@ static const NSUInteger AMPDefaultAccountantCount = 10;
 - (instancetype)init {
     self = [super init];
     self.hiringManager = [AMPHiringManager object];
-    self.washersDispatcher = [AMPWasherDispatcher object];
-    self.accountantsDispancher = [AMPAccountantDispatcher object];
-    self.directorDispatcher = [AMPDirectorDispatcher object];
+    self.washersDispatcher = [AMPDispatcher object];
+    self.accountantsDispancher = [AMPDispatcher object];
+    self.directorDispatcher = [AMPDispatcher object];
     
     [self prepareHierarchy];
     [self prepareDispatchers];
@@ -86,13 +84,13 @@ static const NSUInteger AMPDefaultAccountantCount = 10;
         return;
     }
     
-    [self.washersDispatcher addObjectsForProcessing:cars];
+    [self.washersDispatcher processingObjects:cars];
 }
 
 #pragma mark -
 #pragma mark Private Methods
 
-- (Class)observerClassForEmployee:(AMPHuman *)employee {
+- (Class)observerClassForEmployee:(AMPWorker *)employee {
     if ([employee isKindOfClass:[AMPAccountant class]]) {
         return [AMPDirector class];
     }
@@ -141,7 +139,7 @@ static const NSUInteger AMPDefaultAccountantCount = 10;
 #pragma mark -
 #pragma mark AMPHiringManagerDelegate
 
-- (NSArray *)hiringManager:(AMPHiringManager *)manager observersForEmployee:(AMPHuman *)employee {
+- (NSArray *)hiringManager:(AMPHiringManager *)manager observersForEmployee:(AMPWorker *)employee {
     return [self observersForEmployee:employee];
 }
 

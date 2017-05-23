@@ -1,5 +1,5 @@
 //
-//  AMPHuman.h
+//  AMPWorker.h
 //  AMPObjCStudy
 //
 //  Created by pilotns on 19.04.17.
@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, AMPWasherState) {
 
 @end
 
-@interface AMPHuman : AMPObservableObject <AMPMoneyFlow, AMPEmployeeObsever, AMPDispatcherWorkingProcess>
+@interface AMPWorker : AMPObservableObject <AMPMoneyFlow, AMPEmployeeObsever, AMPDispatcherWorkingProcess>
 @property (nonatomic, readonly) NSString    *name;
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object;

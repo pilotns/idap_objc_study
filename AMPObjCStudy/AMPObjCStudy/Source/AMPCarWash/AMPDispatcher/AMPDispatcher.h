@@ -11,20 +11,20 @@
 #import "AMPDispatcherWorkingProcess.h"
 
 @class AMPQueue;
+@class AMPWorker;
 
 @interface AMPDispatcher : NSObject
-@property (nonatomic, readonly) AMPQueue    *workers;
-@property (nonatomic, readonly) AMPQueue    *queue;
 
+- (void)addWorker:(AMPWorker *)worker;
 - (void)addWorkers:(id<NSFastEnumeration>)workers;
 
-- (void)addObjectForProcessing:(id<AMPDispatcherWorkingProcess>)object;
-- (void)addObjectsForProcessing:(NSArray *)objects;
+- (void)removeWorker:(AMPWorker *)worker;
+- (void)removeAllWorkers;
+
+- (void)processingObject:(id)object;
+- (void)processingObjects:(NSArray *)objects;
 
 // this method is intended for subclassing, do not call it directly
 - (void)performWorkingProcessWithObject:(id)object;
-
-// this method is intended for subclassing, do not call it directly
-- (void)workerDidBecomeFree:(id)worker;
 
 @end
