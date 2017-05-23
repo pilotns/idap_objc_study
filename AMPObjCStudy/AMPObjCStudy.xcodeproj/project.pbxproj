@@ -48,6 +48,10 @@
 		8A25650E1E9F902F00F0E47D /* AMPCreatureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A25650D1E9F902F00F0E47D /* AMPCreatureTest.m */; };
 		8A2BE3FF1EC9A12E00DB9670 /* AMPDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2BE3FE1EC9A12E00DB9670 /* AMPDispatcher.m */; };
 		8A2BE4001EC9A12E00DB9670 /* AMPDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2BE3FE1EC9A12E00DB9670 /* AMPDispatcher.m */; };
+		8A4E54DF1ED417AF007B5B51 /* NSTimer+AMPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E54DE1ED417AF007B5B51 /* NSTimer+AMPExtensions.m */; };
+		8A4E54E01ED417AF007B5B51 /* NSTimer+AMPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E54DE1ED417AF007B5B51 /* NSTimer+AMPExtensions.m */; };
+		8A4E54E41ED41B93007B5B51 /* AMPTimerServiceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E54E31ED41B93007B5B51 /* AMPTimerServiceObject.m */; };
+		8A4E54E51ED41B93007B5B51 /* AMPTimerServiceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E54E31ED41B93007B5B51 /* AMPTimerServiceObject.m */; };
 		8A5D9F541EBB45FB007584C0 /* AMPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5D9F531EBB45FB007584C0 /* AMPQueue.m */; };
 		8A5D9F551EBB45FB007584C0 /* AMPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5D9F531EBB45FB007584C0 /* AMPQueue.m */; };
 		8A5D9F621EBB54D0007584C0 /* AMPCarWashController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5D9F611EBB54D0007584C0 /* AMPCarWashController.m */; };
@@ -154,6 +158,10 @@
 		8A2BE3FE1EC9A12E00DB9670 /* AMPDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPDispatcher.m; sourceTree = "<group>"; };
 		8A2BE4011EC9A68E00DB9670 /* AMPDispatcherWorkingProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPDispatcherWorkingProcess.h; sourceTree = "<group>"; };
 		8A4E54DC1ED1CDEA007B5B51 /* AMPQueue+AMPQueuePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMPQueue+AMPQueuePrivate.h"; sourceTree = "<group>"; };
+		8A4E54DD1ED417AF007B5B51 /* NSTimer+AMPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+AMPExtensions.h"; sourceTree = "<group>"; };
+		8A4E54DE1ED417AF007B5B51 /* NSTimer+AMPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+AMPExtensions.m"; sourceTree = "<group>"; };
+		8A4E54E21ED41B93007B5B51 /* AMPTimerServiceObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPTimerServiceObject.h; sourceTree = "<group>"; };
+		8A4E54E31ED41B93007B5B51 /* AMPTimerServiceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPTimerServiceObject.m; sourceTree = "<group>"; };
 		8A5D9F521EBB45FB007584C0 /* AMPQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPQueue.h; sourceTree = "<group>"; };
 		8A5D9F531EBB45FB007584C0 /* AMPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPQueue.m; sourceTree = "<group>"; };
 		8A5D9F601EBB54D0007584C0 /* AMPCarWashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCarWashController.h; sourceTree = "<group>"; };
@@ -242,6 +250,7 @@
 		8A0C708F1EB1D8E8001A8914 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				8A4E54E11ED41B69007B5B51 /* AMPTimerServiceObject */,
 				8A0C70A71EB1D933001A8914 /* AMPReference */,
 				8A0C70931EB1D8E8001A8914 /* AMPObservableObject */,
 				8A0C70961EB1D8E8001A8914 /* Categories */,
@@ -276,6 +285,8 @@
 				8A0C709A1EB1D8E8001A8914 /* NSObject+AMPExtensions.m */,
 				8A0C709B1EB1D8E8001A8914 /* NSString+AMPRandom.h */,
 				8A0C709C1EB1D8E8001A8914 /* NSString+AMPRandom.m */,
+				8A4E54DD1ED417AF007B5B51 /* NSTimer+AMPExtensions.h */,
+				8A4E54DE1ED417AF007B5B51 /* NSTimer+AMPExtensions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -388,6 +399,15 @@
 				8A2BE3FE1EC9A12E00DB9670 /* AMPDispatcher.m */,
 			);
 			path = AMPDispatcher;
+			sourceTree = "<group>";
+		};
+		8A4E54E11ED41B69007B5B51 /* AMPTimerServiceObject */ = {
+			isa = PBXGroup;
+			children = (
+				8A4E54E21ED41B93007B5B51 /* AMPTimerServiceObject.h */,
+				8A4E54E31ED41B93007B5B51 /* AMPTimerServiceObject.m */,
+			);
+			path = AMPTimerServiceObject;
 			sourceTree = "<group>";
 		};
 		8A5D9F511EBB45D0007584C0 /* AMPQueue */ = {
@@ -758,6 +778,7 @@
 				8A10AA4D1EBF09BA005A7833 /* AMPHiringManager.m in Sources */,
 				8AA544801EACAB390085A52F /* AMPRangeNumberArray.m in Sources */,
 				8A0C70811EAFDCB1001A8914 /* AMPConcreteObservableObject.m in Sources */,
+				8A4E54DF1ED417AF007B5B51 /* NSTimer+AMPExtensions.m in Sources */,
 				8A0C70DA1EB36719001A8914 /* AMPBlockObservableObject.m in Sources */,
 				8AA544781EACAB390085A52F /* AMPArrayNumberArray.m in Sources */,
 				8A0C709F1EB1D8E8001A8914 /* AMPObservableObject.m in Sources */,
@@ -782,6 +803,7 @@
 				8AA544601EACAB390085A52F /* AMPCarWash.m in Sources */,
 				8A0C70A11EB1D8E8001A8914 /* NSArray+AMPExtensions.m in Sources */,
 				8A0C70A31EB1D8E8001A8914 /* NSObject+AMPExtensions.m in Sources */,
+				8A4E54E41ED41B93007B5B51 /* AMPTimerServiceObject.m in Sources */,
 				8A0C70851EAFDCD3001A8914 /* AMPConcreteObserver.m in Sources */,
 				8A0C70B31EB1DCF9001A8914 /* AMPAssignReference.m in Sources */,
 				8AA5445E1EACAB390085A52F /* AMPCar.m in Sources */,
@@ -807,12 +829,14 @@
 				8A5D9F631EBB54D0007584C0 /* AMPCarWashController.m in Sources */,
 				8AA544671EACAB390085A52F /* AMPDirector.m in Sources */,
 				8AA544611EACAB390085A52F /* AMPCarWash.m in Sources */,
+				8A4E54E01ED417AF007B5B51 /* NSTimer+AMPExtensions.m in Sources */,
 				8A0C70A01EB1D8E8001A8914 /* AMPObservableObject.m in Sources */,
 				8A657A351EA628CD008BA2AC /* AMPNumberArraySpec.m in Sources */,
 				8AA5446B1EACAB390085A52F /* AMPWasher.m in Sources */,
 				8A0C70E51EB36961001A8914 /* AMPBlockObservableObjectSpec.m in Sources */,
 				8A5D9F551EBB45FB007584C0 /* AMPQueue.m in Sources */,
 				8A0C70A21EB1D8E8001A8914 /* NSArray+AMPExtensions.m in Sources */,
+				8A4E54E51ED41B93007B5B51 /* AMPTimerServiceObject.m in Sources */,
 				8AA544811EACAB390085A52F /* AMPRangeNumberArray.m in Sources */,
 				8A0C70D91EB36719001A8914 /* AMPObservationContext.m in Sources */,
 				8A0C70B01EB1DC1A001A8914 /* AMPRetainReference.m in Sources */,
