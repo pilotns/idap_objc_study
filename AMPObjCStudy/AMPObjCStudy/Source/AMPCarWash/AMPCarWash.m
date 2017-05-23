@@ -23,7 +23,6 @@ static const NSUInteger AMPDefaultFireCount = 5;
 @property (nonatomic, retain)   AMPCarWashController    *controller;
 
 - (void)prepareTimer;
-- (void)fireTimer:(NSTimer *)timer;
 
 @end
 
