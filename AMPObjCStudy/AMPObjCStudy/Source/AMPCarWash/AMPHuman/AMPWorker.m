@@ -12,6 +12,9 @@
 #import "AMPQueue.h"
 #import "AMPRandom.h"
 
+#import "AMPGCDExtensions.h"
+#import "AMPMacros.h"
+
 #import "NSString+AMPRandom.h"
 #import "NSObject+AMPExtensions.h"
 
@@ -22,7 +25,6 @@ static const NSRange AMPDefaultSleepRange = { 30, 15 };
 @property (nonatomic, assign)   NSUInteger  money;
 
 - (void)randomSleep;
-- (void)backgroundProcessingObject:(id<AMPMoneyFlow>)object;
 - (void)finishProcessingObjectOnMainThread:(id<AMPMoneyFlow>)object;
 
 @end
@@ -50,7 +52,15 @@ static const NSRange AMPDefaultSleepRange = { 30, 15 };
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
     self.state = AMPEmployeeDidBecomeBusy;
-    [self performSelectorInBackground:@selector(backgroundProcessingObject:) withObject:object];
+    AMPWeakify(self);
+    AMPConcurrentDispatchAsyncInBackground(^{
+        AMPStrongify(self);
+        [self handleObject:object];
+        AMPDispatchSyncOnMainQueue(^{
+            AMPStrongify(self);            
+            [self finishProcessingObjectOnMainThread:object];
+        });
+    });
 }
 
 - (void)handleObject:(id<AMPMoneyFlow>)object {
@@ -71,14 +81,6 @@ static const NSRange AMPDefaultSleepRange = { 30, 15 };
 
 - (void)randomSleep {
     usleep(1000 * (useconds_t)(AMPRandomValueWithRange(AMPDefaultSleepRange)));
-}
-
-- (void)backgroundProcessingObject:(id<AMPMoneyFlow>)object {
-    [self handleObject:object];
-    
-    [self performSelectorOnMainThread:@selector(finishProcessingObjectOnMainThread:)
-                           withObject:object
-                        waitUntilDone:NO];
 }
 
 - (void)finishProcessingObjectOnMainThread:(id<AMPMoneyFlow>)object {
