@@ -70,25 +70,6 @@ static const NSUInteger AMPDefaultFireCount = 5;
         NSArray *cars = [AMPCar objectsWithCount:AMPDefaultCarCount];
         [self.controller washCars:cars];
     });
-//    __block NSUInteger fireCount = 0;
-//    __block typeof(self) weakSelf = self;
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:AMPDefaultTimeInterval
-//                                                 repeats:YES
-//                                                 handler:^(NSTimer *timer)
-//    {
-//        __strong typeof(self) strongSelf = weakSelf;
-//        if (!strongSelf) {
-//            return;
-//        }
-//        
-//        NSArray *cars = [AMPCar objectsWithCount:AMPDefaultCarCount];
-//        [strongSelf.controller performSelectorInBackground:@selector(washCars:)
-//                                                withObject:cars];
-//        fireCount++;
-//        if (AMPDefaultFireCount == fireCount) {
-//            strongSelf.timer = nil;
-//        }
-//    }];
 }
 
 @end
