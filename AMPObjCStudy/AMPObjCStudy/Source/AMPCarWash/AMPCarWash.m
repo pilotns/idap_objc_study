@@ -19,7 +19,6 @@
 
 static const NSUInteger AMPDefaultCarCount = 30;
 static const NSUInteger AMPDefaultTimeInterval = 2;
-static const NSUInteger AMPDefaultFireCount = 5;
 
 @interface AMPCarWash ()
 @property (nonatomic, retain)   AMPCarWashController    *controller;

@@ -23,6 +23,12 @@ void AMPSerialDispatchSyncInBackground(dispatch_block_t block);
 void AMPConcurrentDispatchAsyncInBackground(dispatch_block_t block);
 void AMPConcurrentDispatchSyncInBackground(dispatch_block_t block);
 
+void AMPDispatchAsyncOnQueue(dispatch_queue_t queue, dispatch_block_t block);
+void AMPDispatchSyncOnQueue(dispatch_queue_t queue, dispatch_block_t block);
+
+void AMPDispatchAsyncOnQueueAfterDelay(dispatch_queue_t queue, uint64_t delay, dispatch_block_t block);
+void AMPDispatchSyncOnQueueAfterDelay(dispatch_queue_t queue, uint64_t delay, dispatch_block_t block);
+
 void AMPDispatchAsyncOnMainQueue(dispatch_block_t block);
 void AMPDispatchSyncOnMainQueue(dispatch_block_t block);
 

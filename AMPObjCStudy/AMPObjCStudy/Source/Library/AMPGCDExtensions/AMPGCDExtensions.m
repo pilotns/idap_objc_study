@@ -64,7 +64,10 @@ void AMPConcurrentDispatchAsyncInBackground(dispatch_block_t block) {
         return;
     }
     
-    dispatch_async(AMPGetGlobalBackgroundQueue(), block);
+    dispatch_queue_t queue = AMPCreateDispatchConcurrentQueue();
+    dispatch_async(queue, block);
+    dispatch_release(queue);
+//    dispatch_async(AMPGetGlobalBackgroundQueue(), block);
 }
 
 void AMPConcurrentDispatchSyncInBackground(dispatch_block_t block) {
@@ -72,7 +75,46 @@ void AMPConcurrentDispatchSyncInBackground(dispatch_block_t block) {
         return;
     }
     
-    dispatch_sync(AMPGetGlobalBackgroundQueue(), block);
+    dispatch_queue_t queue = AMPCreateDispatchConcurrentQueue();
+    dispatch_sync(queue, block);
+    dispatch_release(queue);
+//    dispatch_sync(AMPGetGlobalBackgroundQueue(), block);
+}
+
+void AMPDispatchAsyncOnQueue(dispatch_queue_t queue, dispatch_block_t block) {
+    if (!block) {
+        return;
+    }
+    
+    dispatch_async(queue, block);
+}
+
+void AMPDispatchSyncOnQueue(dispatch_queue_t queue, dispatch_block_t block) {
+    if (!block) {
+        return;
+    }
+    
+    dispatch_sync(queue, block);
+}
+
+void AMPDispatchAsyncOnQueueAfterDelay(dispatch_queue_t queue, uint64_t delay, dispatch_block_t block) {
+    if (!block) {
+        return;
+    }
+    
+    dispatch_async(queue, ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), queue, block);
+    });
+}
+
+void AMPDispatchSyncOnQueueAfterDelay(dispatch_queue_t queue, uint64_t delay, dispatch_block_t block) {
+    if (!block) {
+        return;
+    }
+    
+    dispatch_sync(queue, ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), queue, block);
+    });
 }
 
 void AMPDispatchAsyncOnMainQueue(dispatch_block_t block) {
