@@ -33,7 +33,8 @@ typedef NS_ENUM(NSUInteger, AMPWasherState) {
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object;
 
-// this method is intended for subclassing, do not call it directly
+// this method will be executed in background and intended for subclassing,
+// do not call it directly
 - (void)handleObject:(id<AMPMoneyFlow>)object;
 
 // this method is intended for subclassing, do not call it directly
