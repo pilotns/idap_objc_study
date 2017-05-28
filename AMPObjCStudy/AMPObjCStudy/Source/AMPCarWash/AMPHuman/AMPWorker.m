@@ -53,10 +53,10 @@ static const NSRange AMPDefaultSleepRange = { 60, 30 };
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
     self.state = AMPEmployeeDidBecomeBusy;
     AMPWeakify(self);
-    AMPConcurrentDispatchAsyncInBackground(^{
+    AMPDispatchAsyncInBackground(^{
         AMPStrongify(self);
         [self handleObject:object];
-        AMPDispatchSyncOnMainQueue(^{
+        AMPDispatchAsyncOnMainQueue(^{
             AMPStrongify(self);            
             [self finishProcessingObjectOnMainThread:object];
         });

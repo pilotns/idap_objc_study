@@ -11,23 +11,20 @@
 dispatch_queue_t AMPCreateDispatchSerialQueue();
 dispatch_queue_t AMPCreateDispatchConcurrentQueue();
 
-dispatch_queue_t AMPGetGlobalBackgroundQueue();
-dispatch_queue_t AMPGetGlobalUtilityQueue();
-dispatch_queue_t AMPGetGlobalDefaultQueue();
-dispatch_queue_t AMPGetGlobalUserInitiatedQueue();
-dispatch_queue_t AMPGetGlobalUserInteractiveQueue();
+dispatch_queue_t AMPMainQueue();
+dispatch_queue_t AMPBackgroundQueue();
+dispatch_queue_t AMPUtilityQueue();
+dispatch_queue_t AMPDefaultQueue();
+dispatch_queue_t AMPUserInitiatedQueue();
+dispatch_queue_t AMPUserInteractiveQueue();
 
-void AMPSerialDispatchAsyncInBackground(dispatch_block_t block);
-void AMPSerialDispatchSyncInBackground(dispatch_block_t block);
-
-void AMPConcurrentDispatchAsyncInBackground(dispatch_block_t block);
-void AMPConcurrentDispatchSyncInBackground(dispatch_block_t block);
+void AMPDispatchAsyncInBackground(dispatch_block_t block);
+void AMPDispatchSyncInBackground(dispatch_block_t block);
 
 void AMPDispatchAsyncOnQueue(dispatch_queue_t queue, dispatch_block_t block);
 void AMPDispatchSyncOnQueue(dispatch_queue_t queue, dispatch_block_t block);
 
-void AMPDispatchAsyncOnQueueAfterDelay(dispatch_queue_t queue, uint64_t delay, dispatch_block_t block);
-void AMPDispatchSyncOnQueueAfterDelay(dispatch_queue_t queue, uint64_t delay, dispatch_block_t block);
+void AMPDispatchAfterDelayOnQueue(dispatch_queue_t queue, uint64_t delay, dispatch_block_t block);
 
 void AMPDispatchAsyncOnMainQueue(dispatch_block_t block);
 void AMPDispatchSyncOnMainQueue(dispatch_block_t block);

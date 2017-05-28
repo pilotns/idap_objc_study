@@ -19,66 +19,44 @@ dispatch_queue_t AMPCreateDispatchConcurrentQueue() {
     return dispatch_queue_create(kAMPDispatchConcurrentQueue, DISPATCH_QUEUE_CONCURRENT);
 }
 
-dispatch_queue_t AMPGetGlobalBackgroundQueue() {
+dispatch_queue_t AMPMainQueue() {
+    return dispatch_get_main_queue();
+}
+
+dispatch_queue_t AMPBackgroundQueue() {
     return dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0);
 }
 
-dispatch_queue_t AMPGetGlobalUtilityQueue() {
+dispatch_queue_t AMPUtilityQueue() {
     return dispatch_get_global_queue(QOS_CLASS_UTILITY, 0);
 }
 
-dispatch_queue_t AMPGetGlobalDefaultQueue() {
+dispatch_queue_t AMPDefaultQueue() {
     return dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0);
 }
 
-dispatch_queue_t AMPGetGlobalUserInitiatedQueue() {
+dispatch_queue_t AMPUserInitiatedQueue() {
     return dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
 }
 
-dispatch_queue_t AMPGetGlobalUserInteractiveQueue() {
+dispatch_queue_t AMPUserInteractiveQueue() {
     return dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0);
 }
 
-void AMPSerialDispatchAsyncInBackground(dispatch_block_t block) {
+void AMPDispatchAsyncInBackground(dispatch_block_t block) {
     if (!block) {
         return;
     }
     
-    dispatch_queue_t queue = AMPCreateDispatchSerialQueue();
-    dispatch_async(queue, block);
-    dispatch_release(queue);
+    dispatch_async(AMPBackgroundQueue(), block);
 }
 
-void AMPSerialDispatchSyncInBackground(dispatch_block_t block) {
+void AMPDispatchSyncInBackground(dispatch_block_t block) {
     if (!block) {
         return;
     }
     
-    dispatch_queue_t queue = AMPCreateDispatchSerialQueue();
-    dispatch_sync(queue, block);
-    dispatch_release(queue);
-}
-
-void AMPConcurrentDispatchAsyncInBackground(dispatch_block_t block) {
-    if (!block) {
-        return;
-    }
-    
-    dispatch_queue_t queue = AMPCreateDispatchConcurrentQueue();
-    dispatch_async(queue, block);
-    dispatch_release(queue);
-//    dispatch_async(AMPGetGlobalBackgroundQueue(), block);
-}
-
-void AMPConcurrentDispatchSyncInBackground(dispatch_block_t block) {
-    if (!block) {
-        return;
-    }
-    
-    dispatch_queue_t queue = AMPCreateDispatchConcurrentQueue();
-    dispatch_sync(queue, block);
-    dispatch_release(queue);
-//    dispatch_sync(AMPGetGlobalBackgroundQueue(), block);
+    dispatch_sync(AMPBackgroundQueue(), block);
 }
 
 void AMPDispatchAsyncOnQueue(dispatch_queue_t queue, dispatch_block_t block) {
@@ -97,24 +75,12 @@ void AMPDispatchSyncOnQueue(dispatch_queue_t queue, dispatch_block_t block) {
     dispatch_sync(queue, block);
 }
 
-void AMPDispatchAsyncOnQueueAfterDelay(dispatch_queue_t queue, uint64_t delay, dispatch_block_t block) {
+void AMPDispatchAfterDelayOnQueue(dispatch_queue_t queue, uint64_t delay, dispatch_block_t block) {
     if (!block) {
         return;
     }
     
-    dispatch_async(queue, ^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), queue, block);
-    });
-}
-
-void AMPDispatchSyncOnQueueAfterDelay(dispatch_queue_t queue, uint64_t delay, dispatch_block_t block) {
-    if (!block) {
-        return;
-    }
-    
-    dispatch_sync(queue, ^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), queue, block);
-    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), queue, block);
 }
 
 void AMPDispatchAsyncOnMainQueue(dispatch_block_t block) {
@@ -133,7 +99,7 @@ void AMPDispatchSyncOnMainQueue(dispatch_block_t block) {
     if ([[NSThread currentThread] isMainThread]) {
         block();
     } else {
-        dispatch_sync(dispatch_get_main_queue(), block);
+        dispatch_sync(AMPMainQueue(), block);
     }
 }
 

@@ -25,6 +25,8 @@ static const NSUInteger AMPDefaultFireCount = 5;
 @property (nonatomic, retain)   AMPCarWashController    *controller;
 @property (nonatomic, retain)   dispatch_source_t       timer;
 
+@property (nonatomic, assign)   NSUInteger  fireCount;
+
 - (void)prepareTimer;
 
 @end
@@ -65,14 +67,12 @@ static const NSUInteger AMPDefaultFireCount = 5;
 
 - (void)prepareTimer {
     AMPWeakify(self);
-    __block NSUInteger count = 0;
-    self.timer = AMPCreateDispatchTimerOnQueue(AMPGetGlobalBackgroundQueue(), AMPDefaultTimeInterval, ^{
+    self.timer = AMPCreateDispatchTimerOnQueue(AMPBackgroundQueue(), AMPDefaultTimeInterval, ^{
         AMPStrongify(self);
         NSArray *cars = [AMPCar objectsWithCount:AMPDefaultCarCount];
         [self.controller washCars:cars];
         
-        count++;
-        if (AMPDefaultFireCount == count) {
+        if (AMPDefaultFireCount == (self.fireCount += 1)) {
             self.timer = NULL;
         }
     });
