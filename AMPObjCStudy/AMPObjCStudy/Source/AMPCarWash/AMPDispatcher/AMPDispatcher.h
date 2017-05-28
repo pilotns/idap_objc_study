@@ -24,7 +24,4 @@
 - (void)processingObject:(id)object;
 - (void)processingObjects:(NSArray *)objects;
 
-// this method is intended for subclassing, do not call it directly
-- (void)performWorkingProcessWithObject:(id)object;
-
 @end

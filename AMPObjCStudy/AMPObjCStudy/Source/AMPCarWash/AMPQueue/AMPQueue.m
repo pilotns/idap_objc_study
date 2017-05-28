@@ -51,20 +51,20 @@
 
 - (void)pushObject:(id)object {
     NSMutableArray *storage = self.storage;
-    if (!object || [self containsObject:object]) {
+    if (!object) {
         return;
     }
     
     @synchronized (self) {
-        [storage addObject:object];
+        if (![self containsObject:object]) {
+            [storage addObject:object];
+        }
     }
 }
 
 - (void)pushObjects:(id<NSFastEnumeration>)objects {
-    @synchronized (self) {
-        for (id object in objects) {
-            [self pushObject:object];
-        }
+    for (id object in objects) {
+        [self pushObject:object];
     }
 }
 
@@ -83,9 +83,7 @@
 #pragma mark Private Methods
 
 - (BOOL)containsObject:(id)object {
-    @synchronized (self) {
-        return [self.storage containsObject:object];
-    }
+    return [self.storage containsObject:object];
 }
 
 - (void)removeObject:(id)object {
