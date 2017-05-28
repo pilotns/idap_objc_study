@@ -20,8 +20,6 @@ typedef void(^AMPSetupObservationHandler)(id observer);
 - (void)hireEmployee:(id)employee;
 - (void)dismissEmployee:(id)employee;
 
-- (void)hireEmployees:(NSArray *)employees;
-
 - (void)prepareObservationForEmployee:(AMPWorker *)employee
                               handler:(AMPSetupObservationHandler)handler;
 

@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString * const kAMPTimerHandlerKey = @"kAMPTimerHandlerKey";
+typedef void (^AMPTimerFiringHandler)(NSTimer *) ;
 
 @interface AMPTimerServiceObject : NSObject
+
++ (instancetype)objectWithHandler:(AMPTimerFiringHandler)handler;
+
+- (instancetype)initWithHandler:(AMPTimerFiringHandler)handler;
 
 - (void)fireTimer:(NSTimer *)timer;
 

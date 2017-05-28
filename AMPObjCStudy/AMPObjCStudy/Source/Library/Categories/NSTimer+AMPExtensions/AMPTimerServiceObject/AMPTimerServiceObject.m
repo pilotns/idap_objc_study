@@ -8,10 +8,41 @@
 
 #import "AMPTimerServiceObject.h"
 
+@interface AMPTimerServiceObject ()
+@property (nonatomic, copy) AMPTimerFiringHandler handler;
+
+@end
+
 @implementation AMPTimerServiceObject
 
+#pragma mark -
+#pragma mark Class Methods
+
++ (instancetype)objectWithHandler:(AMPTimerFiringHandler)handler {
+    return [[[self alloc] initWithHandler:handler] autorelease];
+}
+
+#pragma mark -
+#pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    self.handler = nil;
+    
+    [super dealloc];
+}
+
+- (instancetype)initWithHandler:(AMPTimerFiringHandler)handler {
+    self = [super init];
+    self.handler = handler;
+    
+    return self;
+}
+
+#pragma mark -
+#pragma mark Public Methods
+
 - (void)fireTimer:(NSTimer *)timer {
-    void (^handler)(NSTimer *) = timer.userInfo[kAMPTimerHandlerKey];
+    AMPTimerFiringHandler handler = self.handler;
     if (handler) {
         handler(timer);
     }

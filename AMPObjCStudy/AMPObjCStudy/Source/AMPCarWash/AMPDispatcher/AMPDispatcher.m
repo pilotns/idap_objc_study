@@ -116,12 +116,11 @@
             return;
         }
         
-        AMPQueue *processingObjects = self.processingObjects;
-        AMPQueue *processedObjects = self.processedObjects;
-        
-        processingObjects.count
-        ? [self performWorkingProcessWithObject:employee]
-        : [processedObjects pushObject:employee];
+        if (self.processingObjects.count) {
+            [self performWorkingProcessWithObject:employee];
+        } else {
+            [self.processedObjects pushObject:employee];
+        }
     }
 }
 
@@ -131,12 +130,12 @@
             return;
         }
         
-        AMPQueue *processingObjects = self.processingObjects;
         AMPQueue *processedObjects = self.processedObjects;
-        
-        processedObjects.count
-        ? [employee performProcessingObject:[processedObjects pop]]
-        : [processingObjects pushObject:employee];
+        if (processedObjects.count) {
+            [employee performProcessingObject:[processedObjects pop]];
+        } else {
+            [self.processingObjects pushObject:employee];
+        }
     }
 }
 
