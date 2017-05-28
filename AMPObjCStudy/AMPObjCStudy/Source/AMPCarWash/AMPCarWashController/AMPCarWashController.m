@@ -84,7 +84,7 @@ static const NSUInteger AMPDefaultAccountantCount = 10;
         return;
     }
     
-    [self.washersDispatcher processingObjects:cars];
+    [self.washersDispatcher processObjects:cars];
 }
 
 #pragma mark -
