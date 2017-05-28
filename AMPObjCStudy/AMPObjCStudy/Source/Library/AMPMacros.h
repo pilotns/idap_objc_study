@@ -38,4 +38,14 @@
 
 #define AMPEmptyParameter
 
+#define AMPWeakify(object) \
+    __block typeof(object) weak_##object = object;
+
+#define AMPStrongify(object) \
+    __strong typeof(object) object = weak_##object; \
+    if (!object) { \
+        return; \
+    }
+
+
 #endif /* AMPMacros_h */

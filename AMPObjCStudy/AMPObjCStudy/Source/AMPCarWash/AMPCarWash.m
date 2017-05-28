@@ -10,6 +10,7 @@
 
 #import "AMPCarWashController.h"
 #import "AMPCar.h"
+#import "AMPMacros.h"
 
 #import "NSObject+AMPExtensions.h"
 #import "NSTimer+AMPExtensions.h"
@@ -22,6 +23,9 @@ static const NSUInteger AMPDefaultFireCount = 5;
 @property (nonatomic, assign)   NSTimer                 *timer;
 @property (nonatomic, retain)   AMPCarWashController    *controller;
 
+@property (nonatomic, assign)   NSUInteger  fireCount;
+
+- (void)washCars:(NSArray *)cars;
 - (void)prepareTimer;
 
 @end
@@ -56,24 +60,23 @@ static const NSUInteger AMPDefaultFireCount = 5;
 #pragma mark -
 #pragma mark Private Methods
 
+- (void)washCars:(NSArray *)cars {
+    [self.controller washCars:cars];
+}
+
 - (void)prepareTimer {
-    __block NSUInteger fireCount = 0;
-    __block typeof(self) weakSelf = self;
+    AMPWeakify(self);
     self.timer = [NSTimer scheduledTimerWithTimeInterval:AMPDefaultTimeInterval
                                                  repeats:YES
                                                  handler:^(NSTimer *timer)
     {
-        __strong typeof(self) strongSelf = weakSelf;
-        if (!strongSelf) {
-            return;
-        }
-        
+        AMPStrongify(self)
         NSArray *cars = [AMPCar objectsWithCount:AMPDefaultCarCount];
-        [strongSelf.controller performSelectorInBackground:@selector(washCars:)
-                                                withObject:cars];
-        fireCount++;
-        if (AMPDefaultFireCount == fireCount) {
-            strongSelf.timer = nil;
+        [self performSelectorInBackground:@selector(washCars:)
+                               withObject:cars];
+        
+        if (AMPDefaultFireCount == (self.fireCount += 1)) {
+            self.timer = nil;
         }
     }];
 }

@@ -21,6 +21,7 @@
 @property (nonatomic, assign, getter=isWorking) BOOL working;
 
 - (void)performWork;
+- (void)performWorkingProcessWithObject:(id)object;
 
 @end
 
@@ -30,6 +31,8 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
+    [self removeAllWorkers];
+    
     self.processingObjects = nil;
     self.processedObjects = nil;
     self.mutableProcessingObjects = nil;
@@ -58,6 +61,7 @@
         
         [workers addObject:worker];
         [self.processingObjects pushObject:worker];
+        [worker addObserver:self];
     }
 }
 
@@ -71,6 +75,7 @@
     @synchronized (self) {
         [self.mutableProcessingObjects removeObject:worker];
         [self.processingObjects removeObject:worker];
+        [worker removeObserver:self];
     }
 }
 
@@ -91,8 +96,14 @@
 }
 
 - (void)performWorkingProcessWithObject:(id)object {
-    id worker = [self.processingObjects pop];
-    [worker performProcessingObject:object];
+    @synchronized (self) {
+        id worker = [self.processingObjects pop];
+        if (worker) {
+            [worker performProcessingObject:object];
+        } else {
+            [self.processedObjects pushObject:object];
+        }
+    }
 }
 
 #pragma mark -
@@ -100,10 +111,13 @@
 
 - (void)performWork {
     AMPQueue *objectsQueue = self.processedObjects;
-    AMPQueue *workers = self.processingObjects;
-    
-    while (objectsQueue.count && workers.count) {
-        [self performWorkingProcessWithObject:[objectsQueue pop]];
+    while (true) {
+        id object = [objectsQueue pop];
+        if (!object) {
+            break;
+        }
+        
+        [self performWorkingProcessWithObject:object];
     }
 }
 
