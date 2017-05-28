@@ -11,6 +11,7 @@
 #import "AMPDirector.h"
 #import "AMPQueue.h"
 #import "AMPRandom.h"
+#import "AMPMacros.h"
 
 #import "NSString+AMPRandom.h"
 #import "NSObject+AMPExtensions.h"
@@ -23,9 +24,11 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 @property (nonatomic, retain)   AMPQueue    *queue;
 
 - (void)randomSleep;
-- (void)processingObject:(id<AMPMoneyFlow>)object;
+- (void)processObject:(id<AMPMoneyFlow>)object;
 - (void)backgroundProcessingObject:(id<AMPMoneyFlow>)object;
 - (void)finishProcessingObjectOnMainThread:(id<AMPMoneyFlow>)object;
+
+- (void)willChangeStateWithBlock:(void (^)(void))block;
 
 @end
 
@@ -53,10 +56,13 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
-    if (AMPEmployeeDidBecomeFree == self.state) {
-        [self processingObject:object];
-    } else {
-        [self.queue pushObject:object];
+    @synchronized (self) {
+        if (AMPEmployeeDidBecomeFree == self.state) {
+            self.state = AMPEmployeeDidBecomeBusy;
+            [self processObject:object];
+        } else {
+            [self.queue pushObject:object];
+        }
     }
 }
 
@@ -66,11 +72,17 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 }
 
 - (void)finishProcessingObject:(AMPHuman *)object {
-    object.state = AMPEmployeeDidBecomeFree;
+    [object willChangeStateWithBlock:^{
+        object.state = AMPEmployeeDidBecomeFree;
+    }];
 }
 
 - (void)finishProcessing {
-    self.state = AMPEmployeeDidFinishWork;
+    AMPWeakify(self);
+    [self willChangeStateWithBlock:^{
+        AMPStrongify(self);
+        self.state = AMPEmployeeDidFinishWork;
+    }];
 }
 
 #pragma mark -
@@ -80,14 +92,12 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
     usleep(1000 * (useconds_t)(AMPRandomValueWithRange(AMPDefaultSleepRange)));
 }
 
-- (void)processingObject:(id<AMPMoneyFlow>)object {
-    self.state = AMPEmployeeDidBecomeBusy;
+- (void)processObject:(id<AMPMoneyFlow>)object {
     [self performSelectorInBackground:@selector(backgroundProcessingObject:) withObject:object];
 }
 
 - (void)backgroundProcessingObject:(id<AMPMoneyFlow>)object {
     [self handleObject:object];
-    
     [self performSelectorOnMainThread:@selector(finishProcessingObjectOnMainThread:)
                            withObject:object
                         waitUntilDone:NO];
@@ -95,9 +105,22 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 
 - (void)finishProcessingObjectOnMainThread:(id<AMPMoneyFlow>)object {
     [self finishProcessingObject:object];
+    [self finishProcessing];
+}
+
+- (void)willChangeStateWithBlock:(void (^)(void))block {
+    if (!block) {
+        return;
+    }
     
-    AMPQueue *queue = self.queue;
-    queue.count ? [self processingObject:[queue pop]] : [self finishProcessing];
+    @synchronized (self) {
+        AMPQueue *queue = self.queue;
+        if (queue.count) {
+            [self processObject:[queue pop]];
+        } else {
+            block();
+        }
+    }
 }
 
 #pragma mark -

@@ -10,13 +10,19 @@
 
 #import "AMPCar.h"
 
+@interface AMPWasher ()
+@property (nonatomic, assign) NSUInteger processedCarCount;
+
+@end
+
 @implementation AMPWasher
 
 #pragma mark -
 #pragma mark Public
 
 - (void)handleObject:(id<AMPMoneyFlow>)object {
-    NSLog(@"Washer start working...");
+    self.processedCarCount += 1;
+    NSLog(@"Washer start working... %@ = %lu", self.name, self.processedCarCount);
     [super handleObject:object];
     NSLog(@"finish working.");
 }
