@@ -53,6 +53,7 @@
 		8A4E55001ED46E81007B5B51 /* NSTimer+AMPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E54F51ED46E81007B5B51 /* NSTimer+AMPExtensions.m */; };
 		8A4E55011ED46E81007B5B51 /* NSTimer+AMPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E54F51ED46E81007B5B51 /* NSTimer+AMPExtensions.m */; };
 		8A4E55051ED6B4FD007B5B51 /* AMPGCDExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E55041ED6B4FD007B5B51 /* AMPGCDExtensions.m */; };
+		8A4E55091EDB4651007B5B51 /* AMPTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E55081EDB4651007B5B51 /* AMPTimer.m */; };
 		8A5D9F541EBB45FB007584C0 /* AMPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5D9F531EBB45FB007584C0 /* AMPQueue.m */; };
 		8A5D9F551EBB45FB007584C0 /* AMPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5D9F531EBB45FB007584C0 /* AMPQueue.m */; };
 		8A5D9F621EBB54D0007584C0 /* AMPCarWashController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5D9F611EBB54D0007584C0 /* AMPCarWashController.m */; };
@@ -163,6 +164,8 @@
 		8A4E54F51ED46E81007B5B51 /* NSTimer+AMPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+AMPExtensions.m"; sourceTree = "<group>"; };
 		8A4E55031ED6B4FD007B5B51 /* AMPGCDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPGCDExtensions.h; sourceTree = "<group>"; };
 		8A4E55041ED6B4FD007B5B51 /* AMPGCDExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPGCDExtensions.m; sourceTree = "<group>"; };
+		8A4E55071EDB4651007B5B51 /* AMPTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPTimer.h; sourceTree = "<group>"; };
+		8A4E55081EDB4651007B5B51 /* AMPTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPTimer.m; sourceTree = "<group>"; };
 		8A5D9F521EBB45FB007584C0 /* AMPQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPQueue.h; sourceTree = "<group>"; };
 		8A5D9F531EBB45FB007584C0 /* AMPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPQueue.m; sourceTree = "<group>"; };
 		8A5D9F601EBB54D0007584C0 /* AMPCarWashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCarWashController.h; sourceTree = "<group>"; };
@@ -249,6 +252,7 @@
 		8A0C708F1EB1D8E8001A8914 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				8A4E55061EDB4636007B5B51 /* AMPTimer */,
 				8A4E55021ED6B48B007B5B51 /* AMPGCDExtensions */,
 				8A4E54E71ED46E81007B5B51 /* Categories */,
 				8A0C70A71EB1D933001A8914 /* AMPReference */,
@@ -416,6 +420,15 @@
 				8A4E55041ED6B4FD007B5B51 /* AMPGCDExtensions.m */,
 			);
 			path = AMPGCDExtensions;
+			sourceTree = "<group>";
+		};
+		8A4E55061EDB4636007B5B51 /* AMPTimer */ = {
+			isa = PBXGroup;
+			children = (
+				8A4E55071EDB4651007B5B51 /* AMPTimer.h */,
+				8A4E55081EDB4651007B5B51 /* AMPTimer.m */,
+			);
+			path = AMPTimer;
 			sourceTree = "<group>";
 		};
 		8A5D9F511EBB45D0007584C0 /* AMPQueue */ = {
@@ -795,6 +808,7 @@
 				8A0C709D1EB1D8E8001A8914 /* AMPRandom.m in Sources */,
 				8A2564F81E9F717C00F0E47D /* main.m in Sources */,
 				8A5D9F541EBB45FB007584C0 /* AMPQueue.m in Sources */,
+				8A4E55091EDB4651007B5B51 /* AMPTimer.m in Sources */,
 				8AA5447C1EACAB390085A52F /* AMPLinkedListNode.m in Sources */,
 				8A4E54F81ED46E81007B5B51 /* NSObject+AMPExtensions.m in Sources */,
 				8AA544721EACAB390085A52F /* AMPCreatureFemale.m in Sources */,
