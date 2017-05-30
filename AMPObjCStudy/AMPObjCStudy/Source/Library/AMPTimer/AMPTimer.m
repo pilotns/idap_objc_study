@@ -20,7 +20,7 @@
 
 @property (nonatomic, assign, getter=isValid)   BOOL    valid;
 
-- (void)resume;
+- (void)fire;
 
 @end
 
@@ -84,15 +84,26 @@
 #pragma mark -
 #pragma mark Public Methods
 
+- (void)resume {
+    [self fire];
+}
+
+- (void)invalidate {
+    self.valid = NO;
+}
+
+#pragma mark -
+#pragma mark Private Methods
+
 - (void)fire {
     AMPTimerHandler handler = self.handler;
     if (!handler) {
         return;
     }
     
+    AMPWeakify(self);
     dispatch_group_t group = self.group;
     dispatch_group_enter(group);
-    AMPWeakify(self);
     AMPDispatchAfterDelayOnQueue(AMPBackgroundQueue(), self.timeInteraval, ^{
         AMPStrongify(self);
         handler(self);
@@ -100,19 +111,11 @@
         
         dispatch_group_notify(self.group, AMPBackgroundQueue(), ^{
             AMPStrongify(self);
-            if (self.isValid) {
+            if (self.isValid && self.repeats) {
                 [self fire];
             }
         });
     });
-}
-
-- (void)resume {
-    [self fire];
-}
-
-- (void)invalidate {
-    self.valid = NO;
 }
 
 @end
