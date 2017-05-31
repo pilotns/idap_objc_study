@@ -101,21 +101,23 @@
         return;
     }
     
-    AMPWeakify(self);
-    dispatch_group_t group = self.group;
-    dispatch_group_enter(group);
-    AMPDispatchAfterDelayOnQueue(AMPBackgroundQueue(), self.timeInteraval, ^{
-        AMPStrongify(self);
-        handler(self);
-        dispatch_group_leave(group);
-        
-        dispatch_group_notify(self.group, AMPBackgroundQueue(), ^{
+    if (self.isValid) {
+        AMPWeakify(self);
+        dispatch_group_t group = self.group;
+        dispatch_group_enter(group);
+        AMPDispatchAfterDelayOnQueue(AMPBackgroundQueue(), self.timeInteraval, ^{
             AMPStrongify(self);
-            if (self.isValid && self.repeats) {
-                [self fire];
-            }
+            handler(self);
+            dispatch_group_leave(group);
+            
+            dispatch_group_notify(group, AMPBackgroundQueue(), ^{
+                AMPStrongify(self);
+                if (self.repeats) {
+                    [self fire];
+                }
+            });
         });
-    });
+    }
 }
 
 @end
