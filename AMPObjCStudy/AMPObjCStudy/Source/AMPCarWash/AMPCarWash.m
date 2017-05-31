@@ -58,6 +58,7 @@ static const NSUInteger AMPDefaultFireCount = 5;
         [_timer invalidate];
         
         _timer = timer;
+        [_timer resume];
     }
 }
 
@@ -79,8 +80,6 @@ static const NSUInteger AMPDefaultFireCount = 5;
             [timer invalidate];
         }
     }];
-    
-    [self.timer resume];
 }
 
 @end
