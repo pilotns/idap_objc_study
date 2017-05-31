@@ -74,7 +74,7 @@ static const NSUInteger AMPDefaultFireCount = 5;
     self.timer = [AMPTimer timerWithTimeInterval:AMPDefaultTimeInterval repeats:YES handler:^(AMPTimer *timer) {
         AMPStrongify(self);
         NSArray *cars = [AMPCar objectsWithCount:AMPDefaultCarCount];
-        [self performSelectorInBackground:@selector(washCars:) withObject:cars];
+        [self washCars:cars];
         
         if (AMPDefaultFireCount == (self.fireCount += 1)) {
             [timer invalidate];
