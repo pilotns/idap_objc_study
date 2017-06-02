@@ -24,10 +24,14 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
 
 @interface AMPCarWashController () <AMPEmployeeObsever>
 @property (nonatomic, retain)   AMPDispatcher   *washersDispatcher;
-@property (nonatomic, retain)   AMPDispatcher   *accountantsDispancher;
+@property (nonatomic, retain)   AMPDispatcher   *accountantsDispatcher;
 @property (nonatomic, retain)   AMPDispatcher   *directorDispatcher;
 
+- (id)observersForEmployee:(AMPWorker *)employee;
+
 - (void)prepareObservationsForEmployees:(NSArray *)employees handler:(void (^)(AMPWorker *))handler;
+- (void)prepareDispatcher:(AMPDispatcher *)dispatcher withWorkers:(NSArray *)workers;
+
 - (void)prepareHierarchy;
 
 @end
@@ -39,7 +43,7 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
 
 - (void)dealloc {
     self.washersDispatcher = nil;
-    self.accountantsDispancher = nil;
+    self.accountantsDispatcher = nil;
     self.directorDispatcher = nil;
     
     [super dealloc];
@@ -48,7 +52,7 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
 - (instancetype)init {
     self = [super init];
     self.washersDispatcher = [AMPDispatcher object];
-    self.accountantsDispancher = [AMPDispatcher object];
+    self.accountantsDispatcher = [AMPDispatcher object];
     self.directorDispatcher = [AMPDispatcher object];
     
     [self prepareHierarchy];
@@ -70,6 +74,22 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
 #pragma mark -
 #pragma mark Private Methods
 
+- (NSArray *)observersForEmployee:(AMPWorker *)employee {
+    if ([employee isKindOfClass:[AMPWasher class]]) {
+        return @[self.accountantsDispatcher, self.washersDispatcher];
+    }
+    
+    if ([employee isKindOfClass:[AMPAccountant class]]) {
+        return @[self.directorDispatcher, self.accountantsDispatcher];
+    }
+    
+    if ([employee isKindOfClass:[AMPDirector class]]) {
+        return @[self.directorDispatcher];
+    }
+    
+    return nil;
+}
+
 - (void)prepareObservationsForEmployees:(NSArray *)employees handler:(void (^)(AMPWorker *employee))handler {
     if (!handler) {
         return;
@@ -80,25 +100,24 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
     }];
 }
 
+- (void)prepareDispatcher:(AMPDispatcher *)dispatcher withWorkers:(NSArray *)workers {
+    [dispatcher addWorkers:workers];
+    [self prepareObservationsForEmployees:workers handler:^(AMPWorker *worker) {
+        NSArray *observers = [self observersForEmployee:worker];
+        for (id observer in observers) {
+            [worker addObserver:observer];
+        }
+    }];
+}
+
 - (void)prepareHierarchy {
     NSArray *washers = [AMPWasher objectsWithCount:AMPDefaultWasherCount];
     NSArray *accountants = [AMPAccountant objectsWithCount:AMPDefaultAccountantCount];
     NSArray *directors = [AMPDirector objectsWithCount:AMPDefaultDirectorCount];
     
-    AMPWeakify(self);
-    [self.washersDispatcher addWorkers:washers];
-    [self prepareObservationsForEmployees:washers handler:^(AMPWorker *employee) {
-        AMPStrongify(self);
-        [employee addObserver:self.accountantsDispancher];
-    }];
-    
-    [self.accountantsDispancher addWorkers:accountants];
-    [self prepareObservationsForEmployees:accountants handler:^(AMPWorker *employee) {
-        AMPStrongify(self);
-        [employee addObserver:self.directorDispatcher];
-    }];
-    
-    [self.directorDispatcher addWorkers:directors];
+    [self prepareDispatcher:self.washersDispatcher withWorkers:washers];
+    [self prepareDispatcher:self.accountantsDispatcher withWorkers:accountants];
+    [self prepareDispatcher:self.directorDispatcher withWorkers:directors];
 }
 
 @end

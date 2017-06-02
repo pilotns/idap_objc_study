@@ -29,8 +29,6 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    [self removeAllWorkers];
-    
     self.processingObjects = nil;
     self.processedObjects = nil;
     self.mutableProcessingObjects = nil;
@@ -59,7 +57,6 @@
         
         [workers addObject:worker];
         [self.processingObjects pushObject:worker];
-        [worker addObserver:self];
     }
 }
 
@@ -73,7 +70,6 @@
     @synchronized (self) {
         [self.mutableProcessingObjects removeObject:worker];
         [self.processingObjects removeObject:worker];
-        [worker removeObserver:self];
     }
 }
 
