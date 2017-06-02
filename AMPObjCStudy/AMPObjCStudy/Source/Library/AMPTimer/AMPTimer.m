@@ -109,14 +109,16 @@
             AMPStrongify(self);
             handler(self);
             dispatch_group_leave(group);
-            
+        });
+        
+        if (self.repeats) {
             dispatch_group_notify(group, AMPBackgroundQueue(), ^{
                 AMPStrongify(self);
-                if (self.repeats) {
-                    [self fire];
-                }
+                [self fire];
             });
-        });
+        } else {
+            [self invalidate];
+        }
     }
 }
 

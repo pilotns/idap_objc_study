@@ -76,7 +76,7 @@ static const NSUInteger AMPDefaultFireCount = 5;
         NSArray *cars = [AMPCar objectsWithCount:AMPDefaultCarCount];
         [self washCars:cars];
         
-        if (AMPDefaultFireCount == (self.fireCount += 1)) {
+        if (AMPDefaultFireCount == ++self.fireCount) {
             [timer invalidate];
         }
     }];
