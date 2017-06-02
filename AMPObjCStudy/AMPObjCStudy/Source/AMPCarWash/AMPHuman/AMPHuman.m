@@ -28,8 +28,6 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 - (void)backgroundProcessingObject:(id<AMPMoneyFlow>)object;
 - (void)finishProcessingObjectOnMainThread:(id<AMPMoneyFlow>)object;
 
-- (void)willChangeStateWithBlock:(void (^)(void))block;
-
 @end
 
 @implementation AMPHuman
@@ -53,6 +51,20 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 }
 
 #pragma mark -
+#pragma mark Accessors
+
+- (void)setState:(NSUInteger)state {
+    @synchronized (self) {
+        AMPQueue *queue = self.queue;
+        if (queue.count) {
+            [self processObject:[queue pop]];
+        } else {
+            [super setState:state];
+        }
+    }
+}
+
+#pragma mark -
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id<AMPMoneyFlow>)object {
@@ -72,17 +84,11 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 }
 
 - (void)finishProcessingObject:(AMPHuman *)object {
-    [object willChangeStateWithBlock:^{
-        object.state = AMPEmployeeDidBecomeFree;
-    }];
+    object.state = AMPEmployeeDidBecomeFree;
 }
 
 - (void)finishProcessing {
-    AMPWeakify(self);
-    [self willChangeStateWithBlock:^{
-        AMPStrongify(self);
-        self.state = AMPEmployeeDidFinishWork;
-    }];
+    self.state = AMPEmployeeDidFinishWork;
 }
 
 #pragma mark -
@@ -106,21 +112,6 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
 - (void)finishProcessingObjectOnMainThread:(id<AMPMoneyFlow>)object {
     [self finishProcessingObject:object];
     [self finishProcessing];
-}
-
-- (void)willChangeStateWithBlock:(void (^)(void))block {
-    if (!block) {
-        return;
-    }
-    
-    @synchronized (self) {
-        AMPQueue *queue = self.queue;
-        if (queue.count) {
-            [self processObject:[queue pop]];
-        } else {
-            block();
-        }
-    }
 }
 
 #pragma mark -
