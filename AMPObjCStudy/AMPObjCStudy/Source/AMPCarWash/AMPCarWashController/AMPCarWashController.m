@@ -64,7 +64,7 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
         return;
     }
     
-    [self.washersDispatcher processingObjects:cars];
+    [self.washersDispatcher processObjects:cars];
 }
 
 #pragma mark -

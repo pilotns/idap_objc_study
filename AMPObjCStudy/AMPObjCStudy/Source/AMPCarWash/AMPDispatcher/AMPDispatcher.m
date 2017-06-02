@@ -84,11 +84,11 @@
     }
 }
 
-- (void)processingObject:(id)object {
+- (void)processObject:(id)object {
     [self performWorkingProcessWithObject:object];
 }
 
-- (void)processingObjects:(NSArray *)objects {
+- (void)processObjects:(NSArray *)objects {
     [self.processedObjects pushObjects:objects];
     [self performWork];
 }
@@ -115,7 +115,13 @@
             break;
         }
         
-        [self performWorkingProcessWithObject:object];
+        id worker = [self.processingObjects pop];
+        if (worker) {
+            [worker performProcessingObject:object];
+        } else {
+            [objectsQueue pushObject:object];
+            break;
+        }
     }
 }
 
