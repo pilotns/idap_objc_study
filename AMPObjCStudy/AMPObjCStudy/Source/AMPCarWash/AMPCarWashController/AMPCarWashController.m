@@ -23,7 +23,7 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
 
 @interface AMPCarWashController () <AMPEmployeeObsever>
 @property (nonatomic, retain)   AMPDispatcher   *washersDispatcher;
-@property (nonatomic, retain)   AMPDispatcher   *accountantsDispancher;
+@property (nonatomic, retain)   AMPDispatcher   *accountantsDispatcher;
 @property (nonatomic, retain)   AMPDispatcher   *directorDispatcher;
 
 - (NSArray *)observersForEmployee:(AMPWorker *)employee;
@@ -40,7 +40,7 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
 
 - (void)dealloc {
     self.washersDispatcher = nil;
-    self.accountantsDispancher = nil;
+    self.accountantsDispatcher = nil;
     self.directorDispatcher = nil;
     
     [super dealloc];
@@ -49,7 +49,7 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
 - (instancetype)init {
     self = [super init];
     self.washersDispatcher = [AMPDispatcher object];
-    self.accountantsDispancher = [AMPDispatcher object];
+    self.accountantsDispatcher = [AMPDispatcher object];
     self.directorDispatcher = [AMPDispatcher object];
     
     [self prepareHierarchy];
@@ -73,10 +73,14 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
 
 - (id)observersForEmployee:(NSArray *)employee {
     if ([employee isKindOfClass:[AMPWasher class]]) {
-        return @[self.accountantsDispancher];
+        return @[self.accountantsDispatcher, self.washersDispatcher];
     }
     
     if ([employee isKindOfClass:[AMPAccountant class]]) {
+        return @[self.directorDispatcher, self.accountantsDispatcher];
+    }
+    
+    if ([employee isKindOfClass:[AMPDirector class]]) {
         return @[self.directorDispatcher];
     }
     
@@ -100,15 +104,27 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
     
     [self.washersDispatcher addWorkers:washers];
     [self prepareObservationForEmployees:washers handler:^(AMPWorker *employee) {
-        [employee addObserver:self.accountantsDispancher];
+        NSArray *observers = [self observersForEmployee:employee];
+        for (id observer in observers) {
+            [employee addObserver:observer];
+        }
     }];
     
-    [self.accountantsDispancher addWorkers:accountants];
+    [self.accountantsDispatcher addWorkers:accountants];
     [self prepareObservationForEmployees:accountants handler:^(AMPWorker *employee) {
-        [employee addObserver:self.directorDispatcher];
+        NSArray *observers = [self observersForEmployee:employee];
+        for (id observer in observers) {
+            [employee addObserver:observer];
+        }
     }];
     
     [self.directorDispatcher addWorkers:directors];
+    [self prepareObservationForEmployees:directors handler:^(AMPWorker *employee) {
+        NSArray *observers = [self observersForEmployee:employee];
+        for (id observer in observers) {
+            [employee addObserver:observer];
+        }
+    }];
 }
 
 @end
