@@ -12,6 +12,6 @@
 @property (nonatomic, readonly) NSUInteger count;
 
 - (void)pushObject:(id)object;
-- (id)pop;
+- (id)popObject;
 
 @end

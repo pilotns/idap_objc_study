@@ -57,10 +57,11 @@ static const NSRange AMPDefaultSleepRange = { 50, 10 };
     @synchronized (self) {
         AMPQueue *queue = self.queue;
         if (queue.count) {
-            [self processObject:[queue pop]];
-        } else {
-            [super setState:state];
+            state = AMPEmployeeDidBecomeBusy;
+            [self processObject:[queue popObject]];
         }
+        
+        [super setState:state];
     }
 }
 

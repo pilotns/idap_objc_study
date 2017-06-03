@@ -55,7 +55,7 @@
     }
 }
 
-- (id)pop {
+- (id)popObject {
     @synchronized (self) {
         id object = [[[self.storage firstObject] retain] autorelease];
         if (object) {
