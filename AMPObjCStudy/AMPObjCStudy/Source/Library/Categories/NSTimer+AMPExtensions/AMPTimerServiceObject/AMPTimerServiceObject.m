@@ -8,10 +8,8 @@
 
 #import "AMPTimerServiceObject.h"
 
-@interface AMPTimerServiceObject ()
-@property (nonatomic, copy) AMPTimerFiringHandler handler;
-
-@end
+#import "AMPTimerBlockObject.h"
+#import "AMPTimerTargetObject.h"
 
 @implementation AMPTimerServiceObject
 
@@ -19,33 +17,33 @@
 #pragma mark Class Methods
 
 + (instancetype)objectWithHandler:(AMPTimerFiringHandler)handler {
-    return [[[self alloc] initWithHandler:handler] autorelease];
+    return [[[AMPTimerBlockObject alloc] initWithHandler:handler] autorelease];
+}
+
++ (instancetype)objectWithTarget:(id)target selector:(SEL)selector{
+    return [[[AMPTimerTargetObject alloc] initWithTarget:target selector:selector] autorelease];
 }
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)dealloc {
-    self.handler = nil;
+- (instancetype)initWithHandler:(AMPTimerFiringHandler)handler {
+    [self release];
     
-    [super dealloc];
+    return [[AMPTimerBlockObject alloc] initWithHandler:handler];
 }
 
-- (instancetype)initWithHandler:(AMPTimerFiringHandler)handler {
-    self = [super init];
-    self.handler = handler;
+- (instancetype)initWithTarget:(id)target selector:(SEL)selector {
+    [self release];
     
-    return self;
+    return [[AMPTimerTargetObject alloc] initWithTarget:target selector:selector];
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
 - (void)fireTimer:(NSTimer *)timer {
-    AMPTimerFiringHandler handler = self.handler;
-    if (handler) {
-        handler(timer);
-    }
+    [self doesNotRecognizeSelector:_cmd];
 }
 
 @end

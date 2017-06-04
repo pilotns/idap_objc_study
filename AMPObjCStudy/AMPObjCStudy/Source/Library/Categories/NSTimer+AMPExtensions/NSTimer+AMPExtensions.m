@@ -22,10 +22,27 @@
         return nil;
     }
     
+    AMPTimerServiceObject *t = [AMPTimerServiceObject objectWithHandler:handler];
+    
     return [self scheduledTimerWithTimeInterval:timeInterval
-                                         target:[AMPTimerServiceObject objectWithHandler:handler]
+                                         target:t
                                        selector:@selector(fireTimer:)
                                        userInfo:nil
+                                        repeats:repeats];
+}
+
++ (NSTimer *)safeScheduledTimerWithTimeInterval:(NSTimeInterval)timeInterval
+                                        target:(id)target
+                                      selector:(SEL)selector
+                                      userInfo:(id)userInfo
+                                       repeats:(BOOL)repeats
+{
+    AMPTimerServiceObject *t = [AMPTimerServiceObject objectWithTarget:target selector:selector];
+    
+    return [self scheduledTimerWithTimeInterval:timeInterval
+                                         target:t
+                                       selector:@selector(fireTimer:)
+                                       userInfo:userInfo
                                         repeats:repeats];
 }
 

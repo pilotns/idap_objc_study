@@ -13,9 +13,12 @@ typedef void (^AMPTimerFiringHandler)(NSTimer *) ;
 @interface AMPTimerServiceObject : NSObject
 
 + (instancetype)objectWithHandler:(AMPTimerFiringHandler)handler;
++ (instancetype)objectWithTarget:(id)target selector:(SEL)selector;
 
 - (instancetype)initWithHandler:(AMPTimerFiringHandler)handler;
+- (instancetype)initWithTarget:(id)target selector:(SEL)selector;
 
+// this method is intended for subclassing
 - (void)fireTimer:(NSTimer *)timer;
 
 @end
