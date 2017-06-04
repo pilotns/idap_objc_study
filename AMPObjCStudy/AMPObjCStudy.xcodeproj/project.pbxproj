@@ -36,6 +36,8 @@
 		8A0C70E51EB36961001A8914 /* AMPBlockObservableObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C70E41EB36961001A8914 /* AMPBlockObservableObjectSpec.m */; };
 		8A0C70F41EB372A4001A8914 /* AMPNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C70F11EB372A4001A8914 /* AMPNumber.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8A0C70F51EB372A4001A8914 /* AMPNumberObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C70F31EB372A4001A8914 /* AMPNumberObserver.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8A248B271EE4557A0039958F /* AMPTimerBlockObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A248B261EE4557A0039958F /* AMPTimerBlockObject.m */; };
+		8A248B2A1EE455C60039958F /* AMPTimerTargetObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A248B291EE455C60039958F /* AMPTimerTargetObject.m */; };
 		8A2564F81E9F717C00F0E47D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2564F71E9F717C00F0E47D /* main.m */; };
 		8A25650E1E9F902F00F0E47D /* AMPCreatureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A25650D1E9F902F00F0E47D /* AMPCreatureTest.m */; };
 		8A2BE3FF1EC9A12E00DB9670 /* AMPDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2BE3FE1EC9A12E00DB9670 /* AMPDispatcher.m */; };
@@ -140,6 +142,10 @@
 		8A0C70F11EB372A4001A8914 /* AMPNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPNumber.m; sourceTree = "<group>"; };
 		8A0C70F21EB372A4001A8914 /* AMPNumberObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPNumberObserver.h; sourceTree = "<group>"; };
 		8A0C70F31EB372A4001A8914 /* AMPNumberObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPNumberObserver.m; sourceTree = "<group>"; };
+		8A248B251EE4557A0039958F /* AMPTimerBlockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPTimerBlockObject.h; sourceTree = "<group>"; };
+		8A248B261EE4557A0039958F /* AMPTimerBlockObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPTimerBlockObject.m; sourceTree = "<group>"; };
+		8A248B281EE455C60039958F /* AMPTimerTargetObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPTimerTargetObject.h; sourceTree = "<group>"; };
+		8A248B291EE455C60039958F /* AMPTimerTargetObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPTimerTargetObject.m; sourceTree = "<group>"; };
 		8A2564F41E9F717C00F0E47D /* AMPObjCStudy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AMPObjCStudy; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A2564F71E9F717C00F0E47D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8A25650C1E9F902F00F0E47D /* AMPCreatureTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPCreatureTest.h; sourceTree = "<group>"; };
@@ -312,6 +318,17 @@
 			path = TestObjects;
 			sourceTree = "<group>";
 		};
+		8A248B241EE455480039958F /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				8A248B251EE4557A0039958F /* AMPTimerBlockObject.h */,
+				8A248B261EE4557A0039958F /* AMPTimerBlockObject.m */,
+				8A248B281EE455C60039958F /* AMPTimerTargetObject.h */,
+				8A248B291EE455C60039958F /* AMPTimerTargetObject.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
 		8A2564EB1E9F717C00F0E47D = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +416,7 @@
 		8A4E54F11ED46E81007B5B51 /* AMPTimerServiceObject */ = {
 			isa = PBXGroup;
 			children = (
+				8A248B241EE455480039958F /* Private */,
 				8A4E54F21ED46E81007B5B51 /* AMPTimerServiceObject.h */,
 				8A4E54F31ED46E81007B5B51 /* AMPTimerServiceObject.m */,
 			);
@@ -789,8 +807,10 @@
 				8AA5447E1EACAB390085A52F /* AMPLinkedListNumberArray.m in Sources */,
 				8A25650E1E9F902F00F0E47D /* AMPCreatureTest.m in Sources */,
 				8A0C70AA1EB1D9E5001A8914 /* AMPReference.m in Sources */,
+				8A248B271EE4557A0039958F /* AMPTimerBlockObject.m in Sources */,
 				8A5D9F621EBB54D0007584C0 /* AMPCarWashController.m in Sources */,
 				8A2BE3FF1EC9A12E00DB9670 /* AMPDispatcher.m in Sources */,
+				8A248B2A1EE455C60039958F /* AMPTimerTargetObject.m in Sources */,
 				8A0C70D81EB36719001A8914 /* AMPObservationContext.m in Sources */,
 				8AA5447A1EACAB390085A52F /* AMPLinkedList.m in Sources */,
 				8AA5440F1EA911530085A52F /* AMPCarWashTest.m in Sources */,

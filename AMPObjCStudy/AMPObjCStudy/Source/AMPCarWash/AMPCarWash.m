@@ -11,22 +11,24 @@
 #import "AMPCarWashController.h"
 #import "AMPCar.h"
 #import "AMPMacros.h"
+#import "AMPTimerServiceObject.h"
 
 #import "NSObject+AMPExtensions.h"
 #import "NSTimer+AMPExtensions.h"
 
-static const NSUInteger AMPDefaultCarCount = 30;
+static const NSUInteger AMPDefaultCarCount = 100;
 static const NSUInteger AMPDefaultTimeInterval = 2;
 static const NSUInteger AMPDefaultFireCount = 5;
 
 @interface AMPCarWash ()
-@property (nonatomic, assign)   NSTimer                 *timer;
+@property (nonatomic, retain)   NSTimer                 *timer;
 @property (nonatomic, retain)   AMPCarWashController    *controller;
 
 @property (nonatomic, assign)   NSUInteger  fireCount;
 
 - (void)washCars:(NSArray *)cars;
 - (void)prepareTimer;
+- (void)fireTimer:(NSTimer *)timer;
 
 @end
 
@@ -64,21 +66,22 @@ static const NSUInteger AMPDefaultFireCount = 5;
     [self.controller washCars:cars];
 }
 
+- (void)fireTimer:(NSTimer *)timer {
+    NSArray *cars = [AMPCar objectsWithCount:AMPDefaultCarCount];
+    [self performSelectorInBackground:@selector(washCars:)
+                           withObject:cars];
+    
+    if (AMPDefaultFireCount == (self.fireCount += 1)) {
+        self.timer = nil;
+    }
+}
+
 - (void)prepareTimer {
-    AMPWeakify(self);
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:AMPDefaultTimeInterval
-                                                 repeats:YES
-                                                 handler:^(NSTimer *timer)
-    {
-        AMPStrongify(self)
-        NSArray *cars = [AMPCar objectsWithCount:AMPDefaultCarCount];
-        [self performSelectorInBackground:@selector(washCars:)
-                               withObject:cars];
-        
-        if (AMPDefaultFireCount == (self.fireCount += 1)) {
-            self.timer = nil;
-        }
-    }];
+    self.timer = [NSTimer safeScheduledTimerWithTimeInterval:AMPDefaultTimeInterval
+                                                     target:self
+                                                   selector:@selector(fireTimer:)
+                                                   userInfo:nil
+                                                    repeats:YES];
 }
 
 @end

@@ -12,7 +12,7 @@ typedef id(^AMPFactoryBlock)(void);
 
 @interface NSArray (AMPExtensions)
 
-+ (instancetype)arrayWithObjectsCount:(NSUInteger)count factoryBlock:(AMPFactoryBlock)block;
++ (instancetype)objectsWithCount:(NSUInteger)count factoryBlock:(AMPFactoryBlock)block;
 
 - (instancetype)objectsWithClass:(Class)aClass;
 - (instancetype)filteredObjectsUsingBlock:(BOOL(^)(id object))block;

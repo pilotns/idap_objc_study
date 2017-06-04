@@ -18,10 +18,7 @@
 @property (nonatomic, retain)   AMPQueue        *processedObjects;
 @property (nonatomic, retain)   NSMutableSet    *mutableProcessingObjects;
 
-@property (nonatomic, assign, getter=isWorking) BOOL working;
-
 - (void)performWork;
-- (void)performWorkingProcessWithObject:(id)object;
 
 @end
 
@@ -57,6 +54,7 @@
             return;
         }
         
+        [worker addObserver:self];
         [workers addObject:worker];
         [self.processingObjects pushObject:worker];
     }
@@ -70,6 +68,7 @@
 
 - (void)removeWorker:(AMPWorker *)worker {
     @synchronized (self) {
+        [worker removeObserver:self];
         [self.mutableProcessingObjects removeObject:worker];
         [self.processingObjects removeObject:worker];
     }
@@ -83,7 +82,8 @@
 }
 
 - (void)processObject:(id)object {
-    [self performWorkingProcessWithObject:object];
+    [self.processedObjects pushObject:object];
+    [self performWork];
 }
 
 - (void)processObjects:(NSArray *)objects {
@@ -91,29 +91,19 @@
     [self performWork];
 }
 
-- (void)performWorkingProcessWithObject:(id)object {
-    @synchronized (self) {
-        id worker = [self.processingObjects pop];
-        if (worker) {
-            [worker performProcessingObject:object];
-        } else {
-            [self.processedObjects pushObject:object];
-        }
-    }
-}
-
 #pragma mark -
 #pragma mark Private Methods
 
 - (void)performWork {
     AMPQueue *objectsQueue = self.processedObjects;
+    
     while (true) {
-        id object = [objectsQueue pop];
+        id object = [objectsQueue popObject];
         if (!object) {
             break;
         }
         
-        id worker = [self.processingObjects pop];
+        id worker = [self.processingObjects popObject];
         if (worker) {
             [worker performProcessingObject:object];
         } else {
@@ -127,32 +117,27 @@
 #pragma mark AMPEmployeeObserver
 
 - (void)employeeDidFinishWork:(id<AMPDispatcherWorkingProcess>)employee {
+    NSMutableSet *workers = self.mutableProcessingObjects;
     @synchronized (self) {
-        if ([self.mutableProcessingObjects containsObject:employee]) {
+        if ([workers containsObject:employee]) {
             return;
         }
-        
-        if (self.processingObjects.count) {
-            [self performWorkingProcessWithObject:employee];
-        } else {
-            [self.processedObjects pushObject:employee];
-        }
     }
+    
+    [self.processedObjects pushObject:employee];
+    [self performWork];
 }
 
 - (void)employeeDidBecomeFree:(id)employee {
+    NSMutableSet *workers = self.mutableProcessingObjects;
     @synchronized (self) {
-        if (![self.mutableProcessingObjects containsObject:employee]) {
+        if (![workers containsObject:employee]) {
             return;
         }
-        
-        AMPQueue *processedObjects = self.processedObjects;
-        if (processedObjects.count) {
-            [employee performProcessingObject:[processedObjects pop]];
-        } else {
-            [self.processingObjects pushObject:employee];
-        }
     }
+    
+    [self.processingObjects pushObject:employee];
+    [self performWork];
 }
 
 @end

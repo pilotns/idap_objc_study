@@ -14,6 +14,6 @@
 - (void)pushObject:(id)object;
 - (void)pushObjects:(id<NSFastEnumeration>)objects;
 
-- (id)pop;
+- (id)popObject;
 
 @end
