@@ -14,4 +14,10 @@
                                     repeats:(BOOL)repeats
                                     handler:(void (^)(NSTimer *timer))handler;
 
++ (NSTimer *)safeScheduledTimerWithTimeInterval:(NSTimeInterval)timeInterval
+                                     target:(id)target
+                                   selector:(SEL)selector
+                                   userInfo:(id)userInfo
+                                    repeats:(BOOL)repeats;
+
 @end
