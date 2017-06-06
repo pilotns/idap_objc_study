@@ -22,8 +22,6 @@
         return nil;
     }
     
-    NSDictionary *userInfo = @{ kAMPTimerHandlerKey : [handler copy] };
-    
     return [self scheduledTimerWithTimeInterval:timeInterval
                                          target:[AMPTimerServiceObject object]
                                        selector:@selector(fireTimer:)

@@ -17,6 +17,9 @@
 
 #import "NSObject+AMPExtensions.h"
 #import "NSSet+AMPExtensions.h"
+#import "NSArray+AMPExtensions.h"
+
+typedef NSArray *(^AMPEmployeeGenerator)(Class class, NSUInteger count, id observer);
 
 static const NSUInteger AMPDefaultWasherCount       = 20;
 static const NSUInteger AMPDefaultAccountantCount   = 10;
@@ -25,12 +28,7 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
 @interface AMPCarWashController () <AMPEmployeeObsever>
 @property (nonatomic, retain)   AMPDispatcher   *washersDispatcher;
 @property (nonatomic, retain)   AMPDispatcher   *accountantsDispatcher;
-@property (nonatomic, retain)   AMPDispatcher   *directorDispatcher;
-
-- (id)observersForEmployee:(AMPWorker *)employee;
-
-- (void)prepareObservationsForEmployees:(NSArray *)employees handler:(void (^)(AMPWorker *))handler;
-- (void)prepareDispatcher:(AMPDispatcher *)dispatcher withWorkers:(NSArray *)workers;
+@property (nonatomic, retain)   AMPDispatcher   *directorsDispatcher;
 
 - (void)prepareHierarchy;
 
@@ -44,7 +42,7 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
 - (void)dealloc {
     self.washersDispatcher = nil;
     self.accountantsDispatcher = nil;
-    self.directorDispatcher = nil;
+    self.directorsDispatcher = nil;
     
     [super dealloc];
 }
@@ -53,7 +51,7 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
     self = [super init];
     self.washersDispatcher = [AMPDispatcher object];
     self.accountantsDispatcher = [AMPDispatcher object];
-    self.directorDispatcher = [AMPDispatcher object];
+    self.directorsDispatcher = [AMPDispatcher object];
     
     [self prepareHierarchy];
     
@@ -74,50 +72,26 @@ static const NSUInteger AMPDefaultDirectorCount     = 1;
 #pragma mark -
 #pragma mark Private Methods
 
-- (NSArray *)observersForEmployee:(AMPWorker *)employee {
-    if ([employee isKindOfClass:[AMPWasher class]]) {
-        return @[self.accountantsDispatcher, self.washersDispatcher];
-    }
-    
-    if ([employee isKindOfClass:[AMPAccountant class]]) {
-        return @[self.directorDispatcher, self.accountantsDispatcher];
-    }
-    
-    if ([employee isKindOfClass:[AMPDirector class]]) {
-        return @[self.directorDispatcher];
-    }
-    
-    return nil;
-}
-
-- (void)prepareObservationsForEmployees:(NSArray *)employees handler:(void (^)(AMPWorker *employee))handler {
-    if (!handler) {
-        return;
-    }
-    
-    [employees enumerateObjectsUsingBlock:^(id employee, NSUInteger idx, BOOL *stop) {
-        handler(employee);
-    }];
-}
-
-- (void)prepareDispatcher:(AMPDispatcher *)dispatcher withWorkers:(NSArray *)workers {
-    [dispatcher addWorkers:workers];
-    [self prepareObservationsForEmployees:workers handler:^(AMPWorker *worker) {
-        NSArray *observers = [self observersForEmployee:worker];
-        for (id observer in observers) {
-            [worker addObserver:observer];
-        }
-    }];
-}
-
 - (void)prepareHierarchy {
-    NSArray *washers = [AMPWasher objectsWithCount:AMPDefaultWasherCount];
-    NSArray *accountants = [AMPAccountant objectsWithCount:AMPDefaultAccountantCount];
-    NSArray *directors = [AMPDirector objectsWithCount:AMPDefaultDirectorCount];
+    AMPEmployeeGenerator generator = ^NSArray *(Class class, NSUInteger count, id observer){
+        return [NSArray objectsWithCount:count factoryBlock:^id{
+            id employee = [class object];
+            [employee addObserver:observer];
+            
+            return employee;
+        }];
+    };
     
-    [self prepareDispatcher:self.washersDispatcher withWorkers:washers];
-    [self prepareDispatcher:self.accountantsDispatcher withWorkers:accountants];
-    [self prepareDispatcher:self.directorDispatcher withWorkers:directors];
+    AMPDispatcher *accountantsDispatcher = self.accountantsDispatcher;
+    AMPDispatcher *directorsDispatcher = self.directorsDispatcher;
+    
+    NSArray *washers = generator([AMPWasher class], AMPDefaultWasherCount, accountantsDispatcher);
+    NSArray *accountants = generator([AMPAccountant class], AMPDefaultAccountantCount, directorsDispatcher);
+    NSArray *directors = generator([AMPDirector class], AMPDefaultDirectorCount, nil);
+    
+    [self.washersDispatcher addWorkers:washers];
+    [accountantsDispatcher addWorkers:accountants];
+    [directorsDispatcher addWorkers:directors];
 }
 
 @end

@@ -18,7 +18,7 @@
 #import "NSString+AMPRandom.h"
 #import "NSObject+AMPExtensions.h"
 
-static const NSRange AMPDefaultSleepRange = { 60, 30 };
+static const NSRange AMPDefaultSleepRange = { 10, 5 };
 
 @interface AMPWorker ()
 @property (nonatomic, copy)     NSString    *name;

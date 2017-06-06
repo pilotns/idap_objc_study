@@ -14,4 +14,6 @@
 
 @interface AMPCarWash : NSObject
 
+- (void)performWork;
+
 @end

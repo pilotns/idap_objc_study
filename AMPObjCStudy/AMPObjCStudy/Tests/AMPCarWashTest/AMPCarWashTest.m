@@ -15,4 +15,6 @@
 
 void AMPCarWashTest() {
     AMPCarWash *carWash = [AMPCarWash object];
+    
+    [carWash performWork];
 }

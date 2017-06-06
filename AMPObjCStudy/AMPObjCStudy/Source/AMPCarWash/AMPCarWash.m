@@ -11,25 +11,21 @@
 #import "AMPCarWashController.h"
 #import "AMPCar.h"
 
-#import "AMPTimer.h"
 #import "AMPGCDExtensions.h"
 #import "AMPMacros.h"
 
 #import "NSObject+AMPExtensions.h"
 #import "NSTimer+AMPExtensions.h"
 
-static const NSUInteger AMPDefaultCarCount = 30;
+static const NSUInteger AMPDefaultCarCount = 3000;
 static const NSUInteger AMPDefaultTimeInterval = 2;
 static const NSUInteger AMPDefaultFireCount = 5;
 
 @interface AMPCarWash ()
 @property (nonatomic, retain)   AMPCarWashController    *controller;
-@property (nonatomic, retain)   AMPTimer                *timer;
-
-@property (nonatomic, assign)   NSUInteger  fireCount;
+@property (nonatomic, assign)   NSUInteger              fireCount;
 
 - (void)washCars:(NSArray *)cars;
-- (void)prepareTimer;
 
 @end
 
@@ -40,7 +36,6 @@ static const NSUInteger AMPDefaultFireCount = 5;
 
 - (void)dealloc {
     self.controller = nil;
-    self.timer = nil;
     
     [super dealloc];
 }
@@ -48,18 +43,24 @@ static const NSUInteger AMPDefaultFireCount = 5;
 - (instancetype)init {
     self = [super init];
     self.controller = [AMPCarWashController object];
-    [self prepareTimer];
     
     return self;
 }
 
-- (void)setTimer:(AMPTimer *)timer {
-    if (_timer != timer) {
-        [_timer invalidate];
+#pragma mark -
+#pragma mark Public Methods
+
+- (void)performWork {
+    AMPWeakify(self);
+    AMPPerformSheduledBlock(AMPDefaultTimeInterval, YES, ^(BOOL *stop){
+        AMPStrongify(self);
+        NSArray *cars = [AMPCar objectsWithCount:AMPDefaultCarCount];
+        [self washCars:cars];
         
-        _timer = timer;
-        [_timer resume];
-    }
+        if (AMPDefaultFireCount == (++self.fireCount)) {
+            *stop = YES;
+        }
+    });
 }
 
 #pragma mark -
@@ -67,19 +68,6 @@ static const NSUInteger AMPDefaultFireCount = 5;
 
 - (void)washCars:(NSArray *)cars {
     [self.controller washCars:cars];
-}
-
-- (void)prepareTimer {
-    AMPWeakify(self);
-    self.timer = [AMPTimer timerWithTimeInterval:AMPDefaultTimeInterval repeats:YES handler:^(AMPTimer *timer) {
-        AMPStrongify(self);
-        NSArray *cars = [AMPCar objectsWithCount:AMPDefaultCarCount];
-        [self washCars:cars];
-        
-        if (AMPDefaultFireCount == ++self.fireCount) {
-            [timer invalidate];
-        }
-    }];
 }
 
 @end

@@ -36,7 +36,7 @@ void AMPCreatureSayHelloTest(void) {
 }
 
 NSArray *AMPCreaturesWithCount(NSUInteger count) {
-    return [NSArray arrayWithObjectsCount:count factoryBlock:^id{
+    return [NSArray objectsWithCount:count factoryBlock:^id{
         @autoreleasepool {
             Class currentClass = AMPCreatureRandomClass();
             AMPCreature *creature = [currentClass object];

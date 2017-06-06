@@ -10,7 +10,7 @@
 
 @implementation NSArray (AMPExtensions)
 
-+ (instancetype)arrayWithObjectsCount:(NSUInteger)count factoryBlock:(AMPFactoryBlock)block {
++ (instancetype)objectsWithCount:(NSUInteger)count factoryBlock:(AMPFactoryBlock)block {
     if (!block) {
         return nil;
     }

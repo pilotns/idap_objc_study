@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^AMPSheduledBlock)(BOOL *stop);
+
 dispatch_queue_t AMPCreateDispatchSerialQueue();
 dispatch_queue_t AMPCreateDispatchConcurrentQueue();
 
@@ -24,10 +26,10 @@ void AMPDispatchSyncInBackground(dispatch_block_t block);
 void AMPDispatchAsyncOnQueue(dispatch_queue_t queue, dispatch_block_t block);
 void AMPDispatchSyncOnQueue(dispatch_queue_t queue, dispatch_block_t block);
 
-void AMPDispatchAfterDelayOnQueue(dispatch_queue_t queue, uint64_t delay, dispatch_block_t block);
+void AMPDispatchAfterDelay(uint64_t delay, dispatch_block_t block);
 
 void AMPDispatchAsyncOnMainQueue(dispatch_block_t block);
 void AMPDispatchSyncOnMainQueue(dispatch_block_t block);
 
-dispatch_source_t AMPCreateDispatchTimerOnQueue(dispatch_queue_t queue, uint64_t interval, dispatch_block_t eventHandler);
+void AMPPerformSheduledBlock(uint64_t delay, BOOL repeat, AMPSheduledBlock sheduledBlock);
 
